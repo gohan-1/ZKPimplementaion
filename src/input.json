@@ -1,0 +1,13 @@
+{
+    "userID": "123456789",
+    "issuerID": "987654321",
+    "credentialHash": "1234567890123456789012345678901234567890123456789012345678901234",
+    "claimValue": "25",
+    "requiredValue": "18",
+    "operator": "1",
+    "signatureR8x": "1",
+    "signatureR8y": "1",
+    "signatureS": "1",
+    "issuerPublicKeyX": "1",
+    "issuerPublicKeyY": "1"
+}

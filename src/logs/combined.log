@@ -1,195 +1,88 @@
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-26 20:25:42"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-26 20:25:43"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-26 20:25:43"}
-{"level":"info","message":"zkpCircuit.r1cs","timestamp":"2026-03-26 20:25:44"}
-{"level":"info","message":"pot12_final.ptau","timestamp":"2026-03-26 20:25:44"}
-{"0":"\ud83d","1":"\udccc","10":"t","11":"h","12":"s","13":" ","14":"p","15":"r","16":"e","17":"p","18":"a","19":"r","2":" ","20":"e","21":"d","3":"F","4":"i","5":"l","6":"e","7":" ","8":"p","9":"a","level":"info","message":{"circuit":"/home/vishnu/circuits/node-express-boilerplate/src/project_v1/ZKPFiles/zkpCircuit.r1cs","fZkey":"/home/vishnu/circuits/node-express-boilerplate/src/project_v1/tau_files/final.zkey","ptau":"/home/vishnu/circuits/node-express-boilerplate/src/project_v1/tau_files/pot12_final.ptau","zkey":"/home/vishnu/circuits/node-express-boilerplate/src/project_v1/tau_files/first.zkey"},"timestamp":"2026-03-26 20:25:44"}
-{"level":"info","message":"🔹 Step 1: Creating initial zKey...","timestamp":"2026-03-26 20:25:44"}
-{"0":"❌","1":" ","10":"o","11":" ","12":"c","13":"r","14":"e","15":"a","16":"t","17":"e","18":" ","19":"i","2":"F","20":"n","21":"i","22":"t","23":"i","24":"a","25":"l","26":" ","27":"z","28":"K","29":"e","3":"a","30":"y","4":"i","5":"l","6":"e","7":"d","8":" ","9":"t","level":"error","message":{"error":{"code":"ENOENT","errno":-2,"path":"/home/vishnu/circuits/node-express-boilerplate/src/project_v1/tau_files/pot12_final.ptau","syscall":"open"}},"timestamp":"2026-03-26 20:25:44"}
-{"0":"❌","1":" ","10":"K","11":"e","12":"y","13":" ","14":"G","15":"e","16":"n","17":"e","18":"r","19":"a","2":"I","20":"t","21":"i","22":"o","23":"n","24":" ","25":"f","26":"a","27":"i","28":"l","29":"e","3":"n","30":"d","4":"i","5":"t","6":"i","7":"a","8":"l","9":" ","level":"error","message":{"error":{"isOperational":true,"statusCode":500}},"timestamp":"2026-03-26 20:25:44"}
-{"isOperational":true,"level":"error","message":"Initial Key Generation failed. See logs for details.","stack":"Error: Initial Key Generation failed. See logs for details.\n    at Object.InitialKeyGeneration (/home/vishnu/circuits/node-express-boilerplate/src/services/zkpFile.service.js:148:15)\n    at async /home/vishnu/circuits/node-express-boilerplate/src/controllers/zkpFile.controller.js:17:20","statusCode":500,"timestamp":"2026-03-26 20:25:44"}
-{"level":"error","message":"GET /v1/zkp-file-generation/createInitialKey?circuitName=zkpCircuit.r1cs&finalKey=pot12_final.ptau 500 - 5.497 ms - message: Initial Key Generation failed. See logs for details.","timestamp":"2026-03-26 20:25:44"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-26 20:26:28"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-26 20:26:29"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-26 20:26:29"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-26 20:26:37"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-26 20:26:39"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-26 20:26:39"}
-{"level":"info","message":"/home/vishnu/circuits/node-express-boilerplate/src/project_v1/tau_files/pot12_final.ptau","timestamp":"2026-03-26 20:26:42"}
-{"level":"info","message":"/home/vishnu/circuits/node-express-boilerplate/src/project_v1/ZKPFiles/zkpCircuit.r1cs","timestamp":"2026-03-26 20:26:42"}
-{"0":"\ud83d","1":"\udccc","10":"t","11":"h","12":"s","13":" ","14":"p","15":"r","16":"e","17":"p","18":"a","19":"r","2":" ","20":"e","21":"d","3":"F","4":"i","5":"l","6":"e","7":" ","8":"p","9":"a","level":"info","message":{"circuit":"/home/vishnu/circuits/node-express-boilerplate/src/project_v1/ZKPFiles/zkpCircuit.r1cs","fZkey":"/home/vishnu/circuits/node-express-boilerplate/src/project_v1/tau_files/final.zkey","ptau":"/home/vishnu/circuits/node-express-boilerplate/src/project_v1/tau_files/pot12_final.ptau","zkey":"/home/vishnu/circuits/node-express-boilerplate/src/project_v1/tau_files/first.zkey"},"timestamp":"2026-03-26 20:26:42"}
-{"level":"info","message":"🔹 Step 1: Creating initial zKey...","timestamp":"2026-03-26 20:26:42"}
-{"0":"❌","1":" ","10":"o","11":" ","12":"c","13":"r","14":"e","15":"a","16":"t","17":"e","18":" ","19":"i","2":"F","20":"n","21":"i","22":"t","23":"i","24":"a","25":"l","26":" ","27":"z","28":"K","29":"e","3":"a","30":"y","4":"i","5":"l","6":"e","7":"d","8":" ","9":"t","level":"error","message":{"error":{"code":"ENOENT","errno":-2,"path":"/home/vishnu/circuits/node-express-boilerplate/src/project_v1/tau_files/pot12_final.ptau","syscall":"open"}},"timestamp":"2026-03-26 20:26:42"}
-{"0":"❌","1":" ","10":"K","11":"e","12":"y","13":" ","14":"G","15":"e","16":"n","17":"e","18":"r","19":"a","2":"I","20":"t","21":"i","22":"o","23":"n","24":" ","25":"f","26":"a","27":"i","28":"l","29":"e","3":"n","30":"d","4":"i","5":"t","6":"i","7":"a","8":"l","9":" ","level":"error","message":{"error":{"isOperational":true,"statusCode":500}},"timestamp":"2026-03-26 20:26:42"}
-{"isOperational":true,"level":"error","message":"Initial Key Generation failed. See logs for details.","stack":"Error: Initial Key Generation failed. See logs for details.\n    at Object.InitialKeyGeneration (/home/vishnu/circuits/node-express-boilerplate/src/services/zkpFile.service.js:150:15)\n    at async /home/vishnu/circuits/node-express-boilerplate/src/controllers/zkpFile.controller.js:17:20","statusCode":500,"timestamp":"2026-03-26 20:26:42"}
-{"level":"error","message":"GET /v1/zkp-file-generation/createInitialKey?circuitName=zkpCircuit.r1cs&finalKey=pot12_final.ptau 500 - 6.369 ms - message: Initial Key Generation failed. See logs for details.","timestamp":"2026-03-26 20:26:42"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-26 20:27:16"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-26 20:27:18"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-26 20:27:18"}
-{"level":"info","message":"/home/vishnu/circuits/node-express-boilerplate/project_v1/tau_files/pot12_final.ptau","timestamp":"2026-03-26 20:27:27"}
-{"level":"info","message":"/home/vishnu/circuits/node-express-boilerplate/project_v1/ZKPFiles/zkpCircuit.r1cs","timestamp":"2026-03-26 20:27:27"}
-{"0":"\ud83d","1":"\udccc","10":"t","11":"h","12":"s","13":" ","14":"p","15":"r","16":"e","17":"p","18":"a","19":"r","2":" ","20":"e","21":"d","3":"F","4":"i","5":"l","6":"e","7":" ","8":"p","9":"a","level":"info","message":{"circuit":"/home/vishnu/circuits/node-express-boilerplate/project_v1/ZKPFiles/zkpCircuit.r1cs","fZkey":"/home/vishnu/circuits/node-express-boilerplate/project_v1/tau_files/final.zkey","ptau":"/home/vishnu/circuits/node-express-boilerplate/project_v1/tau_files/pot12_final.ptau","zkey":"/home/vishnu/circuits/node-express-boilerplate/project_v1/tau_files/first.zkey"},"timestamp":"2026-03-26 20:27:27"}
-{"level":"info","message":"🔹 Step 1: Creating initial zKey...","timestamp":"2026-03-26 20:27:27"}
-{"0":"❌","1":" ","10":"o","11":" ","12":"c","13":"r","14":"e","15":"a","16":"t","17":"e","18":" ","19":"i","2":"F","20":"n","21":"i","22":"t","23":"i","24":"a","25":"l","26":" ","27":"z","28":"K","29":"e","3":"a","30":"y","4":"i","5":"l","6":"e","7":"d","8":" ","9":"t","level":"error","message":{"error":{"code":"ENOENT","errno":-2,"path":"/home/vishnu/circuits/node-express-boilerplate/project_v1/tau_files/pot12_final.ptau","syscall":"open"}},"timestamp":"2026-03-26 20:27:27"}
-{"0":"❌","1":" ","10":"K","11":"e","12":"y","13":" ","14":"G","15":"e","16":"n","17":"e","18":"r","19":"a","2":"I","20":"t","21":"i","22":"o","23":"n","24":" ","25":"f","26":"a","27":"i","28":"l","29":"e","3":"n","30":"d","4":"i","5":"t","6":"i","7":"a","8":"l","9":" ","level":"error","message":{"error":{"isOperational":true,"statusCode":500}},"timestamp":"2026-03-26 20:27:27"}
-{"isOperational":true,"level":"error","message":"Initial Key Generation failed. See logs for details.","stack":"Error: Initial Key Generation failed. See logs for details.\n    at Object.InitialKeyGeneration (/home/vishnu/circuits/node-express-boilerplate/src/services/zkpFile.service.js:150:15)\n    at async /home/vishnu/circuits/node-express-boilerplate/src/controllers/zkpFile.controller.js:17:20","statusCode":500,"timestamp":"2026-03-26 20:27:27"}
-{"level":"error","message":"GET /v1/zkp-file-generation/createInitialKey?circuitName=zkpCircuit.r1cs&finalKey=pot12_final.ptau 500 - 8.647 ms - message: Initial Key Generation failed. See logs for details.","timestamp":"2026-03-26 20:27:27"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-26 20:27:42"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-26 20:27:44"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-26 20:27:44"}
-{"level":"info","message":"/home/vishnu/circuits/node-express-boilerplate/Project_v1/tau_files/pot12_final.ptau","timestamp":"2026-03-26 20:27:52"}
-{"level":"info","message":"/home/vishnu/circuits/node-express-boilerplate/Project_v1/ZKPFiles/zkpCircuit.r1cs","timestamp":"2026-03-26 20:27:52"}
-{"0":"\ud83d","1":"\udccc","10":"t","11":"h","12":"s","13":" ","14":"p","15":"r","16":"e","17":"p","18":"a","19":"r","2":" ","20":"e","21":"d","3":"F","4":"i","5":"l","6":"e","7":" ","8":"p","9":"a","level":"info","message":{"circuit":"/home/vishnu/circuits/node-express-boilerplate/Project_v1/ZKPFiles/zkpCircuit.r1cs","fZkey":"/home/vishnu/circuits/node-express-boilerplate/Project_v1/tau_files/final.zkey","ptau":"/home/vishnu/circuits/node-express-boilerplate/Project_v1/tau_files/pot12_final.ptau","zkey":"/home/vishnu/circuits/node-express-boilerplate/Project_v1/tau_files/first.zkey"},"timestamp":"2026-03-26 20:27:52"}
-{"level":"info","message":"🔹 Step 1: Creating initial zKey...","timestamp":"2026-03-26 20:27:52"}
-{"0":"❌","1":" ","10":"o","11":" ","12":"c","13":"r","14":"e","15":"a","16":"t","17":"e","18":" ","19":"i","2":"F","20":"n","21":"i","22":"t","23":"i","24":"a","25":"l","26":" ","27":"z","28":"K","29":"e","3":"a","30":"y","4":"i","5":"l","6":"e","7":"d","8":" ","9":"t","level":"error","message":{"error":{"code":"ENOENT","errno":-2,"path":"/home/vishnu/circuits/node-express-boilerplate/Project_v1/tau_files/pot12_final.ptau","syscall":"open"}},"timestamp":"2026-03-26 20:27:52"}
-{"0":"❌","1":" ","10":"K","11":"e","12":"y","13":" ","14":"G","15":"e","16":"n","17":"e","18":"r","19":"a","2":"I","20":"t","21":"i","22":"o","23":"n","24":" ","25":"f","26":"a","27":"i","28":"l","29":"e","3":"n","30":"d","4":"i","5":"t","6":"i","7":"a","8":"l","9":" ","level":"error","message":{"error":{"isOperational":true,"statusCode":500}},"timestamp":"2026-03-26 20:27:52"}
-{"isOperational":true,"level":"error","message":"Initial Key Generation failed. See logs for details.","stack":"Error: Initial Key Generation failed. See logs for details.\n    at Object.InitialKeyGeneration (/home/vishnu/circuits/node-express-boilerplate/src/services/zkpFile.service.js:150:15)\n    at async /home/vishnu/circuits/node-express-boilerplate/src/controllers/zkpFile.controller.js:17:20","statusCode":500,"timestamp":"2026-03-26 20:27:52"}
-{"level":"error","message":"GET /v1/zkp-file-generation/createInitialKey?circuitName=zkpCircuit.r1cs&finalKey=pot12_final.ptau 500 - 8.789 ms - message: Initial Key Generation failed. See logs for details.","timestamp":"2026-03-26 20:27:52"}
-{"level":"info","message":"🔹 Starting Trusted Setup (this may take a while)...","timestamp":"2026-03-26 20:28:12"}
-{"level":"info","message":"✅ Curve loaded: bn128","timestamp":"2026-03-26 20:28:13"}
-{"level":"info","message":"🔹 Step 1: Creating Powers of Tau...","timestamp":"2026-03-26 20:28:13"}
-{"level":"info","message":"✅ ptau accumulator created: pot12_0000.ptau","timestamp":"2026-03-26 20:28:13"}
-{"level":"info","message":"🔹 Step 2: Contributing entropy...","timestamp":"2026-03-26 20:28:13"}
-{"level":"info","message":"✅ Contribution complete: pot12_0001.ptau","timestamp":"2026-03-26 20:28:14"}
-{"level":"info","message":"🔹 Step 3: Preparing Phase 2...","timestamp":"2026-03-26 20:28:14"}
-{"level":"info","message":"✅ Phase 2 prepared: pot12_final.ptau","timestamp":"2026-03-26 20:28:23"}
-{"level":"info","message":"GET /v1/zkp-file-generation/crearteCeremony 201 - 10581.887 ms","timestamp":"2026-03-26 20:28:23"}
-{"level":"info","message":"/home/vishnu/circuits/node-express-boilerplate/Project_v1/tau_files/pot12_final.ptau","timestamp":"2026-03-26 20:28:27"}
-{"level":"info","message":"/home/vishnu/circuits/node-express-boilerplate/Project_v1/ZKPFiles/zkpCircuit.r1cs","timestamp":"2026-03-26 20:28:27"}
-{"0":"\ud83d","1":"\udccc","10":"t","11":"h","12":"s","13":" ","14":"p","15":"r","16":"e","17":"p","18":"a","19":"r","2":" ","20":"e","21":"d","3":"F","4":"i","5":"l","6":"e","7":" ","8":"p","9":"a","level":"info","message":{"circuit":"/home/vishnu/circuits/node-express-boilerplate/Project_v1/ZKPFiles/zkpCircuit.r1cs","fZkey":"/home/vishnu/circuits/node-express-boilerplate/Project_v1/tau_files/final.zkey","ptau":"/home/vishnu/circuits/node-express-boilerplate/Project_v1/tau_files/pot12_final.ptau","zkey":"/home/vishnu/circuits/node-express-boilerplate/Project_v1/tau_files/first.zkey"},"timestamp":"2026-03-26 20:28:27"}
-{"level":"info","message":"🔹 Step 1: Creating initial zKey...","timestamp":"2026-03-26 20:28:27"}
-{"level":"info","message":"✅ Initial zKey created successfully","timestamp":"2026-03-26 20:28:28"}
-{"level":"info","message":"🔹 Step 2: Contributing entropy to zKey...","timestamp":"2026-03-26 20:28:28"}
-{"level":"info","message":"✅ zKey contribution completed successfully","timestamp":"2026-03-26 20:28:28"}
-{"level":"info","message":"🎉 Initial Key Generation completed successfully!","timestamp":"2026-03-26 20:28:28"}
-{"level":"info","message":"GET /v1/zkp-file-generation/createInitialKey?circuitName=zkpCircuit.r1cs&finalKey=pot12_final.ptau 201 - 715.438 ms","timestamp":"2026-03-26 20:28:28"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-26 20:47:14"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-26 20:47:15"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-26 20:47:15"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-26 20:51:01"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-26 20:51:02"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-26 20:51:02"}
-{"level":"info","message":"🔹 Starting Trusted Setup (this may take a while)...","timestamp":"2026-03-26 20:51:21"}
-{"level":"info","message":"✅ Curve loaded: bn128","timestamp":"2026-03-26 20:51:21"}
-{"level":"info","message":"🔹 Step 1: Creating Powers of Tau...","timestamp":"2026-03-26 20:51:21"}
-{"level":"info","message":"✅ ptau accumulator created: pot12_0000.ptau","timestamp":"2026-03-26 20:51:21"}
-{"level":"info","message":"🔹 Step 2: Contributing entropy...","timestamp":"2026-03-26 20:51:21"}
-{"level":"info","message":"✅ Contribution complete: pot12_0001.ptau","timestamp":"2026-03-26 20:51:22"}
-{"level":"info","message":"🔹 Step 3: Preparing Phase 2...","timestamp":"2026-03-26 20:51:22"}
-{"level":"info","message":"✅ Phase 2 prepared: pot12_final.ptau","timestamp":"2026-03-26 20:51:32"}
-{"level":"info","message":"GET /v1/zkp-file-generation/crearteCeremony 201 - 11220.233 ms","timestamp":"2026-03-26 20:51:32"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 00:44:20"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 00:44:21"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 00:44:21"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 00:44:24"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 00:44:25"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 00:44:25"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 00:46:52"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 00:46:53"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 00:46:53"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 00:46:56"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 00:46:57"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 00:46:57"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 00:48:39"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 00:48:41"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 00:48:41"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 00:48:45"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 00:48:46"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 00:48:46"}
-{"level":"info","message":"🔹 Starting Trusted Setup (this may take a while)...","timestamp":"2026-03-27 00:49:09"}
-{"level":"info","message":"✅ Curve loaded: bn128","timestamp":"2026-03-27 00:49:09"}
-{"level":"info","message":"🔹 Step 1: Creating Powers of Tau...","timestamp":"2026-03-27 00:49:09"}
-{"level":"info","message":"✅ ptau accumulator created: pot12_0000.ptau","timestamp":"2026-03-27 00:49:10"}
-{"level":"info","message":"🔹 Step 2: Contributing entropy...","timestamp":"2026-03-27 00:49:10"}
-{"level":"info","message":"✅ Contribution complete: pot12_0001.ptau","timestamp":"2026-03-27 00:49:10"}
-{"level":"info","message":"🔹 Step 3: Preparing Phase 2...","timestamp":"2026-03-27 00:49:10"}
-{"level":"info","message":"✅ Phase 2 prepared: pot12_final.ptau","timestamp":"2026-03-27 00:49:20"}
-{"level":"info","message":"GET /v1/zkp-file-generation/crearteCeremony 201 - 10915.367 ms","timestamp":"2026-03-27 00:49:20"}
-{"level":"info","message":"/home/vishnu/circuits/node-express-boilerplate (copy)/Project_v1/tau_files/pot12_final.ptau","timestamp":"2026-03-27 00:49:27"}
-{"level":"info","message":"/home/vishnu/circuits/node-express-boilerplate (copy)/Project_v1/ZKPFiles/zkpCircuit.r1cs","timestamp":"2026-03-27 00:49:27"}
-{"0":"\ud83d","1":"\udccc","10":"t","11":"h","12":"s","13":" ","14":"p","15":"r","16":"e","17":"p","18":"a","19":"r","2":" ","20":"e","21":"d","3":"F","4":"i","5":"l","6":"e","7":" ","8":"p","9":"a","level":"info","message":{"circuit":"/home/vishnu/circuits/node-express-boilerplate (copy)/Project_v1/ZKPFiles/zkpCircuit.r1cs","fZkey":"/home/vishnu/circuits/node-express-boilerplate (copy)/Project_v1/tau_files/final.zkey","ptau":"/home/vishnu/circuits/node-express-boilerplate (copy)/Project_v1/tau_files/pot12_final.ptau","zkey":"/home/vishnu/circuits/node-express-boilerplate (copy)/Project_v1/tau_files/first.zkey"},"timestamp":"2026-03-27 00:49:27"}
-{"level":"info","message":"🔹 Step 1: Creating initial zKey...","timestamp":"2026-03-27 00:49:27"}
-{"level":"info","message":"✅ Initial zKey created successfully","timestamp":"2026-03-27 00:49:28"}
-{"level":"info","message":"🔹 Step 2: Contributing entropy to zKey...","timestamp":"2026-03-27 00:49:28"}
-{"level":"info","message":"✅ zKey contribution completed successfully","timestamp":"2026-03-27 00:49:28"}
-{"level":"info","message":"🎉 Initial Key Generation completed successfully!","timestamp":"2026-03-27 00:49:28"}
-{"level":"info","message":"GET /v1/zkp-file-generation/createInitialKey?circuitName=zkpCircuit.r1cs&finalKey=pot12_final.ptau 201 - 753.811 ms","timestamp":"2026-03-27 00:49:28"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 00:58:02"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 00:58:02"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 00:58:03"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 00:58:03"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 00:58:03"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:04:00"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:04:02"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:04:08"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:04:09"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:04:39"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:04:41"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:04:41"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:07:35"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:07:36"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:07:36"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:07:39"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:07:41"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:07:41"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:08:05"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:08:07"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:08:07"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:10:03"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:10:05"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:10:05"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:12:51"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:12:52"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:12:52"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:15:35"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:15:36"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:15:36"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:15:40"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:15:41"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:15:41"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:16:03"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:16:05"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:16:05"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:16:27"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:16:28"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:16:28"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:28:09"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:28:11"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:28:11"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:28:19"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:28:20"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:28:20"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:28:31"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:28:33"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:28:33"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:29:07"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:29:08"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:29:08"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:31:47"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:31:48"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:31:48"}
-{"level":"info","message":"GET /v1/docs/ 304 - 5.003 ms","timestamp":"2026-03-27 01:31:59"}
-{"level":"info","message":"GET /v1/docs/swagger-ui.css 304 - 2.762 ms","timestamp":"2026-03-27 01:31:59"}
-{"level":"info","message":"GET /v1/docs/swagger-ui-bundle.js 304 - 2.654 ms","timestamp":"2026-03-27 01:31:59"}
-{"level":"info","message":"GET /v1/docs/swagger-ui-standalone-preset.js 304 - 0.438 ms","timestamp":"2026-03-27 01:31:59"}
-{"level":"info","message":"GET /v1/docs/swagger-ui-init.js 200 - 1.417 ms","timestamp":"2026-03-27 01:31:59"}
-{"level":"info","message":"GET /v1/docs/favicon-32x32.png 304 - 1.053 ms","timestamp":"2026-03-27 01:32:01"}
-{"isOperational":false,"level":"error","message":"zkpFileService.generateVeriferKey is not a function","stack":"TypeError: zkpFileService.generateVeriferKey is not a function\n    at /home/vishnu/circuits/node-express-boilerplate (copy)/src/controllers/zkpFile.controller.js:26:41\n    at /home/vishnu/circuits/node-express-boilerplate (copy)/src/utils/catchAsync.js:2:19\n    at Layer.handle [as handle_request] (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/route.js:149:13)\n    at Route.dispatch (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/route.js:119:3)\n    at Layer.handle [as handle_request] (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/layer.js:95:5)\n    at /home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/index.js:284:15\n    at Function.process_params (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/index.js:346:12)\n    at next (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/index.js:280:10)\n    at Function.handle (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/index.js:175:3)\n    at router (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/index.js:47:12)\n    at Layer.handle [as handle_request] (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/layer.js:95:5)\n    at trim_prefix (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/index.js:328:13)\n    at /home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/index.js:286:9\n    at Function.process_params (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/index.js:346:12)\n    at next (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/index.js:280:10)","statusCode":500,"timestamp":"2026-03-27 01:32:12"}
-{"level":"error","message":"GET /v1/zkp-file-generation/verifierKey?finalKey=final.zkey 500 - 2.585 ms - message: zkpFileService.generateVeriferKey is not a function","timestamp":"2026-03-27 01:32:12"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:32:55"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:32:56"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:32:56"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:33:33"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:33:35"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:33:35"}
-{"level":"info","message":"🔹 Starting Verification Key Generation...","timestamp":"2026-03-27 01:33:35"}
-{"0":"\ud83d","1":"\udccc","10":"t","11":"h","12":"s","13":" ","14":"p","15":"r","16":"e","17":"p","18":"a","19":"r","2":" ","20":"e","21":"d","3":"F","4":"i","5":"l","6":"e","7":" ","8":"p","9":"a","level":"info","message":{"output":"/home/vishnu/circuits/node-express-boilerplate (copy)/Project_v1/VerifierData/verification_key.json","zkey":"/home/vishnu/circuits/node-express-boilerplate (copy)/Project_v1/tau_files/final.zkey"},"timestamp":"2026-03-27 01:33:35"}
-{"level":"info","message":"🔹 Step 1: Exporting verification key...","timestamp":"2026-03-27 01:33:35"}
-{"level":"info","message":"✅ Verification key generated successfully","timestamp":"2026-03-27 01:33:36"}
-{"level":"info","message":"✅ Verification key saved to file","timestamp":"2026-03-27 01:33:36"}
-{"level":"info","message":"🎉 Verification Key Generation completed successfully!","timestamp":"2026-03-27 01:33:36"}
-{"level":"info","message":"GET /v1/zkp-file-generation/verifierKey?finalKey=final.zkey 201 - 200.496 ms","timestamp":"2026-03-27 01:33:36"}
-{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:33:37"}
-{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:33:38"}
-{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:33:38"}
-{"level":"info","message":"SIGTERM received","timestamp":"2026-03-27 01:55:48"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 20:36:15"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 20:36:17"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 20:36:17"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 20:36:40"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 20:36:41"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 20:36:41"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 20:36:41"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 20:36:42"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 20:36:50"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 20:36:51"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 20:36:54"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 20:36:55"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 20:37:01"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 20:37:02"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 20:37:28"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 20:37:29"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 20:37:29"}
+{"0":"\ud83d","1":"\udd39","10":"P","11":"r","12":"o","13":"o","14":"f","15":" ","16":"r","17":"e","18":"q","19":"u","2":" ","20":"e","21":"s","22":"t","3":"C","4":"r","5":"e","6":"a","7":"t","8":"e","9":" ","level":"info","message":{"protocol":"groth16","zkeyFileName":"final.zkey"},"timestamp":"2026-03-27 20:37:30"}
+{"level":"info","message":"🔹 Starting Proof Generation...","timestamp":"2026-03-27 20:37:30"}
+{"level":"info","message":"🔹 Generating Groth16 proof...","timestamp":"2026-03-27 20:37:30"}
+{"level":"info","message":"✅ Proof generated successfully","proofFile":"/home/vishnu/circuits/ZKPNode/proofs/groth16_proof.json","publicFile":"/home/vishnu/circuits/ZKPNode/proofs/groth16_public.json","timestamp":"2026-03-27 20:37:30"}
+{"level":"info","message":"POST /v1/zkp-file-generation/generateProof?zkey=final.zkey&protocol=groth16 201 - 329.490 ms","timestamp":"2026-03-27 20:37:30"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 20:37:32"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 20:37:33"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 20:37:33"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 20:39:16"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 20:39:17"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 20:39:17"}
+{"level":"info","message":"GET /v1/docs/ 304 - 5.989 ms","timestamp":"2026-03-27 20:39:35"}
+{"level":"info","message":"GET /v1/docs/swagger-ui.css 304 - 2.944 ms","timestamp":"2026-03-27 20:39:35"}
+{"level":"info","message":"GET /v1/docs/swagger-ui-bundle.js 304 - 2.631 ms","timestamp":"2026-03-27 20:39:35"}
+{"level":"info","message":"GET /v1/docs/swagger-ui-standalone-preset.js 304 - 0.325 ms","timestamp":"2026-03-27 20:39:35"}
+{"level":"info","message":"GET /v1/docs/swagger-ui-init.js 200 - 1.650 ms","timestamp":"2026-03-27 20:39:35"}
+{"level":"info","message":"GET /v1/docs/favicon-32x32.png 304 - 0.717 ms","timestamp":"2026-03-27 20:39:36"}
+{"0":"\ud83d","1":"\udd39","10":"P","11":"r","12":"o","13":"o","14":"f","15":" ","16":"r","17":"e","18":"q","19":"u","2":" ","20":"e","21":"s","22":"t","3":"V","4":"e","5":"r","6":"i","7":"f","8":"y","9":" ","level":"info","message":{"protocol":"groth16"},"timestamp":"2026-03-27 20:40:26"}
+{"level":"info","message":"🔹 Starting Proof Verification...","timestamp":"2026-03-27 20:40:26"}
+{"level":"info","message":"✅ Proof verification result:","timestamp":"2026-03-27 20:40:26","verified":true}
+{"level":"info","message":"POST /v1/zkp-file-generation/verifyProof?protocol=groth16 200 - 237.715 ms","timestamp":"2026-03-27 20:40:26"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 20:40:39"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 20:40:41"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 20:40:41"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 20:40:51"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 20:40:52"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 20:40:52"}
+{"level":"info","message":"GET /v1/docs/ 304 - 7.598 ms","timestamp":"2026-03-27 20:41:04"}
+{"level":"info","message":"GET /v1/docs/swagger-ui.css 304 - 2.730 ms","timestamp":"2026-03-27 20:41:04"}
+{"level":"info","message":"GET /v1/docs/swagger-ui-bundle.js 304 - 1.759 ms","timestamp":"2026-03-27 20:41:04"}
+{"level":"info","message":"GET /v1/docs/swagger-ui-standalone-preset.js 304 - 0.477 ms","timestamp":"2026-03-27 20:41:04"}
+{"level":"info","message":"GET /v1/docs/swagger-ui-init.js 304 - 0.703 ms","timestamp":"2026-03-27 20:41:04"}
+{"level":"info","message":"GET /v1/docs/favicon-32x32.png 304 - 0.420 ms","timestamp":"2026-03-27 20:41:05"}
+{"0":"\ud83d","1":"\udd39","10":"P","11":"r","12":"o","13":"o","14":"f","15":" ","16":"r","17":"e","18":"q","19":"u","2":" ","20":"e","21":"s","22":"t","3":"V","4":"e","5":"r","6":"i","7":"f","8":"y","9":" ","level":"info","message":{"protocol":"groth16"},"timestamp":"2026-03-27 20:41:35"}
+{"level":"info","message":"🔹 Starting Proof Verification...","timestamp":"2026-03-27 20:41:35"}
+{"0":"❌","1":" ","10":"r","11":"i","12":"f","13":"i","14":"c","15":"a","16":"t","17":"i","18":"o","19":"n","2":"P","20":" ","21":"f","22":"a","23":"i","24":"l","25":"e","26":"d","3":"r","4":"o","5":"o","6":"f","7":" ","8":"V","9":"e","level":"error","message":{"errorMessage":"Cannot convert 76817as84186127578175425688586743662362759595768888028033002212566185603401157 to a BigInt","proofSample":"{\"pi_a\":[\"17319717601016691082442322031102772808367455722515647157167836349160732160134\",\"11368037876903675998101615284280931375415074598175125964405033289836449256298\",\"1\"],\"pi_b\":[[\"1681789355724011","protocol":"groth16","publicSignals":["0","76817as84186127578175425688586743662362759595768888028033002212566185603401157"],"stack":"SyntaxError: Cannot convert 76817as84186127578175425688586743662362759595768888028033002212566185603401157 to a BigInt\n    at BigInt (<anonymous>)\n    at Object.geq (/home/vishnu/circuits/ZKPNode/node_modules/ffjavascript/build/main.cjs:175:12)\n    at checkValueBelongToField$2 (/home/vishnu/circuits/ZKPNode/node_modules/snarkjs/build/main.cjs:1445:32)\n    at publicInputsAreValid$2 (/home/vishnu/circuits/ZKPNode/node_modules/snarkjs/build/main.cjs:1450:13)\n    at Object.groth16Verify [as verify] (/home/vishnu/circuits/ZKPNode/node_modules/snarkjs/build/main.cjs:1390:10)\n    at async Object.verifyProof (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:313:24)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:164:26"},"timestamp":"2026-03-27 20:41:35"}
+{"0":"❌","1":" ","10":"r","11":"i","12":"f","13":"i","14":"c","15":"a","16":"t","17":"i","18":"o","19":"n","2":"P","20":" ","21":"f","22":"a","23":"i","24":"l","25":"e","26":"d","3":"r","4":"o","5":"o","6":"f","7":" ","8":"v","9":"e","level":"error","message":{"error":{"isOperational":true,"statusCode":500},"protocol":"groth16"},"timestamp":"2026-03-27 20:41:35"}
+{"isOperational":true,"level":"error","message":"Proof Verification failed: Cannot convert 76817as84186127578175425688586743662362759595768888028033002212566185603401157 to a BigInt","stack":"Error: Proof Verification failed: Cannot convert 76817as84186127578175425688586743662362759595768888028033002212566185603401157 to a BigInt\n    at Object.verifyProof (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:330:15)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:164:26","statusCode":500,"timestamp":"2026-03-27 20:41:35"}
+{"level":"error","message":"POST /v1/zkp-file-generation/verifyProof?protocol=groth16 500 - 206.077 ms - message: Proof Verification failed: Cannot convert 76817as84186127578175425688586743662362759595768888028033002212566185603401157 to a BigInt","timestamp":"2026-03-27 20:41:35"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 20:41:50"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 20:41:51"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 20:41:51"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 20:42:06"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 20:42:08"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 20:42:08"}
+{"0":"\ud83d","1":"\udd39","10":"P","11":"r","12":"o","13":"o","14":"f","15":" ","16":"r","17":"e","18":"q","19":"u","2":" ","20":"e","21":"s","22":"t","3":"V","4":"e","5":"r","6":"i","7":"f","8":"y","9":" ","level":"info","message":{"protocol":"groth16"},"timestamp":"2026-03-27 20:42:36"}
+{"level":"info","message":"🔹 Starting Proof Verification...","timestamp":"2026-03-27 20:42:36"}
+{"level":"info","message":"✅ Proof verification result:","timestamp":"2026-03-27 20:42:36","verified":true}
+{"level":"info","message":"POST /v1/zkp-file-generation/verifyProof?protocol=groth16 200 - 227.116 ms","timestamp":"2026-03-27 20:42:36"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 20:42:46"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 20:42:47"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 20:42:47"}
+{"0":"\ud83d","1":"\udd39","10":"P","11":"r","12":"o","13":"o","14":"f","15":" ","16":"r","17":"e","18":"q","19":"u","2":" ","20":"e","21":"s","22":"t","3":"V","4":"e","5":"r","6":"i","7":"f","8":"y","9":" ","level":"info","message":{"protocol":"groth16"},"timestamp":"2026-03-27 20:43:11"}
+{"level":"info","message":"🔹 Starting Proof Verification...","timestamp":"2026-03-27 20:43:11"}
+{"level":"info","message":"✅ Proof verification result:","timestamp":"2026-03-27 20:43:11","verified":false}
+{"level":"info","message":"POST /v1/zkp-file-generation/verifyProof?protocol=groth16 200 - 219.897 ms","timestamp":"2026-03-27 20:43:11"}
+{"0":"\ud83d","1":"\udd39","10":"P","11":"r","12":"o","13":"o","14":"f","15":" ","16":"r","17":"e","18":"q","19":"u","2":" ","20":"e","21":"s","22":"t","3":"C","4":"r","5":"e","6":"a","7":"t","8":"e","9":" ","level":"info","message":{"protocol":"groth16","zkeyFileName":"final.zkey"},"timestamp":"2026-03-27 20:43:59"}
+{"level":"info","message":"🔹 Starting Proof Generation...","timestamp":"2026-03-27 20:43:59"}
+{"level":"info","message":"🔹 Generating Groth16 proof...","timestamp":"2026-03-27 20:43:59"}
+{"level":"info","message":"✅ Proof generated successfully","proofFile":"/home/vishnu/circuits/ZKPNode/proofs/groth16_proof.json","publicFile":"/home/vishnu/circuits/ZKPNode/proofs/groth16_public.json","timestamp":"2026-03-27 20:43:59"}
+{"level":"info","message":"POST /v1/zkp-file-generation/generateProof?zkey=final.zkey&protocol=groth16 201 - 130.078 ms","timestamp":"2026-03-27 20:43:59"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 20:44:01"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 20:44:02"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 20:44:02"}
+{"0":"\ud83d","1":"\udd39","10":"P","11":"r","12":"o","13":"o","14":"f","15":" ","16":"r","17":"e","18":"q","19":"u","2":" ","20":"e","21":"s","22":"t","3":"C","4":"r","5":"e","6":"a","7":"t","8":"e","9":" ","level":"info","message":{"protocol":"fflonk","zkeyFileName":"final.zkey"},"timestamp":"2026-03-27 20:44:07"}
+{"level":"info","message":"🔹 Starting Proof Generation...","timestamp":"2026-03-27 20:44:07"}
+{"level":"info","message":"🔹 Generating flonk proof...","timestamp":"2026-03-27 20:44:07"}
+{"0":"❌","1":" ","10":"n","11":"e","12":"r","13":"a","14":"t","15":"i","16":"o","17":"n","18":" ","19":"f","2":"P","20":"a","21":"i","22":"l","23":"e","24":"d","3":"r","4":"o","5":"o","6":"f","7":" ","8":"G","9":"e","level":"error","message":{"errorMessage":"zkey file is not fflonk","protocol":"fflonk","stack":"Error: zkey file is not fflonk\n    at Object.fflonkProve [as prove] (/home/vishnu/circuits/ZKPNode/node_modules/snarkjs/build/main.cjs:10517:15)\n    at async Object.generateProof (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:256:25)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:113:24","witnessFileName":"temp_witness.wtns","zkeyFileName":"final.zkey"},"timestamp":"2026-03-27 20:44:07"}
+{"0":"❌","1":" ","10":"n","11":"e","12":"r","13":"a","14":"t","15":"i","16":"o","17":"n","18":" ","19":"f","2":"P","20":"a","21":"i","22":"l","23":"e","24":"d","3":"r","4":"o","5":"o","6":"f","7":" ","8":"g","9":"e","level":"error","message":{"error":{"isOperational":true,"statusCode":500},"protocol":"fflonk","zkeyFileName":"final.zkey"},"timestamp":"2026-03-27 20:44:07"}
+{"isOperational":true,"level":"error","message":"Proof Generation failed: zkey file is not fflonk","stack":"Error: Proof Generation failed: zkey file is not fflonk\n    at Object.generateProof (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:287:15)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:113:24","statusCode":500,"timestamp":"2026-03-27 20:44:07"}
+{"level":"error","message":"POST /v1/zkp-file-generation/generateProof?zkey=final.zkey&protocol=fflonk 500 - 198.182 ms - message: Proof Generation failed: zkey file is not fflonk","timestamp":"2026-03-27 20:44:07"}
