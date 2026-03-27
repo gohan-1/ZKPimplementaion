@@ -35,21 +35,21 @@ const folderName = process.argv[2];
 const appPath = path.join(ownPath, folderName);
 
 
+// Check if directory exists but don't delete it
 try {
   console.log(`Checking if directory ${appPath} exists...`);
 
   if (fs.existsSync(appPath)) {
-    console.log(`Directory ${folderName} already exists. Deleting and recreating...`);
-    fs.rmSync(appPath, { recursive: true, force: true });
-    console.log(`Deleted existing directory: ${appPath}`);
+    console.log(`Directory ${folderName} already exists. Will preserve existing files and only create missing ones.`);
+  } else {
+    fs.mkdirSync(appPath);
+    console.log(`Created directory: ${appPath}`);
   }
-
-  fs.mkdirSync(appPath);
-  console.log(`Created directory: ${appPath}`);
 } catch (err) {
   console.log('Error creating directory:', err);
   process.exit(1);
 }
+
 
 
 async function setup() {
@@ -59,30 +59,49 @@ async function setup() {
 
     process.chdir(appPath);
 
-
-
-    // ✅ Create ZKPFiles inside Project_v1
+    // ✅ Create ZKPFiles only if it doesn't exist
     const zkpDir = path.join(appPath, 'ZKPFiles');
     if (!fs.existsSync(zkpDir)) {
       fs.mkdirSync(zkpDir, { recursive: true });
       console.log('Created ZKPFiles directory');
+    } else {
+      console.log('ZKPFiles directory already exists, preserving...');
     }
 
+    // ✅ Create tau_files only if it doesn't exist
     const tauDir = path.join(appPath, 'tau_files');
     if (!fs.existsSync(tauDir)) {
       fs.mkdirSync(tauDir, { recursive: true });
       console.log('Created TAU Files directory');
+    } else {
+      console.log('TAU Files directory already exists, preserving...');
     }
-    // Run circom command
-    console.log('Running circom compilation...');
-    const circomCommand = 'circom ../circuits/zkpCircuit.circom --r1cs --wasm --sym -o ./ZKPFiles -l ../node_modules';
-    try {
-      await runCmd(circomCommand);
-      console.log('Circom compilation completed successfully!');
-    } catch (error) {
-      console.log('Circom compilation failed:', error);
-      console.log('Make sure circom is installed and the zkpCircuit.circom file exists');
-      // Continue with setup even if circom fails
+
+    const VerDir = path.join(appPath, 'VerifierData');
+    if (!fs.existsSync(VerDir)) {
+      fs.mkdirSync(VerDir, { recursive: true });
+      console.log('Created verifer Data Files directory');
+    } else {
+      console.log('verifer Data Files directory already exists, preserving...');
+    }
+
+    // Run circom compilation - check if files already exist to avoid recompilation
+    console.log('Checking circom compilation status...');
+    const r1csFile = path.join(zkpDir, 'zkpCircuit.r1cs');
+    const wasmFile = path.join(zkpDir, 'zkpCircuit_js', 'zkpCircuit.wasm');
+
+    if (fs.existsSync(r1csFile) && fs.existsSync(wasmFile)) {
+      console.log('Circom compilation files already exist, skipping compilation...');
+    } else {
+      console.log('Running circom compilation...');
+      const circomCommand = 'circom ../circuits/zkpCircuit.circom --r1cs --wasm --sym -o ./ZKPFiles -l ../node_modules';
+      try {
+        await runCmd(circomCommand);
+        console.log('Circom compilation completed successfully!');
+      } catch (error) {
+        console.log('Circom compilation failed:', error);
+        console.log('Make sure circom is installed and the zkpCircuit.circom file exists');
+      }
     }
 
     console.log('Before change:', process.cwd());
@@ -91,8 +110,6 @@ async function setup() {
     process.chdir(srcPath);
 
     console.log('After change:', process.cwd());
-
-
 
 
 
@@ -123,24 +140,31 @@ async function setup() {
 
     console.log('Project setup complete!');
 
+    const isRunningUnderNodemon = process.env.NODEMON === 'true' ||
+      process.argv.some(arg => arg.includes('nodemon'));
+
+    // Then in the server start section:
     // --- Start server depending on NODE_ENV ---
-    const env = process.env.NODE_ENV || 'development';
-    console.log(`Starting server in ${env} mode...`);
+    if (!isRunningUnderNodemon) {
+      const env = process.env.NODE_ENV || 'development';
+      console.log(`Starting server in ${env} mode...`);
 
-    let command, args;
-    if (env === 'development') {
-      command = useYarn ? 'yarn' : 'npm';
-      args = useYarn ? ['devs'] : ['run', 'devs'];
-    } else {
-      command = useYarn ? 'yarn' : 'npm';
-      args = useYarn ? ['start'] : ['run', 'start'];
+      let command, args;
+      if (env === 'development') {
+        command = useYarn ? 'yarn' : 'npm';
+        args = useYarn ? ['devs'] : ['run', 'devs'];
+      } else {
+        command = useYarn ? 'yarn' : 'npm';
+        args = useYarn ? ['start'] : ['run', 'start'];
+      }
+
+
+      const serverProcess = spawn(command, args, { stdio: 'inherit', env: process.env });
+
+      serverProcess.on('close', (code) => {
+        console.log(`Server process exited with code ${code}`);
+      });
     }
-
-    const serverProcess = spawn(command, args, { stdio: 'inherit', env: process.env });
-
-    serverProcess.on('close', (code) => {
-      console.log(`Server process exited with code ${code}`);
-    });
 
   } catch (error) {
     console.log(error);

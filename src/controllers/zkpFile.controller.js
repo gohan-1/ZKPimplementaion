@@ -19,7 +19,16 @@ const InitialKeyGeneration = catchAsync(async (req, res) => {
 });
 
 
+const generateVeriferKey = catchAsync(async (req, res) => {
+
+    const finalKey = req.query.finalKey
+
+    const result = await zkpFileService.generateVKey(finalKey);
+    res.status(httpStatus.CREATED).send(result);
+});
+
 module.exports = {
     crearteCeremony,
-    InitialKeyGeneration
+    InitialKeyGeneration,
+    generateVeriferKey
 }

@@ -66,3 +66,130 @@
 {"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-26 20:47:14"}
 {"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-26 20:47:15"}
 {"level":"info","message":"Listening to port 8000","timestamp":"2026-03-26 20:47:15"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-26 20:51:01"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-26 20:51:02"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-26 20:51:02"}
+{"level":"info","message":"🔹 Starting Trusted Setup (this may take a while)...","timestamp":"2026-03-26 20:51:21"}
+{"level":"info","message":"✅ Curve loaded: bn128","timestamp":"2026-03-26 20:51:21"}
+{"level":"info","message":"🔹 Step 1: Creating Powers of Tau...","timestamp":"2026-03-26 20:51:21"}
+{"level":"info","message":"✅ ptau accumulator created: pot12_0000.ptau","timestamp":"2026-03-26 20:51:21"}
+{"level":"info","message":"🔹 Step 2: Contributing entropy...","timestamp":"2026-03-26 20:51:21"}
+{"level":"info","message":"✅ Contribution complete: pot12_0001.ptau","timestamp":"2026-03-26 20:51:22"}
+{"level":"info","message":"🔹 Step 3: Preparing Phase 2...","timestamp":"2026-03-26 20:51:22"}
+{"level":"info","message":"✅ Phase 2 prepared: pot12_final.ptau","timestamp":"2026-03-26 20:51:32"}
+{"level":"info","message":"GET /v1/zkp-file-generation/crearteCeremony 201 - 11220.233 ms","timestamp":"2026-03-26 20:51:32"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 00:44:20"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 00:44:21"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 00:44:21"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 00:44:24"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 00:44:25"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 00:44:25"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 00:46:52"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 00:46:53"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 00:46:53"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 00:46:56"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 00:46:57"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 00:46:57"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 00:48:39"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 00:48:41"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 00:48:41"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 00:48:45"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 00:48:46"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 00:48:46"}
+{"level":"info","message":"🔹 Starting Trusted Setup (this may take a while)...","timestamp":"2026-03-27 00:49:09"}
+{"level":"info","message":"✅ Curve loaded: bn128","timestamp":"2026-03-27 00:49:09"}
+{"level":"info","message":"🔹 Step 1: Creating Powers of Tau...","timestamp":"2026-03-27 00:49:09"}
+{"level":"info","message":"✅ ptau accumulator created: pot12_0000.ptau","timestamp":"2026-03-27 00:49:10"}
+{"level":"info","message":"🔹 Step 2: Contributing entropy...","timestamp":"2026-03-27 00:49:10"}
+{"level":"info","message":"✅ Contribution complete: pot12_0001.ptau","timestamp":"2026-03-27 00:49:10"}
+{"level":"info","message":"🔹 Step 3: Preparing Phase 2...","timestamp":"2026-03-27 00:49:10"}
+{"level":"info","message":"✅ Phase 2 prepared: pot12_final.ptau","timestamp":"2026-03-27 00:49:20"}
+{"level":"info","message":"GET /v1/zkp-file-generation/crearteCeremony 201 - 10915.367 ms","timestamp":"2026-03-27 00:49:20"}
+{"level":"info","message":"/home/vishnu/circuits/node-express-boilerplate (copy)/Project_v1/tau_files/pot12_final.ptau","timestamp":"2026-03-27 00:49:27"}
+{"level":"info","message":"/home/vishnu/circuits/node-express-boilerplate (copy)/Project_v1/ZKPFiles/zkpCircuit.r1cs","timestamp":"2026-03-27 00:49:27"}
+{"0":"\ud83d","1":"\udccc","10":"t","11":"h","12":"s","13":" ","14":"p","15":"r","16":"e","17":"p","18":"a","19":"r","2":" ","20":"e","21":"d","3":"F","4":"i","5":"l","6":"e","7":" ","8":"p","9":"a","level":"info","message":{"circuit":"/home/vishnu/circuits/node-express-boilerplate (copy)/Project_v1/ZKPFiles/zkpCircuit.r1cs","fZkey":"/home/vishnu/circuits/node-express-boilerplate (copy)/Project_v1/tau_files/final.zkey","ptau":"/home/vishnu/circuits/node-express-boilerplate (copy)/Project_v1/tau_files/pot12_final.ptau","zkey":"/home/vishnu/circuits/node-express-boilerplate (copy)/Project_v1/tau_files/first.zkey"},"timestamp":"2026-03-27 00:49:27"}
+{"level":"info","message":"🔹 Step 1: Creating initial zKey...","timestamp":"2026-03-27 00:49:27"}
+{"level":"info","message":"✅ Initial zKey created successfully","timestamp":"2026-03-27 00:49:28"}
+{"level":"info","message":"🔹 Step 2: Contributing entropy to zKey...","timestamp":"2026-03-27 00:49:28"}
+{"level":"info","message":"✅ zKey contribution completed successfully","timestamp":"2026-03-27 00:49:28"}
+{"level":"info","message":"🎉 Initial Key Generation completed successfully!","timestamp":"2026-03-27 00:49:28"}
+{"level":"info","message":"GET /v1/zkp-file-generation/createInitialKey?circuitName=zkpCircuit.r1cs&finalKey=pot12_final.ptau 201 - 753.811 ms","timestamp":"2026-03-27 00:49:28"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 00:58:02"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 00:58:02"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 00:58:03"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 00:58:03"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 00:58:03"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:04:00"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:04:02"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:04:08"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:04:09"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:04:39"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:04:41"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:04:41"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:07:35"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:07:36"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:07:36"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:07:39"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:07:41"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:07:41"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:08:05"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:08:07"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:08:07"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:10:03"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:10:05"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:10:05"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:12:51"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:12:52"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:12:52"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:15:35"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:15:36"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:15:36"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:15:40"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:15:41"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:15:41"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:16:03"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:16:05"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:16:05"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:16:27"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:16:28"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:16:28"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:28:09"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:28:11"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:28:11"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:28:19"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:28:20"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:28:20"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:28:31"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:28:33"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:28:33"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:29:07"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:29:08"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:29:08"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:31:47"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:31:48"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:31:48"}
+{"level":"info","message":"GET /v1/docs/ 304 - 5.003 ms","timestamp":"2026-03-27 01:31:59"}
+{"level":"info","message":"GET /v1/docs/swagger-ui.css 304 - 2.762 ms","timestamp":"2026-03-27 01:31:59"}
+{"level":"info","message":"GET /v1/docs/swagger-ui-bundle.js 304 - 2.654 ms","timestamp":"2026-03-27 01:31:59"}
+{"level":"info","message":"GET /v1/docs/swagger-ui-standalone-preset.js 304 - 0.438 ms","timestamp":"2026-03-27 01:31:59"}
+{"level":"info","message":"GET /v1/docs/swagger-ui-init.js 200 - 1.417 ms","timestamp":"2026-03-27 01:31:59"}
+{"level":"info","message":"GET /v1/docs/favicon-32x32.png 304 - 1.053 ms","timestamp":"2026-03-27 01:32:01"}
+{"isOperational":false,"level":"error","message":"zkpFileService.generateVeriferKey is not a function","stack":"TypeError: zkpFileService.generateVeriferKey is not a function\n    at /home/vishnu/circuits/node-express-boilerplate (copy)/src/controllers/zkpFile.controller.js:26:41\n    at /home/vishnu/circuits/node-express-boilerplate (copy)/src/utils/catchAsync.js:2:19\n    at Layer.handle [as handle_request] (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/route.js:149:13)\n    at Route.dispatch (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/route.js:119:3)\n    at Layer.handle [as handle_request] (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/layer.js:95:5)\n    at /home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/index.js:284:15\n    at Function.process_params (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/index.js:346:12)\n    at next (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/index.js:280:10)\n    at Function.handle (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/index.js:175:3)\n    at router (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/index.js:47:12)\n    at Layer.handle [as handle_request] (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/layer.js:95:5)\n    at trim_prefix (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/index.js:328:13)\n    at /home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/index.js:286:9\n    at Function.process_params (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/index.js:346:12)\n    at next (/home/vishnu/circuits/node-express-boilerplate (copy)/node_modules/express/lib/router/index.js:280:10)","statusCode":500,"timestamp":"2026-03-27 01:32:12"}
+{"level":"error","message":"GET /v1/zkp-file-generation/verifierKey?finalKey=final.zkey 500 - 2.585 ms - message: zkpFileService.generateVeriferKey is not a function","timestamp":"2026-03-27 01:32:12"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:32:55"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:32:56"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:32:56"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:33:33"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:33:35"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:33:35"}
+{"level":"info","message":"🔹 Starting Verification Key Generation...","timestamp":"2026-03-27 01:33:35"}
+{"0":"\ud83d","1":"\udccc","10":"t","11":"h","12":"s","13":" ","14":"p","15":"r","16":"e","17":"p","18":"a","19":"r","2":" ","20":"e","21":"d","3":"F","4":"i","5":"l","6":"e","7":" ","8":"p","9":"a","level":"info","message":{"output":"/home/vishnu/circuits/node-express-boilerplate (copy)/Project_v1/VerifierData/verification_key.json","zkey":"/home/vishnu/circuits/node-express-boilerplate (copy)/Project_v1/tau_files/final.zkey"},"timestamp":"2026-03-27 01:33:35"}
+{"level":"info","message":"🔹 Step 1: Exporting verification key...","timestamp":"2026-03-27 01:33:35"}
+{"level":"info","message":"✅ Verification key generated successfully","timestamp":"2026-03-27 01:33:36"}
+{"level":"info","message":"✅ Verification key saved to file","timestamp":"2026-03-27 01:33:36"}
+{"level":"info","message":"🎉 Verification Key Generation completed successfully!","timestamp":"2026-03-27 01:33:36"}
+{"level":"info","message":"GET /v1/zkp-file-generation/verifierKey?finalKey=final.zkey 201 - 200.496 ms","timestamp":"2026-03-27 01:33:36"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-27 01:33:37"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-27 01:33:38"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-27 01:33:38"}
+{"level":"info","message":"SIGTERM received","timestamp":"2026-03-27 01:55:48"}

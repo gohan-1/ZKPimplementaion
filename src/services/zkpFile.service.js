@@ -151,8 +151,60 @@ const InitialKeyGeneration = async (circuit, finalKey) => {
     }
 };
 
+const generateVKey = async (finalZKey) => {
+    try {
+        logger.info('🔹 Starting Verification Key Generation...');
+
+        // Step 0: Setup directories
+        const tauDir = path.join(__dirname, '../../Project_v1/tau_files');
+        const verifierDir = path.join(__dirname, '../../Project_v1/VerifierData');
+
+        // Ensure directories exist
+        if (!fs.existsSync(verifierDir)) {
+            fs.mkdirSync(verifierDir, { recursive: true });
+        }
+
+        const fZkey = path.join(tauDir, finalZKey);
+        const outputFile = path.join(verifierDir, 'verification_key.json');
+
+        logger.info({
+            zkey: fZkey,
+            output: outputFile,
+        }, '📌 File paths prepared');
+
+        // Step 1: Export verification key
+        try {
+            logger.info('🔹 Step 1: Exporting verification key...');
+            const vKey = await snarkjs.zKey.exportVerificationKey(fZkey);
+            logger.info('✅ Verification key generated successfully');
+
+            // Step 2: Save to file
+            fs.writeFileSync(outputFile, JSON.stringify(vKey, null, 2));
+            logger.info('✅ Verification key saved to file');
+
+        } catch (error) {
+            logger.error({ error }, '❌ Failed to export verification key');
+            throw new ApiError(
+                httpStatus.INTERNAL_SERVER_ERROR,
+                'Failed to generate verification key'
+            );
+        }
+
+        logger.info('🎉 Verification Key Generation completed successfully!');
+        return 'Verification Key generated successfully';
+
+    } catch (error) {
+        logger.error({ error }, '❌ Verification Key Generation failed');
+        throw new ApiError(
+            httpStatus.INTERNAL_SERVER_ERROR,
+            'Verification Key Generation failed. See logs for details.'
+        );
+    }
+};
+
 
 module.exports = {
     ceremony,
-    InitialKeyGeneration
+    InitialKeyGeneration,
+    generateVKey
 };

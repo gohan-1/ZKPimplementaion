@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.get('/crearteCeremony', zkpFileController.crearteCeremony);
 router.get('/createInitialKey', zkpFileController.InitialKeyGeneration);
-// router.post('/logout', validate(authValidation.logout), authController.logout);
+router.get('/verifierKey', zkpFileController.generateVeriferKey);
 
 module.exports = router;
 
@@ -132,4 +132,61 @@ module.exports = router;
  *                 message:
  *                   type: string
  *                   example: Initial Key Generation failed. See logs for details
+ */
+
+
+/**
+ * @swagger
+ * /zkp-file-generation/verifierKey:
+ *   get:
+ *     summary: Generate Verification Key
+ *     description: |
+ *       Generates a verification key JSON file from the final zKey.
+ *       The request requires selecting the final zKey file from predefined options.
+ *     tags: [ZKP Ceremony]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: finalKey
+ *         schema:
+ *           type: string
+ *           enum:
+ *             - final.zkey
+ *           default: final.zkey
+ *         required: true
+ *         description: Select the final zKey file
+ *     responses:
+ *       "201":
+ *         description: Verification Key generated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Verification Key generated successfully
+ *       "400":
+ *         description: Bad request or invalid parameters
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Invalid request parameters
+ *       "401":
+ *         $ref: '#/components/responses/Unauthorized'
+ *       "500":
+ *         description: Internal server error during verification key generation
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Verification Key Generation failed. See logs for details
  */
