@@ -1,0 +1,7 @@
+{
+  "ignore": [
+    "Project_v1/ZKPFiles/*",
+    "Project_v1/tau_files/*",
+    "Project_v1/VerifierData/*"
+  ]
+}

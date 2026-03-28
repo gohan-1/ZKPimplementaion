@@ -5,6 +5,7 @@ const { zkpFileService } = require('../services');
 const fs = require('fs');
 const path = require('path');
 const ApiError = require('../utils/ApiError');
+const { log } = require('console');
 
 
 const crearteCeremony = catchAsync(async (req, res) => {
@@ -58,7 +59,7 @@ const generateVeriferKey = catchAsync(async (req, res) => {
 
 const createWitness = catchAsync(async (req, res) => {
     try {
-        logger.info({ file: req.file, query: req.query }, '🔹 Create Witness request');
+
 
         if (!req.file) {
             throw new ApiError(httpStatus.BAD_REQUEST, 'No file uploaded');
@@ -83,6 +84,7 @@ const createWitness = catchAsync(async (req, res) => {
         res.status(httpStatus.CREATED).send(result);
 
     } catch (error) {
+        logger.info(error)
         logger.error({ error }, '❌ Witness generation failed');
         throw error;
     }

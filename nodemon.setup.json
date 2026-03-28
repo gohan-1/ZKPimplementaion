@@ -1,7 +1,0 @@
-
-{
-    "watch": ["bin/createNodejsApp.js"],
-    "ignore": ["Project_v1/**/*", "node_modules/**/*"],
-    "exec": "node bin/createNodejsApp.js ./Project_v1 && exit 0",
-    "exitcrash": true
-  }
