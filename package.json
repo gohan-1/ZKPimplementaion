@@ -46,6 +46,8 @@
     "prettier"
   ],
   "dependencies": {
+    "@zk-kit/baby-jubjub": "^1.0.3",
+    "@zk-kit/eddsa-poseidon": "^1.1.0",
     "babyjubjub": "^1.0.4",
     "bcryptjs": "^2.4.3",
     "circomlib": "^2.0.5",
