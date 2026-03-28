@@ -80,7 +80,19 @@ const InitialKeyGeneration = async (circuit, finalKey) => {
         try {
             logger.info('🔹 Step 1: Creating initial zKey...');
             await snarkjs.zKey.newZKey(fCircuit, potFinal, zkey);
-            logger.info('✅ Initial zKey created successfully');
+
+            // ✅ Validate file
+            if (!fs.existsSync(zkey)) {
+                throw new Error("zKey file not created");
+            }
+
+            const stats = fs.statSync(zkey);
+            console.log("zkey size:", stats.size);
+
+            // 🚨 VERY IMPORTANT CHECK
+            if (stats.size < 100000) {   // ~100KB minimum expected
+                throw new Error("zKey file is corrupted or incomplete");
+            } logger.info('✅ Initial zKey created successfully');
         } catch (error) {
             handleError(error, 'Creating initial zKey', { fCircuit, potFinal, zkey });
         }

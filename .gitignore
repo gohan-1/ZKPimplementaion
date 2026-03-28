@@ -1,13 +1,20 @@
-# Dependencies
-node_modules
+# Node modules
+node_modules/
 
-# yarn error logs
+# Yarn error logs
 yarn-error.log
 
-# Environment varibales
+# Environment variables
 .env*
 !.env*.example
 
 # Code coverage
-coverage
-.Project_v1
+coverage/
+
+# Project directories (never add Project_v1)
+Project_v1/
+.Project_v1/
+
+# Optional: OS-specific files
+.DS_Store
+Thumbs.db
