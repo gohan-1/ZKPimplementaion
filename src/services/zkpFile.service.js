@@ -87,7 +87,6 @@ const InitialKeyGeneration = async (circuit, finalKey) => {
             }
 
             const stats = fs.statSync(zkey);
-            console.log("zkey size:", stats.size);
 
             // 🚨 VERY IMPORTANT CHECK
             if (stats.size < 100000) {   // ~100KB minimum expected

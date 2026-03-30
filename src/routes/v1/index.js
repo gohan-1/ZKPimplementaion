@@ -2,6 +2,7 @@ const express = require('express');
 const authRoute = require('./auth.route');
 const userRoute = require('./user.route');
 const zkpFileRoute = require('./zkpFile.route');
+const credentialsRoute = require('./credentials.route')
 const docsRoute = require('./docs.route');
 const config = require('../../config/config');
 
@@ -19,6 +20,10 @@ const defaultRoutes = [
   {
     path: '/zkp-file-generation',
     route: zkpFileRoute,
+  },
+  {
+    path: '/credentials',
+    route: credentialsRoute,
   },
 ];
 

@@ -41,8 +41,7 @@ module.exports = {
       autoIndex: envVars.NODE_ENV === 'development', // Optional: auto-create indexes in dev
       serverSelectionTimeoutMS: 5000,
       socketTimeoutMS: 45000,
-      useNewUrlParser: true,        // ✅ KEEP THIS - Required for MongoDB driver
-      useUnifiedTopology: true
+      // ✅ KEEP THIS - Required for MongoDB driver
     },
   },
   jwt: {

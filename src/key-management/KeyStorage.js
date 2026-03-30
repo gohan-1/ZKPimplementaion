@@ -4,22 +4,20 @@ const path = require('path');
 const config = require('./config');
 
 class KeyStorage {
-    constructor(baseDir = config.defaultKeysDir) {
-        console.log('-----------------------------------')
-        console.log(process.cwd())
-        console.log(baseDir)
-        this.baseDir = path.join(baseDir);
-        this.ensureDirectory();
-    }
+    constructor(keysDir = null) {
+        // Use provided keysDir or default to 'keys' in current working directory
 
-    ensureDirectory() {
+        this.baseDir = keysDir || path.join(process.cwd(), './Project_v1/keys');
+
+
+        // Ensure directory exists
         if (!fs.existsSync(this.baseDir)) {
             fs.mkdirSync(this.baseDir, { recursive: true });
         }
     }
 
     getFilePath(filename) {
-        console.log(this.baseDir)
+
         return path.join(this.baseDir, filename);
     }
 

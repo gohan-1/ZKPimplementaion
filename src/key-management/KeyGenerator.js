@@ -2,10 +2,13 @@
 const config = require('./config');
 const KeyEncryption = require('./KeyEncryption');
 const KeyStorage = require('./KeyStorage');
+const path = require('path')
+const nacl = require('tweetnacl');
 
 class KeyGenerator {
     constructor(keysDir = null) {
-        this.storage = new KeyStorage(keysDir);
+        const finalKeysDir = keysDir || path.join(process.cwd(), config.defaultKeysDir);
+        this.storage = new KeyStorage(finalKeysDir);
         this.encryption = new KeyEncryption();
     }
 
@@ -29,14 +32,13 @@ class KeyGenerator {
     }
 
     async _generateNobleKey(keyId) {
-        const { ed25519 } = require('@noble/ed25519');
-        const privateKey = ed25519.utils.randomPrivateKey();
-        const publicKey = await ed25519.getPublicKey(privateKey);
+        const ed = require('@noble/ed25519');
+        const { secretKey, publicKey } = await ed.keygenAsync();
 
         return {
             id: keyId || `noble_${Date.now()}`,
             library: 'noble',
-            privateKey: Buffer.from(privateKey).toString('hex'),
+            privateKey: Buffer.from(secretKey).toString('hex'),
             publicKey: Buffer.from(publicKey).toString('hex'),
             createdAt: new Date().toISOString(),
             version: config.keyVersion
@@ -44,7 +46,7 @@ class KeyGenerator {
     }
 
     _generateNaclKey(keyId) {
-        const nacl = require('tweetnacl');
+
         const keyPairRaw = nacl.sign.keyPair();
 
         return {
@@ -85,6 +87,7 @@ class KeyGenerator {
 
         // Try active key first
         const activeKey = this.storage.loadActiveKey();
+
         if (activeKey && activeKey.file) {
             filename = activeKey.file;
         }
@@ -159,6 +162,116 @@ class KeyGenerator {
         const filePath = this.storage.save(filename, publicKeyData);
         return filePath;
     }
+    /**
+     * Sign a message using the active key
+     */
+    async sign(message, password, privateKeyBuffer) {
+
+        console.log(privateKeyBuffer)
+        if (!privateKeyBuffer) {
+            throw new Error(`Keys and privateKey not present present`);
+
+        }
+
+        // Get private key as buffer
+        const messageUint8 = typeof message === 'string'
+            ? new Uint8Array(Buffer.from(message))
+            : new Uint8Array(message);
+
+        // ✅ Step 1: get seed (32 bytes)
+        const seed = new Uint8Array(privateKeyBuffer.buffer);
+
+        // ✅ Step 2: expand to 64-byte secret key
+        const keyPair = nacl.sign.keyPair.fromSeed(seed);
+
+        // ✅ Step 3: sign
+        const signature = nacl.sign.detached(messageUint8, keyPair.secretKey);
+
+
+        // Parse public key coordinates (Ed25519 public key is 32 bytes, not 64)
+        // For Ed25519, the public key is a single 32-byte point (compressed)
+        // We need to decompress to get x and y coordinates
+        // const publicKeyBuffer = Buffer.from(keyInfo.publicKey, 'hex');
+
+        // For Circom compatibility, we need to split into x and y
+        // For Ed25519, the public key is compressed; we'll use a simple approach
+        // Convert the entire public key to a field element
+        const publicKeyField = privateKeyBuffer.publicKey;
+
+        // For signature, r is the first 32 bytes, s is the next 32 bytes
+        // In Ed25519 signatures, (R, S) where R is 32 bytes and S is 32 bytes
+        const r = signature.slice(0, 32);
+        const s = signature.slice(32, 64);
+
+        return {
+            r8x: Buffer.from(r).toString('hex'),
+            r8y: '0',
+            s: Buffer.from(s).toString('hex'),
+            publicKeyX: publicKeyField,
+            publicKeyY: '0', // For Ed25519, we only need one coordinate
+            keyId: privateKeyBuffer.keyId,
+            timestamp: Date.now(),
+            signature: Buffer.from(signature).toString('hex')
+        };
+    }
+
+    verify(message, signature, publicKeyHex) {
+        try {
+            // ✅ Convert message → Uint8Array (IMPORTANT: match signing format)
+            const messageUint8 = typeof message === 'string'
+                ? new Uint8Array(Buffer.from(message))
+                : new Uint8Array(message);
+
+            // ✅ Reconstruct signature (R + S)
+            const r = Buffer.from(signature.r8x, 'hex');   // 32 bytes
+            const s = Buffer.from(signature.s, 'hex');     // 32 bytes
+            const fullSignature = new Uint8Array(Buffer.concat([r, s]));
+
+            // ✅ Convert public key
+            const publicKeyUint8 = new Uint8Array(Buffer.from(publicKeyHex, 'hex'));
+
+            // ✅ Verify
+            const isValid = nacl.sign.detached.verify(
+                messageUint8,
+                fullSignature,
+                publicKeyUint8
+            );
+
+            return isValid;
+
+        } catch (error) {
+            console.error('Verification failed:', error);
+            return false;
+        }
+    }
+    // /**
+    //  * Verify a signature
+    //  */
+    // verify(message, signature, publicKeyHex) {
+    //     const messageBuffer = typeof message === 'string'
+    //         ? Buffer.from(message)
+    //         : message;
+
+    //     const signatureBuffer = Buffer.from(signature.signature || signature, 'hex');
+    //     const publicKeyBuffer = Buffer.from(publicKeyHex, 'hex');
+
+    //     try {
+    //         const isValid = nacl.sign.detached.verify(
+    //             messageBuffer,
+    //             signatureBuffer,
+    //             publicKeyBuffer
+    //         );
+    //         return isValid;
+    //     } catch (error) {
+    //         console.error('Verification failed:', error);
+    //         return false;
+    //     }
+    // }
+
+
+
+
+
 
     /**
      * Delete a key file

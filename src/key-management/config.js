@@ -1,14 +1,16 @@
-// config.js
 const path = require('path');
 
 module.exports = {
     // Default directories
-    defaultKeysDir: 'keys',
+    defaultKeysDir: './Project_v1/keys',  // This is relative to project root
 
-    // Encryption settings (crypto-js)
+    // Or use absolute path
+    // defaultKeysDir: path.join(__dirname, '../keys'),
+
+    // Encryption settings
     encryptionAlgorithm: 'aes-256-cbc',
     pbkdf2Iterations: 100000,
-    keySize: 256, // bits
+    keySize: 256,
     hmacAlgorithm: 'sha256',
 
     // File names

@@ -57,8 +57,14 @@ class KeyEncryption {
     encrypt(data, password) {
         const { salt, iv } = this.generateSaltAndIV();
 
+        console.log('salt')
+        console.log(salt)
+        console.log(iv)
+
         // Derive encryption key
         const key = this.deriveKey(password, salt);
+        console.log('pssword')
+        console.log(password)
 
         // Prepare IV for encryption
         const ivWA = CryptoJS.enc.Hex.parse(iv);
@@ -76,6 +82,9 @@ class KeyEncryption {
         const hmacData = encryptedString + iv + salt;
         const hmac = this.calculateHMAC(hmacData, key);
 
+        console.log(hmacData)
+        console.log(hmac)
+
         return {
             salt: salt,
             iv: iv,
@@ -88,13 +97,21 @@ class KeyEncryption {
      * Decrypt data with password
      */
     decrypt(encryptedData, password) {
+        console.log(encryptedData)
         const { salt, iv, data, hmac } = encryptedData;
 
         // Derive key from password and salt
+
+        console.log(password)
         const key = this.deriveKey(password, salt);
 
         // Verify HMAC before decryption
+
+        // console.log(key)
         const hmacData = data + iv + salt;
+
+        console.log(hmacData)
+
         if (!this.verifyHMAC(hmacData, hmac, key)) {
             throw new Error('Authentication failed: Invalid password or corrupted data');
         }
