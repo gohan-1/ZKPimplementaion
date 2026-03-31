@@ -162,31 +162,41 @@ class KeyGenerator {
         const filePath = this.storage.save(filename, publicKeyData);
         return filePath;
     }
+
+    /**
+     * Convert Poseidon field element (string/BigInt) → Uint8Array (32 bytes)
+     */
+    _toBytes(message) {
+        return new Uint8Array(
+            Buffer.from(
+                BigInt(message).toString(16).padStart(64, '0'),
+                'hex'
+            )
+        );
+    }
     /**
      * Sign a message using the active key
      */
     async sign(message, password, privateKeyBuffer) {
 
-        console.log(privateKeyBuffer)
         if (!privateKeyBuffer) {
-            throw new Error(`Keys and privateKey not present present`);
-
+            throw new Error('Private key not found');
         }
 
-        // Get private key as buffer
-        const messageUint8 = typeof message === 'string'
-            ? new Uint8Array(Buffer.from(message))
-            : new Uint8Array(message);
+        console.log(privateKeyBuffer)
 
-        // ✅ Step 1: get seed (32 bytes)
-        const seed = new Uint8Array(privateKeyBuffer.buffer);
+        // ✅ Convert message properly (CRITICAL FIX)
+        const messageUint8 = this._toBytes(message);
 
-        // ✅ Step 2: expand to 64-byte secret key
+        // ✅ Get 32-byte seed
+
+        const seed = new Uint8Array(privateKeyBuffer.buffer.slice(0, 32));
         const keyPair = nacl.sign.keyPair.fromSeed(seed);
-
-        // ✅ Step 3: sign
-        const signature = nacl.sign.detached(messageUint8, keyPair.secretKey);
-
+        // ✅ Sign
+        const signature = nacl.sign.detached(
+            messageUint8,
+            keyPair.secretKey
+        );
 
         // Parse public key coordinates (Ed25519 public key is 32 bytes, not 64)
         // For Ed25519, the public key is a single 32-byte point (compressed)
@@ -218,9 +228,7 @@ class KeyGenerator {
     verify(message, signature, publicKeyHex) {
         try {
             // ✅ Convert message → Uint8Array (IMPORTANT: match signing format)
-            const messageUint8 = typeof message === 'string'
-                ? new Uint8Array(Buffer.from(message))
-                : new Uint8Array(message);
+            const messageUint8 = this._toBytes(message);
 
             // ✅ Reconstruct signature (R + S)
             const r = Buffer.from(signature.r8x, 'hex');   // 32 bytes

@@ -1,4 +1,4 @@
-const httpStatus = require('http-status');
+const httpStatus = require('http-status').default;
 const catchAsync = require('../utils/catchAsync');
 const logger = require('../config/logger');
 const { zkpFileService } = require('../services');
@@ -78,6 +78,8 @@ const createWitness = catchAsync(async (req, res) => {
             logger.error({ err }, '❌ Invalid JSON in uploaded file');
             throw new ApiError(httpStatus.BAD_REQUEST, 'Invalid JSON file');
         }
+
+        console.log(inputJson)
 
         const result = await zkpFileService.generateWitness(inputJson, fileName);
 

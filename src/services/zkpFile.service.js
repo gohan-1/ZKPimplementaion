@@ -6,6 +6,7 @@ const path = require('path');
 const ApiError = require('../utils/ApiError');
 const logger = require('../config/logger');
 const entropy = require('../utils/entropy');
+const e = require('express');
 
 /**
  * Centralized error handler for all zk-SNARK steps
@@ -51,11 +52,15 @@ const ceremony = async () => {
         logger.info('✅ Contribution complete: pot12_0001.ptau');
 
         logger.info('🔹 Step 3: Preparing Phase 2...');
-        await snarkjs.powersOfTau.preparePhase2(pot1, potFinal);
+        const result = await snarkjs.powersOfTau.preparePhase2(pot1, potFinal);
         logger.info('✅ Phase 2 prepared: pot12_final.ptau');
+        logger.info(result)
 
         return 'Phase 2 prepared: pot12_final.ptau';
     } catch (error) {
+
+        console.log(error)
+        logger.info(error)
         handleError(error, step);
     }
 };

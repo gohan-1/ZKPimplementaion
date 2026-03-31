@@ -134,11 +134,23 @@ const verifyCredentialHash = catchAsync(async (req, res) => {
 
         const result = await credentialsService.verifyHash(data);
 
+        // ✅ Create sanitized response without signature fields
+        const sanitizedResponse = {
+            userID: data.userID,
+            issuerID: data.issuerID,
+            credentialHash: data.credentialHash,
+            claimValue: data.claimValue,
+            requiredValue: data.requiredValue,
+            operator: data.operator
+        };
+
         res.status(200).send({
             success: true,
-            ...result,
-            input: data   // 👈 optional: return what was verified
+            isValid: result.isValid,
+            message: result.message,
+            input: sanitizedResponse
         });
+
 
     } catch (error) {
         logger.error({ error }, '❌ Verification failed');

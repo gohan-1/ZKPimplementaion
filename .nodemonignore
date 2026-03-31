@@ -1,0 +1,18 @@
+# Ignore proof directories
+proofs/
+ZKPFiles/
+tau_files/
+VerifierData/
+
+# Ignore generated files
+*.wtns
+*.zkey
+*.ptau
+*.wasm
+temp_witness.wtns
+
+# Ignore specific file patterns
+**/proofs/**
+**/ZKPFiles/**
+**/tau_files/**
+**/VerifierData/**

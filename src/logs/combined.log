@@ -2279,3 +2279,472 @@
 {"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 01:10:56"}
 {"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 01:10:56"}
 {"level":"info","message":"POST /v1/credentials/verifyCredentialHash 200 - 53.837 ms","timestamp":"2026-03-31 01:10:58"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 12:57:59"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 12:58:00"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 12:58:00"}
+{"level":"info","message":"🔹 Step: Creating Credential Hash - Generating hash for userId=123456789, issuerId=345678912","timestamp":"2026-03-31 12:58:14"}
+{"level":"info","message":"🔹 Loading key from default location...","timestamp":"2026-03-31 12:58:14"}
+{"level":"info","message":"✅ Successfully loaded public key: eb352c37bd09bbc81f26d1e818ff4a12...","timestamp":"2026-03-31 12:58:15"}
+{"level":"info","message":"✅ Step: Creating Credential Hash - Hash generated successfully","timestamp":"2026-03-31 12:58:15"}
+{"level":"info","message":"GET /v1/credentials/createCredentialHash?userId=123456789&issuerId=345678912 200 - 920.712 ms","timestamp":"2026-03-31 12:58:15"}
+{"level":"info","message":"🔹 Loading private key from active key...","timestamp":"2026-03-31 12:59:12"}
+{"level":"info","message":"✅ Successfully loaded private key for: nacl_1774947470124","timestamp":"2026-03-31 12:59:13"}
+{"level":"info","message":"   Public key: eb352c37bd09bbc81f26d1e818ff4a12...","timestamp":"2026-03-31 12:59:13"}
+{"level":"info","message":"   Library: nacl","timestamp":"2026-03-31 12:59:13"}
+{"level":"error","message":"❌ Step: Creating Credential Hash failed: bad seed size","stack":"Error: bad seed size\n    at nacl.sign.keyPair.fromSeed (/home/vishnu/circuits/ZKPNode/node_modules/tweetnacl/nacl-fast.js:2329:11)\n    at KeyGenerator.sign (/home/vishnu/circuits/ZKPNode/src/key-management/KeyGenerator.js:185:43)\n    at Object.signHash (/home/vishnu/circuits/ZKPNode/src/services/credentials.service.js:67:46)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/credentials.controller.js:41:24","timestamp":"2026-03-31 12:59:13"}
+{"0":"❌","1":" ","10":"o","11":" ","12":"c","13":"r","14":"e","15":"a","16":"t","17":"e","18":" ","19":"c","2":"F","20":"r","21":"e","22":"d","23":"e","24":"n","25":"t","26":"i","27":"a","28":"l","29":" ","3":"a","30":"h","31":"a","32":"s","33":"h","4":"i","5":"l","6":"e","7":"d","8":" ","9":"t","level":"error","message":{"error":{}},"timestamp":"2026-03-31 12:59:13"}
+{"isOperational":false,"level":"error","message":"Failed to create credential hash: bad seed size","stack":"Error: Failed to create credential hash: bad seed size\n    at Object.signHash (/home/vishnu/circuits/ZKPNode/src/services/credentials.service.js:81:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/credentials.controller.js:41:24","statusCode":500,"timestamp":"2026-03-31 12:59:13"}
+{"level":"error","message":"POST /v1/credentials/signCredentialHash?claimValue=25&requiredValue=18&operator=1&download=true 500 - 694.171 ms - message: Failed to create credential hash: bad seed size","timestamp":"2026-03-31 12:59:13"}
+{"level":"info","message":"🔹 Loading private key from active key...","timestamp":"2026-03-31 12:59:27"}
+{"level":"info","message":"✅ Successfully loaded private key for: nacl_1774947470124","timestamp":"2026-03-31 12:59:27"}
+{"level":"info","message":"   Public key: eb352c37bd09bbc81f26d1e818ff4a12...","timestamp":"2026-03-31 12:59:27"}
+{"level":"info","message":"   Library: nacl","timestamp":"2026-03-31 12:59:27"}
+{"level":"error","message":"❌ Step: Creating Credential Hash failed: bad seed size","stack":"Error: bad seed size\n    at nacl.sign.keyPair.fromSeed (/home/vishnu/circuits/ZKPNode/node_modules/tweetnacl/nacl-fast.js:2329:11)\n    at KeyGenerator.sign (/home/vishnu/circuits/ZKPNode/src/key-management/KeyGenerator.js:185:43)\n    at Object.signHash (/home/vishnu/circuits/ZKPNode/src/services/credentials.service.js:67:46)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/credentials.controller.js:41:24","timestamp":"2026-03-31 12:59:27"}
+{"0":"❌","1":" ","10":"o","11":" ","12":"c","13":"r","14":"e","15":"a","16":"t","17":"e","18":" ","19":"c","2":"F","20":"r","21":"e","22":"d","23":"e","24":"n","25":"t","26":"i","27":"a","28":"l","29":" ","3":"a","30":"h","31":"a","32":"s","33":"h","4":"i","5":"l","6":"e","7":"d","8":" ","9":"t","level":"error","message":{"error":{}},"timestamp":"2026-03-31 12:59:27"}
+{"isOperational":false,"level":"error","message":"Failed to create credential hash: bad seed size","stack":"Error: Failed to create credential hash: bad seed size\n    at Object.signHash (/home/vishnu/circuits/ZKPNode/src/services/credentials.service.js:81:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/credentials.controller.js:41:24","statusCode":500,"timestamp":"2026-03-31 12:59:27"}
+{"level":"error","message":"POST /v1/credentials/signCredentialHash?claimValue=25&requiredValue=18&operator=1&download=true 500 - 617.554 ms - message: Failed to create credential hash: bad seed size","timestamp":"2026-03-31 12:59:27"}
+{"level":"info","message":"🔹 Loading private key from active key...","timestamp":"2026-03-31 12:59:31"}
+{"level":"info","message":"✅ Successfully loaded private key for: nacl_1774947470124","timestamp":"2026-03-31 12:59:32"}
+{"level":"info","message":"   Public key: eb352c37bd09bbc81f26d1e818ff4a12...","timestamp":"2026-03-31 12:59:32"}
+{"level":"info","message":"   Library: nacl","timestamp":"2026-03-31 12:59:32"}
+{"level":"error","message":"❌ Step: Creating Credential Hash failed: bad seed size","stack":"Error: bad seed size\n    at nacl.sign.keyPair.fromSeed (/home/vishnu/circuits/ZKPNode/node_modules/tweetnacl/nacl-fast.js:2329:11)\n    at KeyGenerator.sign (/home/vishnu/circuits/ZKPNode/src/key-management/KeyGenerator.js:185:43)\n    at Object.signHash (/home/vishnu/circuits/ZKPNode/src/services/credentials.service.js:67:46)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/credentials.controller.js:41:24","timestamp":"2026-03-31 12:59:32"}
+{"0":"❌","1":" ","10":"o","11":" ","12":"c","13":"r","14":"e","15":"a","16":"t","17":"e","18":" ","19":"c","2":"F","20":"r","21":"e","22":"d","23":"e","24":"n","25":"t","26":"i","27":"a","28":"l","29":" ","3":"a","30":"h","31":"a","32":"s","33":"h","4":"i","5":"l","6":"e","7":"d","8":" ","9":"t","level":"error","message":{"error":{}},"timestamp":"2026-03-31 12:59:32"}
+{"isOperational":false,"level":"error","message":"Failed to create credential hash: bad seed size","stack":"Error: Failed to create credential hash: bad seed size\n    at Object.signHash (/home/vishnu/circuits/ZKPNode/src/services/credentials.service.js:81:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/credentials.controller.js:41:24","statusCode":500,"timestamp":"2026-03-31 12:59:32"}
+{"level":"error","message":"POST /v1/credentials/signCredentialHash?claimValue=25&requiredValue=18&operator=1&download=true 500 - 610.789 ms - message: Failed to create credential hash: bad seed size","timestamp":"2026-03-31 12:59:32"}
+{"level":"info","message":"🔹 Loading private key from active key...","timestamp":"2026-03-31 13:00:13"}
+{"level":"info","message":"✅ Successfully loaded private key for: nacl_1774947470124","timestamp":"2026-03-31 13:00:14"}
+{"level":"info","message":"   Public key: eb352c37bd09bbc81f26d1e818ff4a12...","timestamp":"2026-03-31 13:00:14"}
+{"level":"info","message":"   Library: nacl","timestamp":"2026-03-31 13:00:14"}
+{"level":"error","message":"❌ Step: Creating Credential Hash failed: bad seed size","stack":"Error: bad seed size\n    at nacl.sign.keyPair.fromSeed (/home/vishnu/circuits/ZKPNode/node_modules/tweetnacl/nacl-fast.js:2329:11)\n    at KeyGenerator.sign (/home/vishnu/circuits/ZKPNode/src/key-management/KeyGenerator.js:185:43)\n    at Object.signHash (/home/vishnu/circuits/ZKPNode/src/services/credentials.service.js:67:46)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/credentials.controller.js:41:24","timestamp":"2026-03-31 13:00:14"}
+{"0":"❌","1":" ","10":"o","11":" ","12":"c","13":"r","14":"e","15":"a","16":"t","17":"e","18":" ","19":"c","2":"F","20":"r","21":"e","22":"d","23":"e","24":"n","25":"t","26":"i","27":"a","28":"l","29":" ","3":"a","30":"h","31":"a","32":"s","33":"h","4":"i","5":"l","6":"e","7":"d","8":" ","9":"t","level":"error","message":{"error":{}},"timestamp":"2026-03-31 13:00:14"}
+{"isOperational":false,"level":"error","message":"Failed to create credential hash: bad seed size","stack":"Error: Failed to create credential hash: bad seed size\n    at Object.signHash (/home/vishnu/circuits/ZKPNode/src/services/credentials.service.js:81:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/credentials.controller.js:41:24","statusCode":500,"timestamp":"2026-03-31 13:00:14"}
+{"level":"error","message":"POST /v1/credentials/signCredentialHash?claimValue=25&requiredValue=18&operator=1&download=true 500 - 700.369 ms - message: Failed to create credential hash: bad seed size","timestamp":"2026-03-31 13:00:14"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 13:17:23"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 13:17:25"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 13:17:25"}
+{"level":"info","message":"🔹 Loading private key from active key...","timestamp":"2026-03-31 13:17:35"}
+{"level":"info","message":"✅ Successfully loaded private key for: nacl_1774947470124","timestamp":"2026-03-31 13:17:35"}
+{"level":"info","message":"   Public key: eb352c37bd09bbc81f26d1e818ff4a12...","timestamp":"2026-03-31 13:17:35"}
+{"level":"info","message":"   Library: nacl","timestamp":"2026-03-31 13:17:35"}
+{"level":"error","message":"❌ Step: Creating Credential Hash failed: bad seed size","stack":"Error: bad seed size\n    at nacl.sign.keyPair.fromSeed (/home/vishnu/circuits/ZKPNode/node_modules/tweetnacl/nacl-fast.js:2329:11)\n    at KeyGenerator.sign (/home/vishnu/circuits/ZKPNode/src/key-management/KeyGenerator.js:193:43)\n    at Object.signHash (/home/vishnu/circuits/ZKPNode/src/services/credentials.service.js:67:46)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/credentials.controller.js:41:24","timestamp":"2026-03-31 13:17:35"}
+{"0":"❌","1":" ","10":"o","11":" ","12":"c","13":"r","14":"e","15":"a","16":"t","17":"e","18":" ","19":"c","2":"F","20":"r","21":"e","22":"d","23":"e","24":"n","25":"t","26":"i","27":"a","28":"l","29":" ","3":"a","30":"h","31":"a","32":"s","33":"h","4":"i","5":"l","6":"e","7":"d","8":" ","9":"t","level":"error","message":{"error":{}},"timestamp":"2026-03-31 13:17:35"}
+{"isOperational":false,"level":"error","message":"Failed to create credential hash: bad seed size","stack":"Error: Failed to create credential hash: bad seed size\n    at Object.signHash (/home/vishnu/circuits/ZKPNode/src/services/credentials.service.js:81:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/credentials.controller.js:41:24","statusCode":500,"timestamp":"2026-03-31 13:17:35"}
+{"level":"error","message":"POST /v1/credentials/signCredentialHash?claimValue=25&requiredValue=18&operator=1&download=true 500 - 640.385 ms - message: Failed to create credential hash: bad seed size","timestamp":"2026-03-31 13:17:35"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 13:19:09"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 13:19:10"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 13:19:10"}
+{"level":"info","message":"🔹 Loading private key from active key...","timestamp":"2026-03-31 13:19:15"}
+{"level":"info","message":"✅ Successfully loaded private key for: nacl_1774947470124","timestamp":"2026-03-31 13:19:16"}
+{"level":"info","message":"   Public key: eb352c37bd09bbc81f26d1e818ff4a12...","timestamp":"2026-03-31 13:19:16"}
+{"level":"info","message":"   Library: nacl","timestamp":"2026-03-31 13:19:16"}
+{"level":"error","message":"❌ Step: Creating Credential Hash failed: bad seed size","stack":"Error: bad seed size\n    at nacl.sign.keyPair.fromSeed (/home/vishnu/circuits/ZKPNode/node_modules/tweetnacl/nacl-fast.js:2329:11)\n    at KeyGenerator.sign (/home/vishnu/circuits/ZKPNode/src/key-management/KeyGenerator.js:195:43)\n    at Object.signHash (/home/vishnu/circuits/ZKPNode/src/services/credentials.service.js:67:46)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/credentials.controller.js:41:24","timestamp":"2026-03-31 13:19:16"}
+{"0":"❌","1":" ","10":"o","11":" ","12":"c","13":"r","14":"e","15":"a","16":"t","17":"e","18":" ","19":"c","2":"F","20":"r","21":"e","22":"d","23":"e","24":"n","25":"t","26":"i","27":"a","28":"l","29":" ","3":"a","30":"h","31":"a","32":"s","33":"h","4":"i","5":"l","6":"e","7":"d","8":" ","9":"t","level":"error","message":{"error":{}},"timestamp":"2026-03-31 13:19:16"}
+{"isOperational":false,"level":"error","message":"Failed to create credential hash: bad seed size","stack":"Error: Failed to create credential hash: bad seed size\n    at Object.signHash (/home/vishnu/circuits/ZKPNode/src/services/credentials.service.js:81:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/credentials.controller.js:41:24","statusCode":500,"timestamp":"2026-03-31 13:19:16"}
+{"level":"error","message":"POST /v1/credentials/signCredentialHash?claimValue=25&requiredValue=18&operator=1&download=true 500 - 631.956 ms - message: Failed to create credential hash: bad seed size","timestamp":"2026-03-31 13:19:16"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 13:19:52"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 13:19:53"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 13:19:53"}
+{"level":"info","message":"🔹 Loading private key from active key...","timestamp":"2026-03-31 13:19:56"}
+{"level":"info","message":"✅ Successfully loaded private key for: nacl_1774948786823","timestamp":"2026-03-31 13:19:57"}
+{"level":"info","message":"   Public key: 9e8ee037ba869d7c895cf5d4c28d322c...","timestamp":"2026-03-31 13:19:57"}
+{"level":"info","message":"   Library: nacl","timestamp":"2026-03-31 13:19:57"}
+{"level":"error","message":"❌ Step: Creating Credential Hash failed: bad seed size","stack":"Error: bad seed size\n    at nacl.sign.keyPair.fromSeed (/home/vishnu/circuits/ZKPNode/node_modules/tweetnacl/nacl-fast.js:2329:11)\n    at KeyGenerator.sign (/home/vishnu/circuits/ZKPNode/src/key-management/KeyGenerator.js:195:43)\n    at Object.signHash (/home/vishnu/circuits/ZKPNode/src/services/credentials.service.js:67:46)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/credentials.controller.js:41:24","timestamp":"2026-03-31 13:19:57"}
+{"0":"❌","1":" ","10":"o","11":" ","12":"c","13":"r","14":"e","15":"a","16":"t","17":"e","18":" ","19":"c","2":"F","20":"r","21":"e","22":"d","23":"e","24":"n","25":"t","26":"i","27":"a","28":"l","29":" ","3":"a","30":"h","31":"a","32":"s","33":"h","4":"i","5":"l","6":"e","7":"d","8":" ","9":"t","level":"error","message":{"error":{}},"timestamp":"2026-03-31 13:19:57"}
+{"isOperational":false,"level":"error","message":"Failed to create credential hash: bad seed size","stack":"Error: Failed to create credential hash: bad seed size\n    at Object.signHash (/home/vishnu/circuits/ZKPNode/src/services/credentials.service.js:81:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/credentials.controller.js:41:24","statusCode":500,"timestamp":"2026-03-31 13:19:57"}
+{"level":"error","message":"POST /v1/credentials/signCredentialHash?claimValue=25&requiredValue=18&operator=1&download=true 500 - 664.662 ms - message: Failed to create credential hash: bad seed size","timestamp":"2026-03-31 13:19:57"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 13:23:06"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 13:23:07"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 13:23:07"}
+{"level":"info","message":"🔹 Loading private key from active key...","timestamp":"2026-03-31 13:23:14"}
+{"level":"info","message":"✅ Successfully loaded private key for: nacl_1774948786823","timestamp":"2026-03-31 13:23:14"}
+{"level":"info","message":"   Public key: 9e8ee037ba869d7c895cf5d4c28d322c...","timestamp":"2026-03-31 13:23:14"}
+{"level":"info","message":"   Library: nacl","timestamp":"2026-03-31 13:23:14"}
+{"level":"error","message":"❌ Step: Creating Credential Hash failed: privateKeyBuffer.slice is not a function","stack":"TypeError: privateKeyBuffer.slice is not a function\n    at KeyGenerator.sign (/home/vishnu/circuits/ZKPNode/src/key-management/KeyGenerator.js:193:54)\n    at Object.signHash (/home/vishnu/circuits/ZKPNode/src/services/credentials.service.js:67:46)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/credentials.controller.js:41:24","timestamp":"2026-03-31 13:23:14"}
+{"0":"❌","1":" ","10":"o","11":" ","12":"c","13":"r","14":"e","15":"a","16":"t","17":"e","18":" ","19":"c","2":"F","20":"r","21":"e","22":"d","23":"e","24":"n","25":"t","26":"i","27":"a","28":"l","29":" ","3":"a","30":"h","31":"a","32":"s","33":"h","4":"i","5":"l","6":"e","7":"d","8":" ","9":"t","level":"error","message":{"error":{}},"timestamp":"2026-03-31 13:23:14"}
+{"isOperational":false,"level":"error","message":"Failed to create credential hash: privateKeyBuffer.slice is not a function","stack":"Error: Failed to create credential hash: privateKeyBuffer.slice is not a function\n    at Object.signHash (/home/vishnu/circuits/ZKPNode/src/services/credentials.service.js:81:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/credentials.controller.js:41:24","statusCode":500,"timestamp":"2026-03-31 13:23:14"}
+{"level":"error","message":"POST /v1/credentials/signCredentialHash?claimValue=25&requiredValue=18&operator=1&download=true 500 - 675.069 ms - message: Failed to create credential hash: privateKeyBuffer.slice is not a function","timestamp":"2026-03-31 13:23:14"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 13:23:43"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 13:23:44"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 13:23:44"}
+{"level":"info","message":"🔹 Loading private key from active key...","timestamp":"2026-03-31 13:23:46"}
+{"level":"info","message":"✅ Successfully loaded private key for: nacl_1774948786823","timestamp":"2026-03-31 13:23:46"}
+{"level":"info","message":"   Public key: 9e8ee037ba869d7c895cf5d4c28d322c...","timestamp":"2026-03-31 13:23:46"}
+{"level":"info","message":"   Library: nacl","timestamp":"2026-03-31 13:23:46"}
+{"level":"info","message":"✅ Step: Creating Credential Hash - Hash signed successfully","timestamp":"2026-03-31 13:23:46"}
+{"level":"info","message":"POST /v1/credentials/signCredentialHash?claimValue=25&requiredValue=18&operator=1&download=true 200 - 649.485 ms","timestamp":"2026-03-31 13:23:46"}
+{"level":"info","message":"🔹 Loading private key from active key...","timestamp":"2026-03-31 13:23:55"}
+{"level":"info","message":"✅ Successfully loaded private key for: nacl_1774948786823","timestamp":"2026-03-31 13:23:56"}
+{"level":"info","message":"   Public key: 9e8ee037ba869d7c895cf5d4c28d322c...","timestamp":"2026-03-31 13:23:56"}
+{"level":"info","message":"   Library: nacl","timestamp":"2026-03-31 13:23:56"}
+{"level":"info","message":"✅ Step: Creating Credential Hash - Hash signed successfully","timestamp":"2026-03-31 13:23:56"}
+{"level":"info","message":"POST /v1/credentials/signCredentialHash?claimValue=25&requiredValue=18&operator=1&download=false 200 - 640.693 ms","timestamp":"2026-03-31 13:23:56"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 13:36:03"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 13:36:04"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 13:36:04"}
+{"level":"info","message":"🔹 Loading private key from active key...","timestamp":"2026-03-31 13:36:25"}
+{"level":"info","message":"✅ Successfully loaded private key for: nacl_1774948786823","timestamp":"2026-03-31 13:36:25"}
+{"level":"info","message":"   Public key: 9e8ee037ba869d7c895cf5d4c28d322c...","timestamp":"2026-03-31 13:36:25"}
+{"level":"info","message":"   Library: nacl","timestamp":"2026-03-31 13:36:25"}
+{"level":"info","message":"✅ Step: Creating Credential Hash - Hash signed successfully","timestamp":"2026-03-31 13:36:25"}
+{"level":"info","message":"POST /v1/credentials/signCredentialHash?claimValue=25&requiredValue=18&operator=1&download=false 200 - 693.375 ms","timestamp":"2026-03-31 13:36:25"}
+{"level":"info","message":"POST /v1/credentials/verifyCredentialHash 200 - 18.437 ms","timestamp":"2026-03-31 13:36:48"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 13:37:27"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 13:37:28"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 13:37:28"}
+{"level":"info","message":"🔹 Step: Creating Credential Hash - Generating hash for userId=123456789, issuerId=345678912","timestamp":"2026-03-31 13:37:50"}
+{"level":"info","message":"🔹 Loading key from default location...","timestamp":"2026-03-31 13:37:50"}
+{"level":"info","message":"✅ Successfully loaded public key: 9e8ee037ba869d7c895cf5d4c28d322c...","timestamp":"2026-03-31 13:37:51"}
+{"level":"info","message":"✅ Step: Creating Credential Hash - Hash generated successfully","timestamp":"2026-03-31 13:37:51"}
+{"level":"info","message":"GET /v1/credentials/createCredentialHash?userId=123456789&issuerId=345678912 200 - 886.802 ms","timestamp":"2026-03-31 13:37:51"}
+{"level":"info","message":"🔹 Loading private key from active key...","timestamp":"2026-03-31 13:38:01"}
+{"level":"info","message":"✅ Successfully loaded private key for: nacl_1774948786823","timestamp":"2026-03-31 13:38:01"}
+{"level":"info","message":"   Public key: 9e8ee037ba869d7c895cf5d4c28d322c...","timestamp":"2026-03-31 13:38:01"}
+{"level":"info","message":"   Library: nacl","timestamp":"2026-03-31 13:38:01"}
+{"level":"info","message":"✅ Step: Creating Credential Hash - Hash signed successfully","timestamp":"2026-03-31 13:38:01"}
+{"level":"info","message":"POST /v1/credentials/signCredentialHash?claimValue=25&requiredValue=18&operator=1&download=false 200 - 679.597 ms","timestamp":"2026-03-31 13:38:01"}
+{"level":"info","message":"POST /v1/credentials/verifyCredentialHash 200 - 14.042 ms","timestamp":"2026-03-31 13:38:25"}
+{"level":"info","message":"POST /v1/credentials/verifyCredentialHash 200 - 7.848 ms","timestamp":"2026-03-31 13:38:35"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 14:34:32"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 14:34:33"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 14:34:33"}
+{"level":"info","message":"🔹 Starting Ceremony...","timestamp":"2026-03-31 14:35:21"}
+{"level":"info","message":"🔹 Starting Trusted Setup (this may take a while)...","timestamp":"2026-03-31 14:35:21"}
+{"level":"info","message":"✅ Curve loaded: bn128","timestamp":"2026-03-31 14:35:21"}
+{"level":"info","message":"🔹 Step 1: Creating Powers of Tau...","timestamp":"2026-03-31 14:35:21"}
+{"level":"info","message":"✅ ptau accumulator created: pot12_0000.ptau","timestamp":"2026-03-31 14:35:21"}
+{"level":"info","message":"🔹 Step 2: Contributing entropy...","timestamp":"2026-03-31 14:35:21"}
+{"level":"info","message":"✅ Contribution complete: pot12_0001.ptau","timestamp":"2026-03-31 14:35:22"}
+{"level":"info","message":"🔹 Step 3: Preparing Phase 2...","timestamp":"2026-03-31 14:35:22"}
+{"level":"info","message":"✅ Phase 2 prepared: pot12_final.ptau","timestamp":"2026-03-31 14:35:32"}
+{"0":"❌","1":" ","10":" ","11":"f","12":"a","13":"i","14":"l","15":"e","16":"d","2":"C","3":"e","4":"r","5":"e","6":"m","7":"o","8":"n","9":"y","level":"error","message":{"error":{}},"timestamp":"2026-03-31 14:35:32"}
+{"isOperational":false,"level":"error","message":"Invalid status code: undefined. Status code must be an integer.","stack":"TypeError: Invalid status code: undefined. Status code must be an integer.\n    at ServerResponse.status (/home/vishnu/circuits/ZKPNode/node_modules/express/lib/response.js:67:11)\n    at /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:15:13","statusCode":500,"timestamp":"2026-03-31 14:35:32"}
+{"level":"error","message":"GET /v1/zkp-file-generation/crearteCeremony 500 - 10583.012 ms - message: Invalid status code: undefined. Status code must be an integer.","timestamp":"2026-03-31 14:35:32"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 14:37:37"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 14:37:38"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 14:37:38"}
+{"level":"info","message":"🔹 Starting Ceremony...","timestamp":"2026-03-31 14:37:41"}
+{"level":"info","message":"🔹 Starting Trusted Setup (this may take a while)...","timestamp":"2026-03-31 14:37:41"}
+{"level":"info","message":"✅ Curve loaded: bn128","timestamp":"2026-03-31 14:37:41"}
+{"level":"info","message":"🔹 Step 1: Creating Powers of Tau...","timestamp":"2026-03-31 14:37:41"}
+{"level":"info","message":"✅ ptau accumulator created: pot12_0000.ptau","timestamp":"2026-03-31 14:37:41"}
+{"level":"info","message":"🔹 Step 2: Contributing entropy...","timestamp":"2026-03-31 14:37:41"}
+{"level":"info","message":"✅ Contribution complete: pot12_0001.ptau","timestamp":"2026-03-31 14:37:42"}
+{"level":"info","message":"🔹 Step 3: Preparing Phase 2...","timestamp":"2026-03-31 14:37:42"}
+{"level":"info","message":"✅ Phase 2 prepared: pot12_final.ptau","timestamp":"2026-03-31 14:37:52"}
+{"0":"❌","1":" ","10":" ","11":"f","12":"a","13":"i","14":"l","15":"e","16":"d","2":"C","3":"e","4":"r","5":"e","6":"m","7":"o","8":"n","9":"y","level":"error","message":{"error":{}},"timestamp":"2026-03-31 14:37:52"}
+{"isOperational":false,"level":"error","message":"Invalid status code: undefined. Status code must be an integer.","stack":"TypeError: Invalid status code: undefined. Status code must be an integer.\n    at ServerResponse.status (/home/vishnu/circuits/ZKPNode/node_modules/express/lib/response.js:67:11)\n    at /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:15:13","statusCode":500,"timestamp":"2026-03-31 14:37:52"}
+{"level":"error","message":"GET /v1/zkp-file-generation/crearteCeremony 500 - 10607.338 ms - message: Invalid status code: undefined. Status code must be an integer.","timestamp":"2026-03-31 14:37:52"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 14:38:47"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 14:38:48"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 14:38:48"}
+{"level":"info","message":"🔹 Starting Ceremony...","timestamp":"2026-03-31 14:38:50"}
+{"level":"info","message":"🔹 Starting Trusted Setup (this may take a while)...","timestamp":"2026-03-31 14:38:50"}
+{"level":"info","message":"✅ Curve loaded: bn128","timestamp":"2026-03-31 14:38:50"}
+{"level":"info","message":"🔹 Step 1: Creating Powers of Tau...","timestamp":"2026-03-31 14:38:50"}
+{"level":"info","message":"✅ ptau accumulator created: pot12_0000.ptau","timestamp":"2026-03-31 14:38:50"}
+{"level":"info","message":"🔹 Step 2: Contributing entropy...","timestamp":"2026-03-31 14:38:50"}
+{"level":"info","message":"✅ Contribution complete: pot12_0001.ptau","timestamp":"2026-03-31 14:38:51"}
+{"level":"info","message":"🔹 Step 3: Preparing Phase 2...","timestamp":"2026-03-31 14:38:51"}
+{"level":"info","message":"✅ Phase 2 prepared: pot12_final.ptau","timestamp":"2026-03-31 14:39:00"}
+{"0":"❌","1":" ","10":" ","11":"f","12":"a","13":"i","14":"l","15":"e","16":"d","2":"C","3":"e","4":"r","5":"e","6":"m","7":"o","8":"n","9":"y","level":"error","message":{"error":{}},"timestamp":"2026-03-31 14:39:00"}
+{"isOperational":false,"level":"error","message":"Invalid status code: undefined. Status code must be an integer.","stack":"TypeError: Invalid status code: undefined. Status code must be an integer.\n    at ServerResponse.status (/home/vishnu/circuits/ZKPNode/node_modules/express/lib/response.js:67:11)\n    at /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:15:13","statusCode":500,"timestamp":"2026-03-31 14:39:00"}
+{"level":"error","message":"GET /v1/zkp-file-generation/crearteCeremony 500 - 10663.984 ms - message: Invalid status code: undefined. Status code must be an integer.","timestamp":"2026-03-31 14:39:00"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 14:41:17"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 14:41:19"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 14:41:19"}
+{"level":"info","message":"🔹 Starting Ceremony...","timestamp":"2026-03-31 14:41:22"}
+{"level":"info","message":"🔹 Starting Trusted Setup (this may take a while)...","timestamp":"2026-03-31 14:41:22"}
+{"level":"info","message":"✅ Curve loaded: bn128","timestamp":"2026-03-31 14:41:22"}
+{"level":"info","message":"🔹 Step 1: Creating Powers of Tau...","timestamp":"2026-03-31 14:41:22"}
+{"level":"info","message":"✅ ptau accumulator created: pot12_0000.ptau","timestamp":"2026-03-31 14:41:22"}
+{"level":"info","message":"🔹 Step 2: Contributing entropy...","timestamp":"2026-03-31 14:41:22"}
+{"level":"info","message":"✅ Contribution complete: pot12_0001.ptau","timestamp":"2026-03-31 14:41:23"}
+{"level":"info","message":"🔹 Step 3: Preparing Phase 2...","timestamp":"2026-03-31 14:41:23"}
+{"level":"info","message":"✅ Phase 2 prepared: pot12_final.ptau","timestamp":"2026-03-31 14:41:32"}
+{"0":"❌","1":" ","10":" ","11":"f","12":"a","13":"i","14":"l","15":"e","16":"d","2":"C","3":"e","4":"r","5":"e","6":"m","7":"o","8":"n","9":"y","level":"error","message":{"error":{}},"timestamp":"2026-03-31 14:41:32"}
+{"isOperational":false,"level":"error","message":"Invalid status code: undefined. Status code must be an integer.","stack":"TypeError: Invalid status code: undefined. Status code must be an integer.\n    at ServerResponse.status (/home/vishnu/circuits/ZKPNode/node_modules/express/lib/response.js:67:11)\n    at /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:15:13","statusCode":500,"timestamp":"2026-03-31 14:41:32"}
+{"level":"error","message":"GET /v1/zkp-file-generation/crearteCeremony 500 - 10777.525 ms - message: Invalid status code: undefined. Status code must be an integer.","timestamp":"2026-03-31 14:41:32"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 14:42:30"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 14:42:31"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 14:42:32"}
+{"level":"info","message":"🔹 Starting Ceremony...","timestamp":"2026-03-31 14:42:36"}
+{"level":"info","message":"🔹 Starting Trusted Setup (this may take a while)...","timestamp":"2026-03-31 14:42:36"}
+{"level":"info","message":"✅ Curve loaded: bn128","timestamp":"2026-03-31 14:42:36"}
+{"level":"info","message":"🔹 Step 1: Creating Powers of Tau...","timestamp":"2026-03-31 14:42:36"}
+{"level":"info","message":"✅ ptau accumulator created: pot12_0000.ptau","timestamp":"2026-03-31 14:42:36"}
+{"level":"info","message":"🔹 Step 2: Contributing entropy...","timestamp":"2026-03-31 14:42:36"}
+{"level":"info","message":"✅ Contribution complete: pot12_0001.ptau","timestamp":"2026-03-31 14:42:37"}
+{"level":"info","message":"🔹 Step 3: Preparing Phase 2...","timestamp":"2026-03-31 14:42:37"}
+{"level":"info","message":"✅ Phase 2 prepared: pot12_final.ptau","timestamp":"2026-03-31 14:42:46"}
+{"0":"❌","1":" ","10":" ","11":"f","12":"a","13":"i","14":"l","15":"e","16":"d","2":"C","3":"e","4":"r","5":"e","6":"m","7":"o","8":"n","9":"y","level":"error","message":{"error":{}},"timestamp":"2026-03-31 14:42:46"}
+{"isOperational":false,"level":"error","message":"Invalid status code: undefined. Status code must be an integer.","stack":"TypeError: Invalid status code: undefined. Status code must be an integer.\n    at ServerResponse.status (/home/vishnu/circuits/ZKPNode/node_modules/express/lib/response.js:67:11)\n    at /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:15:13","statusCode":500,"timestamp":"2026-03-31 14:42:46"}
+{"level":"error","message":"GET /v1/zkp-file-generation/crearteCeremony 500 - 10661.123 ms - message: Invalid status code: undefined. Status code must be an integer.","timestamp":"2026-03-31 14:42:46"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 14:43:09"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 14:43:10"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 14:43:10"}
+{"level":"info","message":"🔹 Starting Ceremony...","timestamp":"2026-03-31 14:43:11"}
+{"level":"info","message":"🔹 Starting Trusted Setup (this may take a while)...","timestamp":"2026-03-31 14:43:11"}
+{"level":"info","message":"✅ Curve loaded: bn128","timestamp":"2026-03-31 14:43:11"}
+{"level":"info","message":"🔹 Step 1: Creating Powers of Tau...","timestamp":"2026-03-31 14:43:11"}
+{"level":"info","message":"✅ ptau accumulator created: pot12_0000.ptau","timestamp":"2026-03-31 14:43:11"}
+{"level":"info","message":"🔹 Step 2: Contributing entropy...","timestamp":"2026-03-31 14:43:11"}
+{"level":"info","message":"✅ Contribution complete: pot12_0001.ptau","timestamp":"2026-03-31 14:43:12"}
+{"level":"info","message":"🔹 Step 3: Preparing Phase 2...","timestamp":"2026-03-31 14:43:12"}
+{"level":"info","message":"✅ Phase 2 prepared: pot12_final.ptau","timestamp":"2026-03-31 14:43:22"}
+{"0":"❌","1":" ","10":" ","11":"f","12":"a","13":"i","14":"l","15":"e","16":"d","2":"C","3":"e","4":"r","5":"e","6":"m","7":"o","8":"n","9":"y","level":"error","message":{"error":{}},"timestamp":"2026-03-31 14:43:22"}
+{"isOperational":false,"level":"error","message":"Invalid status code: undefined. Status code must be an integer.","stack":"TypeError: Invalid status code: undefined. Status code must be an integer.\n    at ServerResponse.status (/home/vishnu/circuits/ZKPNode/node_modules/express/lib/response.js:67:11)\n    at /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:15:13","statusCode":500,"timestamp":"2026-03-31 14:43:22"}
+{"level":"error","message":"GET /v1/zkp-file-generation/crearteCeremony 500 - 10581.384 ms - message: Invalid status code: undefined. Status code must be an integer.","timestamp":"2026-03-31 14:43:22"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 14:44:10"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 14:44:11"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 14:44:11"}
+{"level":"info","message":"🔹 Starting Ceremony...","timestamp":"2026-03-31 14:44:11"}
+{"level":"info","message":"🔹 Starting Trusted Setup (this may take a while)...","timestamp":"2026-03-31 14:44:11"}
+{"level":"info","message":"✅ Curve loaded: bn128","timestamp":"2026-03-31 14:44:12"}
+{"level":"info","message":"🔹 Step 1: Creating Powers of Tau...","timestamp":"2026-03-31 14:44:12"}
+{"level":"info","message":"✅ ptau accumulator created: pot12_0000.ptau","timestamp":"2026-03-31 14:44:12"}
+{"level":"info","message":"🔹 Step 2: Contributing entropy...","timestamp":"2026-03-31 14:44:12"}
+{"level":"info","message":"✅ Contribution complete: pot12_0001.ptau","timestamp":"2026-03-31 14:44:13"}
+{"level":"info","message":"🔹 Step 3: Preparing Phase 2...","timestamp":"2026-03-31 14:44:13"}
+{"level":"info","message":"✅ Phase 2 prepared: pot12_final.ptau","timestamp":"2026-03-31 14:44:22"}
+{"level":"info","timestamp":"2026-03-31 14:44:22"}
+{"0":"❌","1":" ","10":" ","11":"f","12":"a","13":"i","14":"l","15":"e","16":"d","2":"C","3":"e","4":"r","5":"e","6":"m","7":"o","8":"n","9":"y","level":"error","message":{"error":{}},"timestamp":"2026-03-31 14:44:22"}
+{"isOperational":false,"level":"error","message":"Invalid status code: undefined. Status code must be an integer.","stack":"TypeError: Invalid status code: undefined. Status code must be an integer.\n    at ServerResponse.status (/home/vishnu/circuits/ZKPNode/node_modules/express/lib/response.js:67:11)\n    at /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:15:13","statusCode":500,"timestamp":"2026-03-31 14:44:22"}
+{"level":"error","message":"GET /v1/zkp-file-generation/crearteCeremony 500 - 10757.788 ms - message: Invalid status code: undefined. Status code must be an integer.","timestamp":"2026-03-31 14:44:22"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 14:44:50"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 14:44:51"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 14:44:51"}
+{"level":"info","message":"🔹 Starting Ceremony...","timestamp":"2026-03-31 14:44:51"}
+{"level":"info","message":"🔹 Starting Trusted Setup (this may take a while)...","timestamp":"2026-03-31 14:44:51"}
+{"level":"info","message":"✅ Curve loaded: bn128","timestamp":"2026-03-31 14:44:51"}
+{"level":"info","message":"🔹 Step 1: Creating Powers of Tau...","timestamp":"2026-03-31 14:44:51"}
+{"level":"info","message":"✅ ptau accumulator created: pot12_0000.ptau","timestamp":"2026-03-31 14:44:52"}
+{"level":"info","message":"🔹 Step 2: Contributing entropy...","timestamp":"2026-03-31 14:44:52"}
+{"level":"info","message":"✅ Contribution complete: pot12_0001.ptau","timestamp":"2026-03-31 14:44:53"}
+{"level":"info","message":"🔹 Step 3: Preparing Phase 2...","timestamp":"2026-03-31 14:44:53"}
+{"level":"info","message":"✅ Phase 2 prepared: pot12_final.ptau","timestamp":"2026-03-31 14:45:02"}
+{"level":"info","timestamp":"2026-03-31 14:45:02"}
+{"level":"info","message":"GET /v1/zkp-file-generation/crearteCeremony 201 - 10647.481 ms","timestamp":"2026-03-31 14:45:02"}
+{"0":"\ud83d","1":"\udd39","10":" ","11":"K","12":"e","13":"y","14":" ","15":"G","16":"e","17":"n","18":"e","19":"r","2":" ","20":"a","21":"t","22":"i","23":"o","24":"n","25":" ","26":"r","27":"e","28":"q","29":"u","3":"I","30":"e","31":"s","32":"t","4":"n","5":"i","6":"t","7":"i","8":"a","9":"l","level":"info","message":{"circuitName":"zkpCircuit.r1cs","finalKey":"pot12_final.ptau"},"timestamp":"2026-03-31 14:45:24"}
+{"0":"\ud83d","1":"\udccc","10":"t","11":"h","12":"s","13":" ","14":"p","15":"r","16":"e","17":"p","18":"a","19":"r","2":" ","20":"e","21":"d","3":"F","4":"i","5":"l","6":"e","7":" ","8":"p","9":"a","level":"info","message":{"fCircuit":"/home/vishnu/circuits/ZKPNode/Project_v1/ZKPFiles/zkpCircuit.r1cs","fZkey":"/home/vishnu/circuits/ZKPNode/Project_v1/tau_files/final.zkey","potFinal":"/home/vishnu/circuits/ZKPNode/Project_v1/tau_files/pot12_final.ptau","zkey":"/home/vishnu/circuits/ZKPNode/Project_v1/tau_files/first.zkey"},"timestamp":"2026-03-31 14:45:24"}
+{"level":"info","message":"🔹 Step 1: Creating initial zKey...","timestamp":"2026-03-31 14:45:24"}
+{"level":"info","message":"✅ Initial zKey created successfully","timestamp":"2026-03-31 14:45:25"}
+{"level":"info","message":"🔹 Step 2: Contributing entropy to zKey...","timestamp":"2026-03-31 14:45:25"}
+{"level":"info","message":"✅ zKey contribution completed successfully","timestamp":"2026-03-31 14:45:25"}
+{"level":"info","message":"🎉 Initial Key Generation completed successfully!","timestamp":"2026-03-31 14:45:25"}
+{"level":"info","message":"GET /v1/zkp-file-generation/createInitialKey?circuitName=zkpCircuit.r1cs&finalKey=pot12_final.ptau 201 - 730.833 ms","timestamp":"2026-03-31 14:45:25"}
+{"0":"\ud83d","1":"\udd39","10":"e","11":" ","12":"V","13":"e","14":"r","15":"i","16":"f","17":"i","18":"c","19":"a","2":" ","20":"t","21":"i","22":"o","23":"n","24":" ","25":"K","26":"e","27":"y","28":" ","29":"r","3":"G","30":"e","31":"q","32":"u","33":"e","34":"s","35":"t","4":"e","5":"n","6":"e","7":"r","8":"a","9":"t","level":"info","message":{"finalKey":"final.zkey"},"timestamp":"2026-03-31 14:45:46"}
+{"level":"info","message":"🔹 Exporting verification key...","timestamp":"2026-03-31 14:45:46"}
+{"level":"info","message":"✅ Verification key saved successfully","timestamp":"2026-03-31 14:45:46"}
+{"level":"info","message":"🎉 Verification Key Generation completed successfully!","timestamp":"2026-03-31 14:45:46"}
+{"level":"info","message":"GET /v1/zkp-file-generation/verifierKey?finalKey=final.zkey 201 - 9.668 ms","timestamp":"2026-03-31 14:45:46"}
+{"level":"info","message":"GET /v1/docs/ 304 - 1.650 ms","timestamp":"2026-03-31 14:46:49"}
+{"level":"info","message":"GET /v1/docs/swagger-ui.css 304 - 2.596 ms","timestamp":"2026-03-31 14:46:49"}
+{"level":"info","message":"GET /v1/docs/swagger-ui-bundle.js 304 - 1.981 ms","timestamp":"2026-03-31 14:46:49"}
+{"level":"info","message":"GET /v1/docs/swagger-ui-standalone-preset.js 304 - 0.621 ms","timestamp":"2026-03-31 14:46:49"}
+{"level":"info","message":"GET /v1/docs/swagger-ui-init.js 304 - 0.785 ms","timestamp":"2026-03-31 14:46:49"}
+{"level":"info","message":"GET /v1/docs/favicon-32x32.png 304 - 0.639 ms","timestamp":"2026-03-31 14:46:50"}
+{"level":"info","message":"🔹 Loading private key from active key...","timestamp":"2026-03-31 14:47:17"}
+{"level":"info","message":"✅ Successfully loaded private key for: nacl_1774953451290","timestamp":"2026-03-31 14:47:18"}
+{"level":"info","message":"   Public key: 816d6d6f395f19c722b044bc7b3e627e...","timestamp":"2026-03-31 14:47:18"}
+{"level":"info","message":"   Library: nacl","timestamp":"2026-03-31 14:47:18"}
+{"level":"error","message":"❌ Step: Creating Credential Hash failed: Cannot convert 1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef to a BigInt","stack":"SyntaxError: Cannot convert 1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef to a BigInt\n    at BigInt (<anonymous>)\n    at KeyGenerator._toBytes (/home/vishnu/circuits/ZKPNode/src/key-management/KeyGenerator.js:172:17)\n    at KeyGenerator.sign (/home/vishnu/circuits/ZKPNode/src/key-management/KeyGenerator.js:189:35)\n    at Object.signHash (/home/vishnu/circuits/ZKPNode/src/services/credentials.service.js:67:46)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/credentials.controller.js:41:24","timestamp":"2026-03-31 14:47:18"}
+{"0":"❌","1":" ","10":"o","11":" ","12":"c","13":"r","14":"e","15":"a","16":"t","17":"e","18":" ","19":"c","2":"F","20":"r","21":"e","22":"d","23":"e","24":"n","25":"t","26":"i","27":"a","28":"l","29":" ","3":"a","30":"h","31":"a","32":"s","33":"h","4":"i","5":"l","6":"e","7":"d","8":" ","9":"t","level":"error","message":{"error":{}},"timestamp":"2026-03-31 14:47:18"}
+{"isOperational":false,"level":"error","message":"Failed to create credential hash: Cannot convert 1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef to a BigInt","stack":"Error: Failed to create credential hash: Cannot convert 1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef to a BigInt\n    at Object.signHash (/home/vishnu/circuits/ZKPNode/src/services/credentials.service.js:81:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/credentials.controller.js:41:24","statusCode":500,"timestamp":"2026-03-31 14:47:18"}
+{"level":"error","message":"POST /v1/credentials/signCredentialHash?claimValue=25&requiredValue=18&operator=1&download=true 500 - 650.471 ms - message: Failed to create credential hash: Cannot convert 1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef to a BigInt","timestamp":"2026-03-31 14:47:18"}
+{"level":"info","message":"🔹 Step: Creating Credential Hash - Generating hash for userId=123456789, issuerId=345678912","timestamp":"2026-03-31 14:47:39"}
+{"level":"info","message":"🔹 Loading key from default location...","timestamp":"2026-03-31 14:47:39"}
+{"level":"info","message":"✅ Successfully loaded public key: 816d6d6f395f19c722b044bc7b3e627e...","timestamp":"2026-03-31 14:47:40"}
+{"level":"info","message":"✅ Step: Creating Credential Hash - Hash generated successfully","timestamp":"2026-03-31 14:47:40"}
+{"level":"info","message":"GET /v1/credentials/createCredentialHash?userId=123456789&issuerId=345678912 200 - 895.104 ms","timestamp":"2026-03-31 14:47:40"}
+{"level":"info","message":"🔹 Loading private key from active key...","timestamp":"2026-03-31 14:48:14"}
+{"level":"info","message":"✅ Successfully loaded private key for: nacl_1774953451290","timestamp":"2026-03-31 14:48:15"}
+{"level":"info","message":"   Public key: 816d6d6f395f19c722b044bc7b3e627e...","timestamp":"2026-03-31 14:48:15"}
+{"level":"info","message":"   Library: nacl","timestamp":"2026-03-31 14:48:15"}
+{"level":"info","message":"✅ Step: Creating Credential Hash - Hash signed successfully","timestamp":"2026-03-31 14:48:15"}
+{"level":"info","message":"POST /v1/credentials/signCredentialHash?claimValue=25&requiredValue=18&operator=1&download=true 200 - 644.628 ms","timestamp":"2026-03-31 14:48:15"}
+{"level":"info","message":"POST /v1/credentials/verifyCredentialHash 200 - 13.234 ms","timestamp":"2026-03-31 14:48:36"}
+{"level":"info","message":"🔹 Calculating witness...","timestamp":"2026-03-31 14:48:52"}
+{"0":"❌","1":" ","10":"i","11":"n","12":"g","13":" ","14":"w","15":"i","16":"t","17":"n","18":"e","19":"s","2":"C","20":"s","21":" ","22":"f","23":"a","24":"i","25":"l","26":"e","27":"d","3":"a","4":"l","5":"c","6":"u","7":"l","8":"a","9":"t","level":"error","message":{"context":{"wasmPath":"/home/vishnu/circuits/ZKPNode/Project_v1/ZKPFiles/zkpCircuit_js/zkpCircuit.wasm","witnessFile":"/home/vishnu/circuits/ZKPNode/Project_v1/ZKPFiles/witness.wtns"},"message":"Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","stack":"SyntaxError: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt\n    at BigInt (<anonymous>)\n    at normalize (/home/vishnu/circuits/ZKPNode/node_modules/circom_runtime/build/main.cjs:43:15)\n    at /home/vishnu/circuits/ZKPNode/node_modules/circom_runtime/build/main.cjs:520:41\n    at Array.forEach (<anonymous>)\n    at WitnessCalculatorCircom2._doCalculateWitness (/home/vishnu/circuits/ZKPNode/node_modules/circom_runtime/build/main.cjs:500:14)\n    at WitnessCalculatorCircom2.calculateWTNSBin (/home/vishnu/circuits/ZKPNode/node_modules/circom_runtime/build/main.cjs:559:20)\n    at Object.wtnsCalculate [as calculate] (/home/vishnu/circuits/ZKPNode/node_modules/snarkjs/build/main.cjs:1315:28)\n    at async Object.generateWitness (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:167:13)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:82:24","step":"Calculating witness"},"timestamp":"2026-03-31 14:48:52"}
+{"0":"❌","1":" ","10":"G","11":"e","12":"n","13":"e","14":"r","15":"a","16":"t","17":"i","18":"o","19":"n","2":"W","20":" ","21":"f","22":"a","23":"i","24":"l","25":"e","26":"d","3":"i","4":"t","5":"n","6":"e","7":"s","8":"s","9":" ","level":"error","message":{"context":{},"message":"Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","stack":"Error: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt\n    at handleError (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:21:11)\n    at Object.generateWitness (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:170:13)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:82:24","step":"Witness Generation"},"timestamp":"2026-03-31 14:48:52"}
+{"isOperational":true,"level":"info","message":"Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","stack":"Error: Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt\n    at handleError (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:21:11)\n    at Object.generateWitness (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:175:9)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:82:24","timestamp":"2026-03-31 14:48:52"}
+{"0":"❌","1":" ","10":"g","11":"e","12":"n","13":"e","14":"r","15":"a","16":"t","17":"i","18":"o","19":"n","2":"W","20":" ","21":"f","22":"a","23":"i","24":"l","25":"e","26":"d","3":"i","4":"t","5":"n","6":"e","7":"s","8":"s","9":" ","level":"error","message":{"error":{"isOperational":true,"level":"info","timestamp":"2026-03-31 14:48:52"}},"timestamp":"2026-03-31 14:48:52"}
+{"isOperational":true,"level":"error","message":"Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","stack":"Error: Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt\n    at handleError (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:21:11)\n    at Object.generateWitness (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:175:9)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:82:24","timestamp":"2026-03-31 14:48:52"}
+{"level":"error","message":"POST /v1/zkp-file-generation/createWitness?zkpCircuit=zkpCircuit.wasm 500 - 33.125 ms - message: Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","timestamp":"2026-03-31 14:48:52"}
+{"level":"info","message":"🔹 Calculating witness...","timestamp":"2026-03-31 14:48:55"}
+{"0":"❌","1":" ","10":"i","11":"n","12":"g","13":" ","14":"w","15":"i","16":"t","17":"n","18":"e","19":"s","2":"C","20":"s","21":" ","22":"f","23":"a","24":"i","25":"l","26":"e","27":"d","3":"a","4":"l","5":"c","6":"u","7":"l","8":"a","9":"t","level":"error","message":{"context":{"wasmPath":"/home/vishnu/circuits/ZKPNode/Project_v1/ZKPFiles/zkpCircuit_js/zkpCircuit.wasm","witnessFile":"/home/vishnu/circuits/ZKPNode/Project_v1/ZKPFiles/witness.wtns"},"message":"Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","stack":"SyntaxError: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt\n    at BigInt (<anonymous>)\n    at normalize (/home/vishnu/circuits/ZKPNode/node_modules/circom_runtime/build/main.cjs:43:15)\n    at /home/vishnu/circuits/ZKPNode/node_modules/circom_runtime/build/main.cjs:520:41\n    at Array.forEach (<anonymous>)\n    at WitnessCalculatorCircom2._doCalculateWitness (/home/vishnu/circuits/ZKPNode/node_modules/circom_runtime/build/main.cjs:500:14)\n    at WitnessCalculatorCircom2.calculateWTNSBin (/home/vishnu/circuits/ZKPNode/node_modules/circom_runtime/build/main.cjs:559:20)\n    at Object.wtnsCalculate [as calculate] (/home/vishnu/circuits/ZKPNode/node_modules/snarkjs/build/main.cjs:1315:28)\n    at async Object.generateWitness (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:167:13)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:82:24","step":"Calculating witness"},"timestamp":"2026-03-31 14:48:55"}
+{"0":"❌","1":" ","10":"G","11":"e","12":"n","13":"e","14":"r","15":"a","16":"t","17":"i","18":"o","19":"n","2":"W","20":" ","21":"f","22":"a","23":"i","24":"l","25":"e","26":"d","3":"i","4":"t","5":"n","6":"e","7":"s","8":"s","9":" ","level":"error","message":{"context":{},"message":"Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","stack":"Error: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt\n    at handleError (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:21:11)\n    at Object.generateWitness (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:170:13)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:82:24","step":"Witness Generation"},"timestamp":"2026-03-31 14:48:55"}
+{"isOperational":true,"level":"info","message":"Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","stack":"Error: Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt\n    at handleError (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:21:11)\n    at Object.generateWitness (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:175:9)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:82:24","timestamp":"2026-03-31 14:48:55"}
+{"0":"❌","1":" ","10":"g","11":"e","12":"n","13":"e","14":"r","15":"a","16":"t","17":"i","18":"o","19":"n","2":"W","20":" ","21":"f","22":"a","23":"i","24":"l","25":"e","26":"d","3":"i","4":"t","5":"n","6":"e","7":"s","8":"s","9":" ","level":"error","message":{"error":{"isOperational":true,"level":"info","timestamp":"2026-03-31 14:48:55"}},"timestamp":"2026-03-31 14:48:55"}
+{"isOperational":true,"level":"error","message":"Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","stack":"Error: Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt\n    at handleError (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:21:11)\n    at Object.generateWitness (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:175:9)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:82:24","timestamp":"2026-03-31 14:48:55"}
+{"level":"error","message":"POST /v1/zkp-file-generation/createWitness?zkpCircuit=zkpCircuit.wasm 500 - 24.341 ms - message: Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","timestamp":"2026-03-31 14:48:55"}
+{"level":"info","message":"🔹 Loading private key from active key...","timestamp":"2026-03-31 14:50:34"}
+{"level":"info","message":"✅ Successfully loaded private key for: nacl_1774953451290","timestamp":"2026-03-31 14:50:35"}
+{"level":"info","message":"   Public key: 816d6d6f395f19c722b044bc7b3e627e...","timestamp":"2026-03-31 14:50:35"}
+{"level":"info","message":"   Library: nacl","timestamp":"2026-03-31 14:50:35"}
+{"level":"info","message":"✅ Step: Creating Credential Hash - Hash signed successfully","timestamp":"2026-03-31 14:50:35"}
+{"level":"info","message":"POST /v1/credentials/signCredentialHash?claimValue=25&requiredValue=18&operator=1&download=false 200 - 702.133 ms","timestamp":"2026-03-31 14:50:35"}
+{"level":"info","message":"🔹 Calculating witness...","timestamp":"2026-03-31 14:50:51"}
+{"0":"❌","1":" ","10":"i","11":"n","12":"g","13":" ","14":"w","15":"i","16":"t","17":"n","18":"e","19":"s","2":"C","20":"s","21":" ","22":"f","23":"a","24":"i","25":"l","26":"e","27":"d","3":"a","4":"l","5":"c","6":"u","7":"l","8":"a","9":"t","level":"error","message":{"context":{"wasmPath":"/home/vishnu/circuits/ZKPNode/Project_v1/ZKPFiles/zkpCircuit_js/zkpCircuit.wasm","witnessFile":"/home/vishnu/circuits/ZKPNode/Project_v1/ZKPFiles/witness.wtns"},"message":"Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","stack":"SyntaxError: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt\n    at BigInt (<anonymous>)\n    at normalize (/home/vishnu/circuits/ZKPNode/node_modules/circom_runtime/build/main.cjs:43:15)\n    at /home/vishnu/circuits/ZKPNode/node_modules/circom_runtime/build/main.cjs:520:41\n    at Array.forEach (<anonymous>)\n    at WitnessCalculatorCircom2._doCalculateWitness (/home/vishnu/circuits/ZKPNode/node_modules/circom_runtime/build/main.cjs:500:14)\n    at WitnessCalculatorCircom2.calculateWTNSBin (/home/vishnu/circuits/ZKPNode/node_modules/circom_runtime/build/main.cjs:559:20)\n    at Object.wtnsCalculate [as calculate] (/home/vishnu/circuits/ZKPNode/node_modules/snarkjs/build/main.cjs:1315:28)\n    at async Object.generateWitness (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:167:13)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:82:24","step":"Calculating witness"},"timestamp":"2026-03-31 14:50:51"}
+{"0":"❌","1":" ","10":"G","11":"e","12":"n","13":"e","14":"r","15":"a","16":"t","17":"i","18":"o","19":"n","2":"W","20":" ","21":"f","22":"a","23":"i","24":"l","25":"e","26":"d","3":"i","4":"t","5":"n","6":"e","7":"s","8":"s","9":" ","level":"error","message":{"context":{},"message":"Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","stack":"Error: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt\n    at handleError (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:21:11)\n    at Object.generateWitness (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:170:13)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:82:24","step":"Witness Generation"},"timestamp":"2026-03-31 14:50:51"}
+{"isOperational":true,"level":"info","message":"Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","stack":"Error: Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt\n    at handleError (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:21:11)\n    at Object.generateWitness (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:175:9)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:82:24","timestamp":"2026-03-31 14:50:51"}
+{"0":"❌","1":" ","10":"g","11":"e","12":"n","13":"e","14":"r","15":"a","16":"t","17":"i","18":"o","19":"n","2":"W","20":" ","21":"f","22":"a","23":"i","24":"l","25":"e","26":"d","3":"i","4":"t","5":"n","6":"e","7":"s","8":"s","9":" ","level":"error","message":{"error":{"isOperational":true,"level":"info","timestamp":"2026-03-31 14:50:51"}},"timestamp":"2026-03-31 14:50:51"}
+{"isOperational":true,"level":"error","message":"Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","stack":"Error: Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt\n    at handleError (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:21:11)\n    at Object.generateWitness (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:175:9)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:82:24","timestamp":"2026-03-31 14:50:51"}
+{"level":"error","message":"POST /v1/zkp-file-generation/createWitness?zkpCircuit=zkpCircuit.wasm 500 - 28.286 ms - message: Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","timestamp":"2026-03-31 14:50:51"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 14:52:47"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 14:52:48"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 14:52:48"}
+{"level":"info","message":"🔹 Calculating witness...","timestamp":"2026-03-31 14:52:50"}
+{"0":"❌","1":" ","10":"i","11":"n","12":"g","13":" ","14":"w","15":"i","16":"t","17":"n","18":"e","19":"s","2":"C","20":"s","21":" ","22":"f","23":"a","24":"i","25":"l","26":"e","27":"d","3":"a","4":"l","5":"c","6":"u","7":"l","8":"a","9":"t","level":"error","message":{"context":{"wasmPath":"/home/vishnu/circuits/ZKPNode/Project_v1/ZKPFiles/zkpCircuit_js/zkpCircuit.wasm","witnessFile":"/home/vishnu/circuits/ZKPNode/Project_v1/ZKPFiles/witness.wtns"},"message":"Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","stack":"SyntaxError: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt\n    at BigInt (<anonymous>)\n    at normalize (/home/vishnu/circuits/ZKPNode/node_modules/circom_runtime/build/main.cjs:43:15)\n    at /home/vishnu/circuits/ZKPNode/node_modules/circom_runtime/build/main.cjs:520:41\n    at Array.forEach (<anonymous>)\n    at WitnessCalculatorCircom2._doCalculateWitness (/home/vishnu/circuits/ZKPNode/node_modules/circom_runtime/build/main.cjs:500:14)\n    at WitnessCalculatorCircom2.calculateWTNSBin (/home/vishnu/circuits/ZKPNode/node_modules/circom_runtime/build/main.cjs:559:20)\n    at Object.wtnsCalculate [as calculate] (/home/vishnu/circuits/ZKPNode/node_modules/snarkjs/build/main.cjs:1315:28)\n    at async Object.generateWitness (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:167:13)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:84:24","step":"Calculating witness"},"timestamp":"2026-03-31 14:52:50"}
+{"0":"❌","1":" ","10":"G","11":"e","12":"n","13":"e","14":"r","15":"a","16":"t","17":"i","18":"o","19":"n","2":"W","20":" ","21":"f","22":"a","23":"i","24":"l","25":"e","26":"d","3":"i","4":"t","5":"n","6":"e","7":"s","8":"s","9":" ","level":"error","message":{"context":{},"message":"Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","stack":"Error: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt\n    at handleError (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:21:11)\n    at Object.generateWitness (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:170:13)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:84:24","step":"Witness Generation"},"timestamp":"2026-03-31 14:52:50"}
+{"isOperational":true,"level":"info","message":"Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","stack":"Error: Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt\n    at handleError (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:21:11)\n    at Object.generateWitness (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:175:9)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:84:24","timestamp":"2026-03-31 14:52:50"}
+{"0":"❌","1":" ","10":"g","11":"e","12":"n","13":"e","14":"r","15":"a","16":"t","17":"i","18":"o","19":"n","2":"W","20":" ","21":"f","22":"a","23":"i","24":"l","25":"e","26":"d","3":"i","4":"t","5":"n","6":"e","7":"s","8":"s","9":" ","level":"error","message":{"error":{"isOperational":true,"level":"info","timestamp":"2026-03-31 14:52:50"}},"timestamp":"2026-03-31 14:52:50"}
+{"isOperational":true,"level":"error","message":"Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","stack":"Error: Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt\n    at handleError (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:21:11)\n    at Object.generateWitness (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:175:9)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:84:24","timestamp":"2026-03-31 14:52:50"}
+{"level":"error","message":"POST /v1/zkp-file-generation/createWitness?zkpCircuit=zkpCircuit.wasm 500 - 47.278 ms - message: Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","timestamp":"2026-03-31 14:52:50"}
+{"level":"info","message":"SIGTERM received","timestamp":"2026-03-31 16:23:52"}
+{"level":"info","message":"SIGTERM received","timestamp":"2026-03-31 16:23:52"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 21:55:32"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 21:55:34"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 21:55:34"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 21:56:45"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 21:56:47"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 21:56:47"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 21:57:05"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 21:57:06"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 21:57:06"}
+{"level":"info","message":"GET /v1/docs/ 304 - 5.389 ms","timestamp":"2026-03-31 21:57:25"}
+{"level":"info","message":"GET /v1/docs/swagger-ui.css 304 - 1.536 ms","timestamp":"2026-03-31 21:57:25"}
+{"level":"info","message":"GET /v1/docs/swagger-ui-init.js 304 - 0.578 ms","timestamp":"2026-03-31 21:57:25"}
+{"level":"info","message":"GET /v1/docs/swagger-ui-bundle.js 304 - 3.785 ms","timestamp":"2026-03-31 21:57:25"}
+{"level":"info","message":"GET /v1/docs/swagger-ui-standalone-preset.js 304 - 2.934 ms","timestamp":"2026-03-31 21:57:25"}
+{"level":"info","message":"🔹 Starting Ceremony...","timestamp":"2026-03-31 21:57:35"}
+{"level":"info","message":"🔹 Starting Trusted Setup (this may take a while)...","timestamp":"2026-03-31 21:57:35"}
+{"level":"info","message":"✅ Curve loaded: bn128","timestamp":"2026-03-31 21:57:36"}
+{"level":"info","message":"🔹 Step 1: Creating Powers of Tau...","timestamp":"2026-03-31 21:57:36"}
+{"level":"info","message":"✅ ptau accumulator created: pot12_0000.ptau","timestamp":"2026-03-31 21:57:36"}
+{"level":"info","message":"🔹 Step 2: Contributing entropy...","timestamp":"2026-03-31 21:57:36"}
+{"level":"info","message":"✅ Contribution complete: pot12_0001.ptau","timestamp":"2026-03-31 21:57:37"}
+{"level":"info","message":"🔹 Step 3: Preparing Phase 2...","timestamp":"2026-03-31 21:57:37"}
+{"level":"info","message":"✅ Phase 2 prepared: pot12_final.ptau","timestamp":"2026-03-31 21:57:46"}
+{"level":"info","timestamp":"2026-03-31 21:57:46"}
+{"level":"info","message":"GET /v1/zkp-file-generation/crearteCeremony 201 - 10727.924 ms","timestamp":"2026-03-31 21:57:46"}
+{"0":"\ud83d","1":"\udd39","10":" ","11":"K","12":"e","13":"y","14":" ","15":"G","16":"e","17":"n","18":"e","19":"r","2":" ","20":"a","21":"t","22":"i","23":"o","24":"n","25":" ","26":"r","27":"e","28":"q","29":"u","3":"I","30":"e","31":"s","32":"t","4":"n","5":"i","6":"t","7":"i","8":"a","9":"l","level":"info","message":{"circuitName":"zkpCircuit.r1cs","finalKey":"pot12_final.ptau"},"timestamp":"2026-03-31 21:58:00"}
+{"0":"\ud83d","1":"\udccc","10":"t","11":"h","12":"s","13":" ","14":"p","15":"r","16":"e","17":"p","18":"a","19":"r","2":" ","20":"e","21":"d","3":"F","4":"i","5":"l","6":"e","7":" ","8":"p","9":"a","level":"info","message":{"fCircuit":"/home/vishnu/circuits/ZKPNode/Project_v1/ZKPFiles/zkpCircuit.r1cs","fZkey":"/home/vishnu/circuits/ZKPNode/Project_v1/tau_files/final.zkey","potFinal":"/home/vishnu/circuits/ZKPNode/Project_v1/tau_files/pot12_final.ptau","zkey":"/home/vishnu/circuits/ZKPNode/Project_v1/tau_files/first.zkey"},"timestamp":"2026-03-31 21:58:00"}
+{"level":"info","message":"🔹 Step 1: Creating initial zKey...","timestamp":"2026-03-31 21:58:00"}
+{"level":"info","message":"✅ Initial zKey created successfully","timestamp":"2026-03-31 21:58:00"}
+{"level":"info","message":"🔹 Step 2: Contributing entropy to zKey...","timestamp":"2026-03-31 21:58:00"}
+{"level":"info","message":"✅ zKey contribution completed successfully","timestamp":"2026-03-31 21:58:00"}
+{"level":"info","message":"🎉 Initial Key Generation completed successfully!","timestamp":"2026-03-31 21:58:00"}
+{"level":"info","message":"GET /v1/zkp-file-generation/createInitialKey?circuitName=zkpCircuit.r1cs&finalKey=pot12_final.ptau 201 - 725.337 ms","timestamp":"2026-03-31 21:58:00"}
+{"0":"\ud83d","1":"\udd39","10":"e","11":" ","12":"V","13":"e","14":"r","15":"i","16":"f","17":"i","18":"c","19":"a","2":" ","20":"t","21":"i","22":"o","23":"n","24":" ","25":"K","26":"e","27":"y","28":" ","29":"r","3":"G","30":"e","31":"q","32":"u","33":"e","34":"s","35":"t","4":"e","5":"n","6":"e","7":"r","8":"a","9":"t","level":"info","message":{"finalKey":"final.zkey"},"timestamp":"2026-03-31 21:58:54"}
+{"level":"info","message":"🔹 Exporting verification key...","timestamp":"2026-03-31 21:58:54"}
+{"level":"info","message":"✅ Verification key saved successfully","timestamp":"2026-03-31 21:58:54"}
+{"level":"info","message":"🎉 Verification Key Generation completed successfully!","timestamp":"2026-03-31 21:58:54"}
+{"level":"info","message":"GET /v1/zkp-file-generation/verifierKey?finalKey=final.zkey 201 - 10.556 ms","timestamp":"2026-03-31 21:58:54"}
+{"level":"info","message":"🔹 Calculating witness...","timestamp":"2026-03-31 21:59:11"}
+{"0":"❌","1":" ","10":"i","11":"n","12":"g","13":" ","14":"w","15":"i","16":"t","17":"n","18":"e","19":"s","2":"C","20":"s","21":" ","22":"f","23":"a","24":"i","25":"l","26":"e","27":"d","3":"a","4":"l","5":"c","6":"u","7":"l","8":"a","9":"t","level":"error","message":{"context":{"wasmPath":"/home/vishnu/circuits/ZKPNode/Project_v1/ZKPFiles/zkpCircuit_js/zkpCircuit.wasm","witnessFile":"/home/vishnu/circuits/ZKPNode/Project_v1/ZKPFiles/witness.wtns"},"message":"Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","stack":"SyntaxError: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt\n    at BigInt (<anonymous>)\n    at normalize (/home/vishnu/circuits/ZKPNode/node_modules/circom_runtime/build/main.cjs:43:15)\n    at /home/vishnu/circuits/ZKPNode/node_modules/circom_runtime/build/main.cjs:520:41\n    at Array.forEach (<anonymous>)\n    at WitnessCalculatorCircom2._doCalculateWitness (/home/vishnu/circuits/ZKPNode/node_modules/circom_runtime/build/main.cjs:500:14)\n    at WitnessCalculatorCircom2.calculateWTNSBin (/home/vishnu/circuits/ZKPNode/node_modules/circom_runtime/build/main.cjs:559:20)\n    at Object.wtnsCalculate [as calculate] (/home/vishnu/circuits/ZKPNode/node_modules/snarkjs/build/main.cjs:1315:28)\n    at async Object.generateWitness (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:167:13)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:84:24","step":"Calculating witness"},"timestamp":"2026-03-31 21:59:11"}
+{"0":"❌","1":" ","10":"G","11":"e","12":"n","13":"e","14":"r","15":"a","16":"t","17":"i","18":"o","19":"n","2":"W","20":" ","21":"f","22":"a","23":"i","24":"l","25":"e","26":"d","3":"i","4":"t","5":"n","6":"e","7":"s","8":"s","9":" ","level":"error","message":{"context":{},"message":"Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","stack":"Error: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt\n    at handleError (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:21:11)\n    at Object.generateWitness (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:170:13)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:84:24","step":"Witness Generation"},"timestamp":"2026-03-31 21:59:11"}
+{"isOperational":true,"level":"info","message":"Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","stack":"Error: Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt\n    at handleError (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:21:11)\n    at Object.generateWitness (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:175:9)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:84:24","timestamp":"2026-03-31 21:59:11"}
+{"0":"❌","1":" ","10":"g","11":"e","12":"n","13":"e","14":"r","15":"a","16":"t","17":"i","18":"o","19":"n","2":"W","20":" ","21":"f","22":"a","23":"i","24":"l","25":"e","26":"d","3":"i","4":"t","5":"n","6":"e","7":"s","8":"s","9":" ","level":"error","message":{"error":{"isOperational":true,"level":"info","timestamp":"2026-03-31 21:59:11"}},"timestamp":"2026-03-31 21:59:11"}
+{"isOperational":true,"level":"error","message":"Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","stack":"Error: Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt\n    at handleError (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:21:11)\n    at Object.generateWitness (/home/vishnu/circuits/ZKPNode/src/services/zkpFile.service.js:175:9)\n    at async /home/vishnu/circuits/ZKPNode/src/controllers/zkpFile.controller.js:84:24","timestamp":"2026-03-31 21:59:11"}
+{"level":"error","message":"POST /v1/zkp-file-generation/createWitness?zkpCircuit=zkpCircuit.wasm 500 - 53.611 ms - message: Witness Generation failed: Calculating witness failed: Cannot convert eb8721d09e5ac3426d6f2663db879d26b18719cb7b7d1c2917b3c9e52ac3507d to a BigInt","timestamp":"2026-03-31 21:59:11"}
+{"level":"info","message":"🔹 Starting Ceremony...","timestamp":"2026-03-31 21:59:37"}
+{"level":"info","message":"🔹 Starting Trusted Setup (this may take a while)...","timestamp":"2026-03-31 21:59:37"}
+{"level":"info","message":"✅ Curve loaded: bn128","timestamp":"2026-03-31 21:59:37"}
+{"level":"info","message":"🔹 Step 1: Creating Powers of Tau...","timestamp":"2026-03-31 21:59:37"}
+{"level":"info","message":"✅ ptau accumulator created: pot12_0000.ptau","timestamp":"2026-03-31 21:59:37"}
+{"level":"info","message":"🔹 Step 2: Contributing entropy...","timestamp":"2026-03-31 21:59:37"}
+{"level":"info","message":"✅ Contribution complete: pot12_0001.ptau","timestamp":"2026-03-31 21:59:38"}
+{"level":"info","message":"🔹 Step 3: Preparing Phase 2...","timestamp":"2026-03-31 21:59:38"}
+{"level":"info","message":"✅ Phase 2 prepared: pot12_final.ptau","timestamp":"2026-03-31 21:59:47"}
+{"level":"info","timestamp":"2026-03-31 21:59:47"}
+{"level":"info","message":"GET /v1/zkp-file-generation/crearteCeremony 201 - 10248.919 ms","timestamp":"2026-03-31 21:59:47"}
+{"level":"info","message":"🔹 Step: Creating Credential Hash - Generating hash for userId=123456789, issuerId=345678912","timestamp":"2026-03-31 21:59:56"}
+{"level":"info","message":"🔹 Loading key from default location...","timestamp":"2026-03-31 21:59:56"}
+{"level":"info","message":"✅ Successfully loaded public key: a0eab4c146b41e0179ae90b2699ab0af...","timestamp":"2026-03-31 21:59:56"}
+{"level":"info","message":"✅ Step: Creating Credential Hash - Hash generated successfully","timestamp":"2026-03-31 21:59:56"}
+{"level":"info","message":"GET /v1/credentials/createCredentialHash?userId=123456789&issuerId=345678912 200 - 879.810 ms","timestamp":"2026-03-31 21:59:56"}
+{"level":"info","message":"🔹 Loading private key from active key...","timestamp":"2026-03-31 22:00:09"}
+{"level":"info","message":"✅ Successfully loaded private key for: nacl_1774979817523","timestamp":"2026-03-31 22:00:09"}
+{"level":"info","message":"   Public key: a0eab4c146b41e0179ae90b2699ab0af...","timestamp":"2026-03-31 22:00:09"}
+{"level":"info","message":"   Library: nacl","timestamp":"2026-03-31 22:00:09"}
+{"level":"info","message":"✅ Step: Creating Credential Hash - Hash signed successfully","timestamp":"2026-03-31 22:00:09"}
+{"level":"info","message":"POST /v1/credentials/signCredentialHash?claimValue=25&requiredValue=18&operator=1&download=true 200 - 661.920 ms","timestamp":"2026-03-31 22:00:09"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 23:01:24"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 23:01:25"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 23:01:25"}
+{"level":"info","message":"🔹 Starting Ceremony...","timestamp":"2026-03-31 23:01:32"}
+{"level":"info","message":"🔹 Starting Trusted Setup (this may take a while)...","timestamp":"2026-03-31 23:01:32"}
+{"level":"info","message":"✅ Curve loaded: bn128","timestamp":"2026-03-31 23:01:33"}
+{"level":"info","message":"🔹 Step 1: Creating Powers of Tau...","timestamp":"2026-03-31 23:01:33"}
+{"level":"info","message":"✅ ptau accumulator created: pot12_0000.ptau","timestamp":"2026-03-31 23:01:33"}
+{"level":"info","message":"🔹 Step 2: Contributing entropy...","timestamp":"2026-03-31 23:01:33"}
+{"level":"info","message":"✅ Contribution complete: pot12_0001.ptau","timestamp":"2026-03-31 23:01:34"}
+{"level":"info","message":"🔹 Step 3: Preparing Phase 2...","timestamp":"2026-03-31 23:01:34"}
+{"level":"info","message":"✅ Phase 2 prepared: pot12_final.ptau","timestamp":"2026-03-31 23:01:43"}
+{"level":"info","timestamp":"2026-03-31 23:01:43"}
+{"level":"info","message":"GET /v1/zkp-file-generation/crearteCeremony 201 - 10554.411 ms","timestamp":"2026-03-31 23:01:43"}
+{"0":"\ud83d","1":"\udd39","10":" ","11":"K","12":"e","13":"y","14":" ","15":"G","16":"e","17":"n","18":"e","19":"r","2":" ","20":"a","21":"t","22":"i","23":"o","24":"n","25":" ","26":"r","27":"e","28":"q","29":"u","3":"I","30":"e","31":"s","32":"t","4":"n","5":"i","6":"t","7":"i","8":"a","9":"l","level":"info","message":{"circuitName":"zkpCircuit.r1cs","finalKey":"pot12_final.ptau"},"timestamp":"2026-03-31 23:01:50"}
+{"0":"\ud83d","1":"\udccc","10":"t","11":"h","12":"s","13":" ","14":"p","15":"r","16":"e","17":"p","18":"a","19":"r","2":" ","20":"e","21":"d","3":"F","4":"i","5":"l","6":"e","7":" ","8":"p","9":"a","level":"info","message":{"fCircuit":"/home/vishnu/circuits/ZKPNode/Project_v1/ZKPFiles/zkpCircuit.r1cs","fZkey":"/home/vishnu/circuits/ZKPNode/Project_v1/tau_files/final.zkey","potFinal":"/home/vishnu/circuits/ZKPNode/Project_v1/tau_files/pot12_final.ptau","zkey":"/home/vishnu/circuits/ZKPNode/Project_v1/tau_files/first.zkey"},"timestamp":"2026-03-31 23:01:50"}
+{"level":"info","message":"🔹 Step 1: Creating initial zKey...","timestamp":"2026-03-31 23:01:50"}
+{"level":"info","message":"✅ Initial zKey created successfully","timestamp":"2026-03-31 23:01:50"}
+{"level":"info","message":"🔹 Step 2: Contributing entropy to zKey...","timestamp":"2026-03-31 23:01:50"}
+{"level":"info","message":"✅ zKey contribution completed successfully","timestamp":"2026-03-31 23:01:50"}
+{"level":"info","message":"🎉 Initial Key Generation completed successfully!","timestamp":"2026-03-31 23:01:50"}
+{"level":"info","message":"GET /v1/zkp-file-generation/createInitialKey?circuitName=zkpCircuit.r1cs&finalKey=pot12_final.ptau 201 - 723.427 ms","timestamp":"2026-03-31 23:01:50"}
+{"0":"\ud83d","1":"\udd39","10":"e","11":" ","12":"V","13":"e","14":"r","15":"i","16":"f","17":"i","18":"c","19":"a","2":" ","20":"t","21":"i","22":"o","23":"n","24":" ","25":"K","26":"e","27":"y","28":" ","29":"r","3":"G","30":"e","31":"q","32":"u","33":"e","34":"s","35":"t","4":"e","5":"n","6":"e","7":"r","8":"a","9":"t","level":"info","message":{"finalKey":"final.zkey"},"timestamp":"2026-03-31 23:01:54"}
+{"level":"info","message":"🔹 Exporting verification key...","timestamp":"2026-03-31 23:01:54"}
+{"level":"info","message":"✅ Verification key saved successfully","timestamp":"2026-03-31 23:01:54"}
+{"level":"info","message":"🎉 Verification Key Generation completed successfully!","timestamp":"2026-03-31 23:01:54"}
+{"level":"info","message":"GET /v1/zkp-file-generation/verifierKey?finalKey=final.zkey 201 - 6.886 ms","timestamp":"2026-03-31 23:01:54"}
+{"level":"info","message":"🔹 Calculating witness...","timestamp":"2026-03-31 23:02:23"}
+{"level":"info","message":"✅ Witness generated successfully","timestamp":"2026-03-31 23:02:23"}
+{"level":"info","message":"POST /v1/zkp-file-generation/createWitness?zkpCircuit=zkpCircuit.wasm 201 - 52.750 ms","timestamp":"2026-03-31 23:02:23"}
+{"0":"\ud83d","1":"\udd39","10":"P","11":"r","12":"o","13":"o","14":"f","15":" ","16":"r","17":"e","18":"q","19":"u","2":" ","20":"e","21":"s","22":"t","3":"C","4":"r","5":"e","6":"a","7":"t","8":"e","9":" ","level":"info","message":{"protocol":"groth16","zkeyFileName":"final.zkey"},"timestamp":"2026-03-31 23:02:50"}
+{"level":"info","message":"✅ Proof generated successfully","proofFile":"/home/vishnu/circuits/ZKPNode/proofs/groth16_proof.json","publicFile":"/home/vishnu/circuits/ZKPNode/proofs/groth16_public.json","timestamp":"2026-03-31 23:02:50"}
+{"level":"info","message":"POST /v1/zkp-file-generation/generateProof?zkey=final.zkey&protocol=groth16 201 - 98.656 ms","timestamp":"2026-03-31 23:02:50"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 23:04:27"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 23:04:28"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 23:04:28"}
+{"0":"\ud83d","1":"\udd39","10":"P","11":"r","12":"o","13":"o","14":"f","15":" ","16":"r","17":"e","18":"q","19":"u","2":" ","20":"e","21":"s","22":"t","3":"V","4":"e","5":"r","6":"i","7":"f","8":"y","9":" ","level":"info","message":{"protocol":"groth16"},"timestamp":"2026-03-31 23:04:40"}
+{"level":"info","message":"✅ Proof verification result:","timestamp":"2026-03-31 23:04:40","verified":true}
+{"level":"info","message":"POST /v1/zkp-file-generation/verifyProof?protocol=groth16 200 - 245.137 ms","timestamp":"2026-03-31 23:04:40"}
+{"0":"\ud83d","1":"\udd39","10":"P","11":"r","12":"o","13":"o","14":"f","15":" ","16":"r","17":"e","18":"q","19":"u","2":" ","20":"e","21":"s","22":"t","3":"C","4":"r","5":"e","6":"a","7":"t","8":"e","9":" ","level":"info","message":{"protocol":"groth16","zkeyFileName":"final.zkey"},"timestamp":"2026-03-31 23:04:46"}
+{"level":"info","message":"✅ Proof generated successfully","proofFile":"/home/vishnu/circuits/ZKPNode/proofs/groth16_proof.json","publicFile":"/home/vishnu/circuits/ZKPNode/proofs/groth16_public.json","timestamp":"2026-03-31 23:04:46"}
+{"level":"info","message":"POST /v1/zkp-file-generation/generateProof?zkey=final.zkey&protocol=groth16 201 - 136.609 ms","timestamp":"2026-03-31 23:04:46"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 23:08:27"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 23:08:29"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 23:08:29"}
+{"0":"\ud83d","1":"\udd39","10":"P","11":"r","12":"o","13":"o","14":"f","15":" ","16":"r","17":"e","18":"q","19":"u","2":" ","20":"e","21":"s","22":"t","3":"C","4":"r","5":"e","6":"a","7":"t","8":"e","9":" ","level":"info","message":{"protocol":"groth16","zkeyFileName":"final.zkey"},"timestamp":"2026-03-31 23:08:34"}
+{"level":"info","message":"✅ Proof generated successfully","proofFile":"/home/vishnu/circuits/ZKPNode/proofs/groth16_proof.json","publicFile":"/home/vishnu/circuits/ZKPNode/proofs/groth16_public.json","timestamp":"2026-03-31 23:08:34"}
+{"level":"info","message":"POST /v1/zkp-file-generation/generateProof?zkey=final.zkey&protocol=groth16 201 - 347.848 ms","timestamp":"2026-03-31 23:08:34"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 23:08:46"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 23:08:47"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 23:08:47"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 23:09:25"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 23:09:26"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 23:09:26"}
+{"0":"\ud83d","1":"\udd39","10":"P","11":"r","12":"o","13":"o","14":"f","15":" ","16":"r","17":"e","18":"q","19":"u","2":" ","20":"e","21":"s","22":"t","3":"C","4":"r","5":"e","6":"a","7":"t","8":"e","9":" ","level":"info","message":{"protocol":"groth16","zkeyFileName":"final.zkey"},"timestamp":"2026-03-31 23:09:28"}
+{"level":"info","message":"✅ Proof generated successfully","proofFile":"/home/vishnu/circuits/ZKPNode/proofs/groth16_proof.json","publicFile":"/home/vishnu/circuits/ZKPNode/proofs/groth16_public.json","timestamp":"2026-03-31 23:09:28"}
+{"level":"info","message":"POST /v1/zkp-file-generation/generateProof?zkey=final.zkey&protocol=groth16 201 - 322.705 ms","timestamp":"2026-03-31 23:09:29"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 23:10:35"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 23:10:36"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 23:10:36"}
+{"0":"\ud83d","1":"\udd39","10":"P","11":"r","12":"o","13":"o","14":"f","15":" ","16":"r","17":"e","18":"q","19":"u","2":" ","20":"e","21":"s","22":"t","3":"C","4":"r","5":"e","6":"a","7":"t","8":"e","9":" ","level":"info","message":{"protocol":"groth16","zkeyFileName":"final.zkey"},"timestamp":"2026-03-31 23:10:39"}
+{"level":"info","message":"✅ Proof generated successfully","proofFile":"/home/vishnu/circuits/ZKPNode/proofs/groth16_proof.json","publicFile":"/home/vishnu/circuits/ZKPNode/proofs/groth16_public.json","timestamp":"2026-03-31 23:10:40"}
+{"level":"info","message":"POST /v1/zkp-file-generation/generateProof?zkey=final.zkey&protocol=groth16 201 - 351.107 ms","timestamp":"2026-03-31 23:10:40"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 23:10:44"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 23:10:45"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 23:10:45"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 23:10:52"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 23:10:53"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 23:10:53"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 23:11:34"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 23:11:36"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 23:11:36"}
+{"0":"\ud83d","1":"\udd39","10":"P","11":"r","12":"o","13":"o","14":"f","15":" ","16":"r","17":"e","18":"q","19":"u","2":" ","20":"e","21":"s","22":"t","3":"C","4":"r","5":"e","6":"a","7":"t","8":"e","9":" ","level":"info","message":{"protocol":"groth16","zkeyFileName":"final.zkey"},"timestamp":"2026-03-31 23:11:38"}
+{"level":"info","message":"✅ Proof generated successfully","proofFile":"/home/vishnu/circuits/ZKPNode/proofs/groth16_proof.json","publicFile":"/home/vishnu/circuits/ZKPNode/proofs/groth16_public.json","timestamp":"2026-03-31 23:11:38"}
+{"level":"info","message":"POST /v1/zkp-file-generation/generateProof?zkey=final.zkey&protocol=groth16 201 - 343.614 ms","timestamp":"2026-03-31 23:11:38"}
+{"level":"warn","message":"Unable to connect to email server. Make sure you have configured the SMTP options in .env","timestamp":"2026-03-31 23:18:31"}
+{"level":"info","message":"Connected to MongoDB","timestamp":"2026-03-31 23:18:33"}
+{"level":"info","message":"Listening to port 8000","timestamp":"2026-03-31 23:18:33"}
+{"level":"info","message":"POST /v1/credentials/verifyCredentialHash 200 - 30.824 ms","timestamp":"2026-03-31 23:18:34"}

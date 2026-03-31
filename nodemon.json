@@ -1,7 +1,15 @@
 {
   "ignore": [
-    "Project_v1/ZKPFiles/*",
-    "Project_v1/tau_files/*",
-    "Project_v1/VerifierData/*"
+
+
+    "**/proofs/**",
+    "**/ZKPFiles/**",
+    "**/tau_files/**",
+    "**/VerifierData/**",
+    "**/*.wtns",
+    "**/*.zkey",
+    "**/*.ptau",
+    "**/*.wasm",
+    "**/temp_witness.wtns"
   ]
 }
