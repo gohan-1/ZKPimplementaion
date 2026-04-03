@@ -11,6 +11,7 @@
   "rules": {
     "no-console": "error",
     "func-names": "off",
+        "no-unused-vars": "warn",
     "no-underscore-dangle": "off",
     "consistent-return": "off",
     "jest/expect-expect": "off",

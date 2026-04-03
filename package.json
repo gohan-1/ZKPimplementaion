@@ -53,8 +53,10 @@
   ],
   "dependencies": {
     "@noble/ed25519": "^3.0.1",
+    "@openzeppelin/merkle-tree": "^1.0.8",
     "@zk-kit/baby-jubjub": "^1.0.3",
     "@zk-kit/eddsa-poseidon": "^1.1.0",
+    "@zk-kit/incremental-merkle-tree": "^1.1.0",
     "babyjubjub": "^1.0.4",
     "bcryptjs": "^3.0.3",
     "circomlib": "^2.0.5",
@@ -64,6 +66,7 @@
     "cross-env": "^10.1.0",
     "crypto-js": "^4.2.0",
     "dotenv": "^17.3.1",
+    "ethers": "^6.16.0",
     "express": "^5.2.1",
     "express-mongo-sanitize": "^2.0.0",
     "express-rate-limit": "^8.3.1",

@@ -3,6 +3,7 @@ const authRoute = require('./auth.route');
 const userRoute = require('./user.route');
 const zkpFileRoute = require('./zkpFile.route');
 const credentialsRoute = require('./credentials.route')
+const merkleRoute = require('./merkle.route')
 const docsRoute = require('./docs.route');
 const config = require('../../config/config');
 
@@ -24,6 +25,11 @@ const defaultRoutes = [
   {
     path: '/credentials',
     route: credentialsRoute,
+  },
+
+  {
+    path: '/merkle',
+    route: merkleRoute,
   },
 ];
 

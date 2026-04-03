@@ -8,6 +8,7 @@ const { installDependencies } = require('./lib/deps');
 const { cleanupFiles } = require('./lib/deps');
 const { generateKeysPrompt } = require('./lib/keys');
 const { hasYarn, askQuestion } = require('./lib/utils');
+const { setupMerkleTree, shouldSetupMerkleTree } = require('./lib/merkle'); // NEW
 
 const { spawn } = require('child_process');
 
@@ -37,13 +38,17 @@ async function main() {
     await generateKeysPrompt(appPath);
   }
 
+  // NEW: Ask about Merkle tree setup
+  const setupMerkle = await shouldSetupMerkleTree();
+  if (setupMerkle) {
+    await setupMerkleTree(appPath);
+  }
+
   cleanupFiles(srcPath, useYarn);
   console.log('✅ Project setup complete!');
 
-  // <-- START SERVER HERE
+  // Start server (MongoDB will be initialized inside the app)
   startServer(useYarn);
-
-  console.log('✅ Project setup complete!');
 }
 
 function startServer(useYarn) {
