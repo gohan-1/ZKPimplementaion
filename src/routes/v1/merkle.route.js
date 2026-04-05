@@ -1,30 +1,35 @@
-// routes/merkle.routes.js
+
 const express = require('express');
 const router = express.Router();
-const c = require('../../controllers/merkle.controller');
+const merkleController = require('../../controllers/merkle.controller');
 
-// ── Add leaves ──────────────────────────────────────────────────────────────
-router.post('/add-proof', c.addProofToTree);       // raw Groth16 proof
-router.post('/add-proof-hash', c.addProofHashToTree);   // pre-hashed bytes32
+// ── Add leaves ───────────────────────────────────────────────────────────────
+router.post('/add-proof', merkleController.addProofToTree);      // raw Groth16 proof
+router.post('/add-proof-hash', merkleController.addProofHashToTree);  // pre-hashed bytes32
 
-// ── Verify ──────────────────────────────────────────────────────────────────
-router.post('/verify/by-proof-hash', c.verifyByProofHash); // DB-assisted
-router.post('/verify/by-raw-proof', c.verifyByRawProof);  // DB-assisted
-router.post('/verify/with-path', c.verifyWithPath);    // trustless / no DB
+// ── Verify ───────────────────────────────────────────────────────────────────
+router.post('/verify/by-proof-hash', merkleController.verifyByProofHash); // DB-assisted
+router.post('/verify/by-raw-proof', merkleController.verifyByRawProof);  // DB-assisted
+router.post('/verify/with-path', merkleController.verifyWithPath);    // trustless / no DB
 
 // ── Hash utility ─────────────────────────────────────────────────────────────
-router.post('/hash-proof', c.hashProof);
+router.post('/hash-proof', merkleController.hashProof);
 
-// ── Query ────────────────────────────────────────────────────────────────────
-router.get('/current-root', c.getCurrentRoot);
-router.get('/stats', c.getTreeStats);
-router.get('/leaves', c.getAllLeaves);          // ?page=1&limit=50
-router.get('/proofs', c.getAllProofs);          // ?page=1&limit=10
-router.get('/proof/:proofHash', c.getProofByHash);
-router.get('/root/:version', c.getRootByVersion);
+// ── Query ─────────────────────────────────────────────────────────────────────
+router.get('/current-root', merkleController.getCurrentRoot);
+router.get('/stats', merkleController.getTreeStats);
+router.get('/leaves', merkleController.getAllLeaves);         // ?page=1&limit=50
+router.get('/proofs', merkleController.getAllProofs);         // ?page=1&limit=10
+router.get('/proof/:proofHash', merkleController.getProofByHash);
+router.get('/checkpoint/:version', merkleController.getCheckpoint);
 
 // ── Admin ─────────────────────────────────────────────────────────────────────
-router.post('/rebuild', c.rebuildTree);
+router.post('/rebuild', merkleController.rebuildTree);
+
+// ── On-chain (FUTURE — routes registered, return 501 until enabled) ───────────
+router.post('/chain/submit/:version', merkleController.submitRootToChain);
+router.get('/chain/root/:version', merkleController.getRootFromChain);
+router.get('/chain/status', merkleController.getChainStatus);
 
 module.exports = router;
 
@@ -37,14 +42,17 @@ module.exports = router;
  * @swagger
  * tags:
  *   name: MerkleTree
- *   description: Merkle tree operations for ZKP proof management
+ *   description: |
+ *     Incremental Merkle Tree (IMT) with Poseidon hash.
+ *     Insert cost is O(depth=20) regardless of total leaf count.
+ *     Hash function matches Groth16/snarkjs ZK circuits.
  */
 
 /**
  * @swagger
  * /merkle/add-proof:
  *   post:
- *     summary: Add a raw Groth16 proof to the Merkle tree
+ *     summary: Add a raw Groth16 proof to the tree
  *     tags: [MerkleTree]
  *     requestBody:
  *       required: true
@@ -59,16 +67,18 @@ module.exports = router;
  *                 description: Groth16 proof with pi_a, pi_b, pi_c, protocol, curve
  *     responses:
  *       200:
- *         description: Leaf added; returns leafIndex, leafHash, merkleProof, root, version
+ *         description: |
+ *           Returns proofHash, leafIndex, merkleProof (save this!), root, version, leafCount.
+ *           The merkleProof object contains siblings[] and pathIndices[] needed for trustless verification.
  *       409:
- *         description: Duplicate – proof hash already in tree
+ *         description: Proof hash already exists in tree
  */
 
 /**
  * @swagger
  * /merkle/add-proof-hash:
  *   post:
- *     summary: Add a pre-computed proof hash (bytes32) to the Merkle tree
+ *     summary: Add a pre-computed proof hash (bytes32) to the tree
  *     tags: [MerkleTree]
  *     requestBody:
  *       required: true
@@ -83,7 +93,7 @@ module.exports = router;
  *                 example: "0xabc123..."
  *     responses:
  *       200:
- *         description: Leaf added
+ *         description: Leaf added, returns merkleProof path
  *       409:
  *         description: Duplicate
  */
@@ -92,10 +102,12 @@ module.exports = router;
  * @swagger
  * /merkle/verify/by-proof-hash:
  *   post:
- *     summary: Verify a leaf by proof hash (DB-assisted)
+ *     summary: Verify a leaf by proof hash (DB-assisted, Poseidon path recompute)
  *     description: |
- *       Looks up stored Merkle path, recomputes root from leaf+path,
- *       and checks against current (or provided) root.
+ *       Loads stored sibling path from DB, recomputes Merkle root using Poseidon,
+ *       and checks against the current in-memory root or a provided root.
+ *
+ *       Set expectedRoot to "onchain" to use the on-chain root [FUTURE].
  *     tags: [MerkleTree]
  *     requestBody:
  *       required: true
@@ -109,18 +121,17 @@ module.exports = router;
  *                 type: string
  *               expectedRoot:
  *                 type: string
- *                 description: Optional – if omitted, current root is used
+ *                 description: Optional. Hex root or "onchain" [FUTURE]
  *     responses:
  *       200:
- *         description: |
- *           { valid, computedRoot, storedRoot, leafIndex, leafHash, version, timestamp }
+ *         description: "{ valid, computedRoot, trustedRoot, leafIndex, version, timestamp, rootSource }"
  */
 
 /**
  * @swagger
  * /merkle/verify/by-raw-proof:
  *   post:
- *     summary: Verify a leaf from a raw Groth16 proof object (DB-assisted)
+ *     summary: Verify from raw Groth16 proof object (DB-assisted)
  *     tags: [MerkleTree]
  *     requestBody:
  *       required: true
@@ -143,7 +154,11 @@ module.exports = router;
  * @swagger
  * /merkle/verify/with-path:
  *   post:
- *     summary: Trustless verification – caller supplies Merkle path (no DB lookup)
+ *     summary: Trustless verification — caller supplies full Merkle path (no DB)
+ *     description: |
+ *       Pure cryptographic check using Poseidon.
+ *       No database lookup. Works even if the server DB is wiped.
+ *       Caller must have saved the merkleProof object returned at insertion time.
  *     tags: [MerkleTree]
  *     requestBody:
  *       required: true
@@ -151,22 +166,25 @@ module.exports = router;
  *         application/json:
  *           schema:
  *             type: object
- *             required: [proofHash, timestamp, merklePath, root]
+ *             required: [proofHash, merkleProof, root]
  *             properties:
  *               proofHash:   { type: string }
- *               timestamp:   { type: string, description: "stored at insertion" }
- *               merklePath:  { type: array, items: { type: string } }
+ *               merkleProof:
+ *                 type: object
+ *                 properties:
+ *                   siblings:    { type: array, items: { type: string } }
+ *                   pathIndices: { type: array, items: { type: integer } }
  *               root:        { type: string }
  *     responses:
  *       200:
- *         description: "{ valid, computedRoot, rootToVerify }"
+ *         description: "{ valid, computedRoot, rootToVerify, pathValid, rootMatches }"
  */
 
 /**
  * @swagger
  * /merkle/hash-proof:
  *   post:
- *     summary: Compute deterministic keccak256 hash of a Groth16 proof (no insertion)
+ *     summary: Compute keccak256 hash of a Groth16 proof (no insertion)
  *     tags: [MerkleTree]
  *     requestBody:
  *       required: true
@@ -197,75 +215,74 @@ module.exports = router;
  * @swagger
  * /merkle/stats:
  *   get:
- *     summary: Get tree statistics
+ *     summary: Get full tree statistics
  *     tags: [MerkleTree]
  *     responses:
  *       200:
- *         description: "{ root, version, leafCount, zeroHash, lastUpdated }"
+ *         description: "{ root, version, leafCount, treeDepth, maxLeaves, hashFunction, checkpoints, onchainEnabled }"
  */
 
 /**
  * @swagger
- * /merkle/leaves:
+ * /merkle/checkpoint/{version}:
  *   get:
- *     summary: Paginated list of all leaves
- *     tags: [MerkleTree]
- *     parameters:
- *       - { in: query, name: page,  schema: { type: integer } }
- *       - { in: query, name: limit, schema: { type: integer } }
- *     responses:
- *       200:
- *         description: "{ leaves, total, page, limit, totalPages }"
- */
-
-/**
- * @swagger
- * /merkle/proofs:
- *   get:
- *     summary: Paginated list of all verified proofs
- *     tags: [MerkleTree]
- *     responses:
- *       200:
- *         description: "{ proofs, pagination }"
- */
-
-/**
- * @swagger
- * /merkle/proof/{proofHash}:
- *   get:
- *     summary: Get full proof record by hash
- *     tags: [MerkleTree]
- *     parameters:
- *       - { in: path, name: proofHash, required: true, schema: { type: string } }
- *     responses:
- *       200:
- *         description: Full VerifiedProof record
- *       404:
- *         description: Not found
- */
-
-/**
- * @swagger
- * /merkle/root/{version}:
- *   get:
- *     summary: Get tree root at a specific version
+ *     summary: Get IMT checkpoint summary for a specific version
+ *     description: |
+ *       Checkpoints are saved every 100 inserts.
+ *       They store the O(depth) IMT internal state (not all leaves)
+ *       so restarts are fast without replaying everything.
  *     tags: [MerkleTree]
  *     parameters:
  *       - { in: path, name: version, required: true, schema: { type: integer } }
  *     responses:
  *       200:
- *         description: Snapshot root info
+ *         description: Checkpoint summary
  *       404:
- *         description: Version not found
+ *         description: No checkpoint for that version
  */
 
 /**
  * @swagger
  * /merkle/rebuild:
  *   post:
- *     summary: Rebuild the in-memory tree from DB (admin)
+ *     summary: Rebuild IMT from VerifiedProof collection (admin / disaster recovery)
+ *     description: |
+ *       Cost is O(N × depth). Only use when tree state is corrupted or after migration.
  *     tags: [MerkleTree]
  *     responses:
  *       200:
  *         description: Tree rebuilt
+ */
+
+/**
+ * @swagger
+ * /merkle/chain/submit/{version}:
+ *   post:
+ *     summary: "[FUTURE] Submit Merkle root for a version to the smart contract"
+ *     tags: [MerkleTree]
+ *     responses:
+ *       501:
+ *         description: Not yet enabled
+ */
+
+/**
+ * @swagger
+ * /merkle/chain/root/{version}:
+ *   get:
+ *     summary: "[FUTURE] Get Merkle root for a version from the smart contract"
+ *     tags: [MerkleTree]
+ *     responses:
+ *       501:
+ *         description: Not yet enabled
+ */
+
+/**
+ * @swagger
+ * /merkle/chain/status:
+ *   get:
+ *     summary: "[FUTURE] List all tree versions that have been anchored on-chain"
+ *     tags: [MerkleTree]
+ *     responses:
+ *       200:
+ *         description: List of submitted roots + onchainEnabled flag
  */

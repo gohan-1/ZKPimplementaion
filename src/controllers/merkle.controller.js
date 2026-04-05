@@ -1,22 +1,31 @@
 // controllers/merkle.controller.js
+'use strict';
+
 const merkleService = require('../services/merkle.service');
 const ZKPProofHasher = require('../utils/zkpHash');
-const TreeSnapshot = require('../models/treeSnapshot.model');
-const VerifiedProof = require('../models/VerifiedProof.model');
+const TreeState = require('../models/treeState.model');
 
-// ─── helpers ────────────────────────────────────────────────────────────────
+// ─── Response helpers ────────────────────────────────────────────────────────
 
-const ok = (res, data, msg = 'Success') => res.json({ success: true, message: msg, data });
-const err = (res, e, status = 500) => res.status(status).json({ success: false, message: e.message || e });
-const bad = (res, msg) => res.status(400).json({ success: false, message: msg });
+const ok = (res, data, msg = 'Success') =>
+    res.json({ success: true, message: msg, data });
 
-// ─── ADD ────────────────────────────────────────────────────────────────────
+const err = (res, e, status = 500) =>
+    res.status(status).json({ success: false, message: e.message || String(e) });
+
+const bad = (res, msg) =>
+    res.status(400).json({ success: false, message: msg });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ADD ENDPOINTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 /**
  * POST /merkle/add-proof
  * Body: { proof: <Groth16 object> }
  *
- * Hashes the proof and adds it as a leaf.
+ * Hashes the proof with keccak256, inserts it as a leaf in the IMT.
+ * Returns the Merkle proof path — save this, it's what the user needs to verify.
  */
 const addProofToTree = async (req, res) => {
     try {
@@ -26,9 +35,7 @@ const addProofToTree = async (req, res) => {
         const result = await merkleService.addZKPProof(proof);
         return ok(res, result, 'ZKP proof added to Merkle tree');
     } catch (e) {
-        console.error('[addProofToTree]', e);
-        // 409 if duplicate
-        if (e.message.includes('already exists')) return res.status(409).json({ success: false, message: e.message });
+        if (e.message.startsWith('Duplicate')) return res.status(409).json({ success: false, message: e.message });
         return err(res, e);
     }
 };
@@ -37,38 +44,49 @@ const addProofToTree = async (req, res) => {
  * POST /merkle/add-proof-hash
  * Body: { proofHash: "0x..." }
  *
- * Adds a pre-computed bytes32 proof hash directly.
+ * Insert a pre-computed keccak256 bytes32 hash directly as a leaf.
  */
 const addProofHashToTree = async (req, res) => {
     try {
         const { proofHash } = req.body;
         if (!proofHash) return bad(res, 'Missing required field: proofHash');
-        if (!/^0x[0-9a-fA-F]{64}$/.test(proofHash)) return bad(res, 'proofHash must be a 0x-prefixed 32-byte hex string');
+        if (!/^0x[0-9a-fA-F]{64}$/.test(proofHash))
+            return bad(res, 'proofHash must be a 0x-prefixed 32-byte hex string');
 
         const result = await merkleService.addProofHash(proofHash);
         return ok(res, result, 'Proof hash added to Merkle tree');
     } catch (e) {
-        if (e.message.includes('already exists')) return res.status(409).json({ success: false, message: e.message });
+        if (e.message.startsWith('Duplicate')) return res.status(409).json({ success: false, message: e.message });
         return err(res, e);
     }
 };
 
-// ─── VERIFY ─────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// VERIFY ENDPOINTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 /**
  * POST /merkle/verify/by-proof-hash
- * Body: { proofHash: "0x...", expectedRoot?: "0x..." }
+ * Body: { proofHash: "0x...", expectedRoot?: "0x..." | "onchain" }
  *
- * Looks up the stored Merkle path for this proofHash, recomputes the root,
- * and returns whether the leaf belongs to the tree.
+ * DB-assisted verification.
+ * Loads stored sibling path from DB, recomputes root with Poseidon,
+ * compares against expectedRoot (or current in-memory root if omitted).
+ *
+ * Pass expectedRoot: "onchain" to use the on-chain root [FUTURE].
+ *
+ * Response:
+ *   { valid, computedRoot, trustedRoot, leafIndex, version, timestamp, rootSource }
  */
 const verifyByProofHash = async (req, res) => {
     try {
-        const { proofHash, expectedRoot } = req.body;
+
+        const { proofHash } = req.body;
         if (!proofHash) return bad(res, 'Missing required field: proofHash');
 
-        const result = await merkleService.verifyByProofHash(proofHash, expectedRoot || null);
-        return ok(res, result, result.valid ? '✅ Leaf is valid in tree' : '❌ Leaf is NOT in tree');
+        const result = await merkleService.verifyByProofHash(proofHash);
+        const msg = result.valid ? '✅ Leaf is valid in tree' : '❌ Leaf NOT found in tree';
+        return ok(res, result, msg);
     } catch (e) {
         return err(res, e);
     }
@@ -76,17 +94,19 @@ const verifyByProofHash = async (req, res) => {
 
 /**
  * POST /merkle/verify/by-raw-proof
- * Body: { proof: <Groth16 object>, expectedRoot?: "0x..." }
+ * Body: { proof: <Groth16 object>, expectedRoot?: "0x..." | "onchain" }
  *
- * Hashes the proof first, then verifies as above.
+ * Hashes the proof first, then verifies. Convenient when caller has the
+ * original proof object but not the hash.
  */
 const verifyByRawProof = async (req, res) => {
     try {
-        const { proof, expectedRoot } = req.body;
+        const { proof } = req.body;
         if (!proof) return bad(res, 'Missing required field: proof');
 
-        const result = await merkleService.verifyByRawProof(proof, expectedRoot || null);
-        return ok(res, result, result.valid ? '✅ Proof is valid in tree' : '❌ Proof is NOT in tree');
+        const result = await merkleService.verifyByRawProof(proof);
+        const msg = result.valid ? '✅ Proof is valid in tree' : '❌ Proof NOT found in tree';
+        return ok(res, result, msg);
     } catch (e) {
         return err(res, e);
     }
@@ -94,31 +114,40 @@ const verifyByRawProof = async (req, res) => {
 
 /**
  * POST /merkle/verify/with-path
- * Body: { proofHash, timestamp, merklePath: [...], root }
+ * Body: { proofHash, merkleProof: { siblings, pathIndices }, root }
  *
- * Trustless verification — caller supplies the Merkle path themselves.
- * No DB lookup. Pure cryptographic check.
+ * TRUSTLESS verification — no DB lookup.
+ * The caller supplies everything from the insertion response they saved.
+ * Works even if the server's DB is wiped, as long as the on-chain root exists.
+ *
+ * Response: { valid, computedRoot, rootToVerify, pathValid, rootMatches }
  */
 const verifyWithPath = async (req, res) => {
     try {
-        const { proofHash, timestamp, merklePath, root } = req.body;
-        if (!proofHash || !timestamp || !merklePath || !root)
-            return bad(res, 'Missing required fields: proofHash, timestamp, merklePath, root');
+        const { proofHash, merkleProof, root } = req.body;
+        if (!proofHash || !merkleProof || !root)
+            return bad(res, 'Missing required fields: proofHash, merkleProof, root');
+        if (!merkleProof.siblings || !merkleProof.pathIndices)
+            return bad(res, 'merkleProof must contain siblings[] and pathIndices[]');
 
-        const result = merkleService.verifyWithPath(proofHash, timestamp, merklePath, root);
-        return ok(res, result, result.valid ? '✅ Path verifies correctly' : '❌ Path does not verify');
+        const result = merkleService.verifyWithPath(proofHash, merkleProof, root);
+        const msg = result.valid ? '✅ Path verifies correctly' : '❌ Path does not verify';
+        return ok(res, result, msg);
     } catch (e) {
         return err(res, e);
     }
 };
 
-// ─── HASH UTILITY ───────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// HASH UTILITY
+// ─────────────────────────────────────────────────────────────────────────────
 
 /**
  * POST /merkle/hash-proof
  * Body: { proof: <Groth16 object> }
  *
- * Returns the deterministic keccak256 hash of the proof without adding it to the tree.
+ * Compute the deterministic keccak256 hash of a proof without inserting it.
+ * Useful to check if a proof is already in the tree before submitting.
  */
 const hashProof = async (req, res) => {
     try {
@@ -132,7 +161,9 @@ const hashProof = async (req, res) => {
     }
 };
 
-// ─── QUERIES ────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// QUERY ENDPOINTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const getCurrentRoot = async (req, res) => {
     try { return ok(res, await merkleService.getCurrentRoot()); }
@@ -146,44 +177,124 @@ const getTreeStats = async (req, res) => {
 
 const getAllLeaves = async (req, res) => {
     try {
-        const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 50;
+        const page = Math.max(1, parseInt(req.query.page) || 1);
+        const limit = Math.min(500, parseInt(req.query.limit) || 50);
         return ok(res, await merkleService.getAllLeaves(page, limit));
     } catch (e) { return err(res, e); }
 };
 
 const getAllProofs = async (req, res) => {
     try {
-        const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 10;
+        const page = Math.max(1, parseInt(req.query.page) || 1);
+        const limit = Math.min(100, parseInt(req.query.limit) || 10);
         return ok(res, await merkleService.getAllProofs(page, limit));
     } catch (e) { return err(res, e); }
 };
 
 const getProofByHash = async (req, res) => {
     try {
-        const { proofHash } = req.params;
-        return ok(res, await merkleService.getProofByHash(proofHash));
+        return ok(res, await merkleService.getProofByHash(req.params.proofHash));
     } catch (e) {
         if (e.message.includes('not found')) return err(res, e, 404);
         return err(res, e);
     }
 };
 
-const getRootByVersion = async (req, res) => {
+/**
+ * GET /merkle/checkpoint/:version
+ * Returns the saved TreeState checkpoint for a specific version.
+ * Useful for debugging / auditing the tree state at a given point in time.
+ */
+const getCheckpoint = async (req, res) => {
     try {
-        const snapshot = await TreeSnapshot.findOne({ version: parseInt(req.params.version) });
-        if (!snapshot) return err(res, new Error(`Version ${req.params.version} not found`), 404);
-        return ok(res, { version: snapshot.version, root: snapshot.root, leafCount: snapshot.leafCount, createdAt: snapshot.createdAt });
+        const version = parseInt(req.params.version);
+        const snapshot = await TreeState.findOne({ version });
+        if (!snapshot) return err(res, new Error(`No checkpoint for version ${version}`), 404);
+
+        // Don't send the full node map (can be large) — send summary only
+        return ok(res, {
+            version: snapshot.version,
+            root: snapshot.root,
+            leafCount: snapshot.leafCount,
+            depth: snapshot.depth,
+            nodeCount: snapshot.nodes.length,
+            isRebuild: snapshot.isRebuild,
+            savedAt: snapshot.savedAt,
+            // On-chain info (FUTURE)
+            submittedToChain: snapshot.submittedToChain,
+            txHash: snapshot.txHash,
+            chainName: snapshot.chainName,
+            submittedAt: snapshot.submittedAt
+        });
     } catch (e) { return err(res, e); }
 };
 
-// ─── ADMIN ──────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// ADMIN ENDPOINTS
+// ─────────────────────────────────────────────────────────────────────────────
 
+/**
+ * POST /merkle/rebuild
+ * Wipes in-memory IMT and rebuilds from VerifiedProof collection.
+ * Use for disaster recovery or after manual DB edits.
+ * Cost: O(N × depth) — slow for large trees.
+ */
 const rebuildTree = async (req, res) => {
-    try { return ok(res, await merkleService.rebuildFromDatabase(), 'Tree rebuilt from DB'); }
-    catch (e) { return err(res, e); }
+    try {
+        const result = await merkleService.rebuildFromDatabase();
+        return ok(res, result, 'Merkle tree rebuilt from database');
+    } catch (e) { return err(res, e); }
 };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ON-CHAIN STUBS (FUTURE — routes registered but return 501 until enabled)
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * POST /merkle/chain/submit/:version
+ * [FUTURE] Submit the root for a specific version to the smart contract.
+ */
+const submitRootToChain = async (req, res) => {
+    // When ready: enable ONCHAIN_ENABLED in service and implement _submitRootToChain
+    return res.status(501).json({
+        success: false,
+        message: 'On-chain submission not yet enabled. Set ONCHAIN_ENABLED=true in service and deploy contract.',
+        hint: 'See _submitRootToChain() in merkleTree.service.js for the implementation stub.'
+    });
+};
+
+/**
+ * GET /merkle/chain/root/:version
+ * [FUTURE] Fetch the root for a version from the smart contract.
+ */
+const getRootFromChain = async (req, res) => {
+    return res.status(501).json({
+        success: false,
+        message: 'On-chain root fetch not yet enabled.',
+        hint: 'See _getRootFromChain() in merkleTree.service.js for the implementation stub.'
+    });
+};
+
+/**
+ * GET /merkle/chain/status
+ * [FUTURE] Check which tree versions have been anchored on-chain.
+ */
+const getChainStatus = async (req, res) => {
+    try {
+        const submitted = await TreeState.find({ submittedToChain: true })
+            .select('version root txHash chainName submittedAt')
+            .sort({ version: -1 })
+            .limit(20);
+
+        return ok(res, {
+            onchainEnabled: false, // flip to true once contract is deployed
+            submitted,
+            hint: 'Enable ONCHAIN_ENABLED in service to start anchoring roots.'
+        });
+    } catch (e) { return err(res, e); }
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
     // add
@@ -201,7 +312,11 @@ module.exports = {
     getAllLeaves,
     getAllProofs,
     getProofByHash,
-    getRootByVersion,
+    getCheckpoint,
     // admin
-    rebuildTree
+    rebuildTree,
+    // on-chain stubs (FUTURE)
+    submitRootToChain,
+    getRootFromChain,
+    getChainStatus
 };
