@@ -158,7 +158,7 @@ module.exports = router;
  *               credentialHash:
  *                 type: string
  *                 description: The hash to sign (from createCredentialHash endpoint)
- *                 example: "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+ *                 example: "12233083053732356803425786553947618198249315017274098841859297024994044459654"
  *               userId:
  *                 type: string
  *                 description: User ID associated with the credential

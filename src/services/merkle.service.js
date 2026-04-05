@@ -1,369 +1,304 @@
 // services/merkleTree.service.js
 const { StandardMerkleTree } = require('@openzeppelin/merkle-tree');
-const Credential = require('../models/credential.model');
+const { ethers } = require('ethers');
 const TreeSnapshot = require('../models/treeSnapshot.model');
 const VerifiedProof = require('../models/VerifiedProof.model');
 const ZKPProofHasher = require('../utils/zkpHash');
+const logger = require('../config/logger');
 
+/**
+ * MerkleTreeService
+ * -----------------
+ * Manages a StandardMerkleTree whose leaves are (bytes32 proofHash, uint256 timestamp).
+ *
+ * Flow:
+ *  1. Caller submits a Groth16 proof  →  we hash it  →  addProofHash()
+ *  2. addProofHash() rebuilds the tree, saves a TreeSnapshot and a VerifiedProof.
+ *  3. Verification: caller supplies proofHash (or raw proof)  →
+ *       we reconstruct the leaf  →  verifyLeaf() walks the stored Merkle path
+ *       and recomputes the root, comparing against the stored on-chain root.
+ */
 class MerkleTreeService {
     constructor() {
-        this.ZERO_HASH = "0x0000000000000000000000000000000000000000000000000000000000000000";
-        this.currentTree = null;
-        this.currentValues = [];
+        this.ZERO_HASH =
+            '0x0000000000000000000000000000000000000000000000000000000000000000';
+        this.LEAF_ENCODING = ['bytes32', 'uint256']; // leaf schema
+
+        this.currentTree = null;   // StandardMerkleTree instance
+        this.currentValues = [];     // raw leaf arrays   [[proofHash, ts], ...]
         this.currentRoot = this.ZERO_HASH;
         this.currentVersion = 0;
         this.currentLeafCount = 0;
         this.isInitialized = false;
     }
 
-    /**
-     * Initialize the service (load latest snapshot)
-     */
+    // ─────────────────────────────────────────────────────────────────────────
+    // INIT
+    // ─────────────────────────────────────────────────────────────────────────
+
     async initialize() {
-        console.log('🌲 Initializing Merkle Tree Service...');
+        if (this.isInitialized) return this._statusSnapshot();
 
-        // Load latest snapshot from database
-        const latestSnapshot = await TreeSnapshot.findOne().sort({ version: -1 });
+        console.log('🌲 Initializing Merkle Tree Service…');
+        const latest = await TreeSnapshot.findOne().sort({ version: -1 });
 
-        if (latestSnapshot && latestSnapshot.leafCount > 0) {
-            // Restore existing tree
-            this.currentTree = StandardMerkleTree.load(latestSnapshot.treeJson);
-            this.currentValues = latestSnapshot.values || [];
-            this.currentRoot = latestSnapshot.root;
-            this.currentVersion = latestSnapshot.version;
-            this.currentLeafCount = latestSnapshot.leafCount;
-            this.isInitialized = true;
-
-            console.log(`📌 Restored tree - Version: ${this.currentVersion}, Root: ${this.currentRoot}, Leaves: ${this.currentLeafCount}`);
+        if (latest && latest.leafCount > 0) {
+            this.currentTree = StandardMerkleTree.load(latest.treeJson);
+            this.currentValues = latest.values || [];
+            this.currentRoot = latest.root;
+            this.currentVersion = latest.version;
+            this.currentLeafCount = latest.leafCount;
+            console.log(`📌 Restored v${this.currentVersion}  root=${this._short(this.currentRoot)}  leaves=${this.currentLeafCount}`);
         } else {
-            // Start with empty tree
-            this.currentValues = [];
-            this.currentRoot = this.ZERO_HASH;
-            this.currentVersion = 0;
-            this.currentLeafCount = 0;
-            this.currentTree = null;
-            this.isInitialized = true;
-
-            console.log(`✅ Initialized empty tree with zero root`);
+            console.log('✅ Empty tree (zero root)');
         }
 
-        return {
-            root: this.currentRoot,
-            version: this.currentVersion,
-            leafCount: this.currentLeafCount
-        };
+        this.isInitialized = true;
+        return this._statusSnapshot();
     }
 
+    // ─────────────────────────────────────────────────────────────────────────
+    // ADD
+    // ─────────────────────────────────────────────────────────────────────────
+
     /**
-     * Create leaf from proof hash only (simplified)
-     * @param {string} proofHash - Hash of the ZKP proof
-     * @returns {Array} Leaf value for Merkle tree
+     * Hash a raw Groth16 proof and add it to the tree.
+     * @param {Object} proof - Groth16 proof object
+     * @returns {Object} result with leafIndex, leafHash, merkleProof, root, version
      */
-    createLeafFromProofHash(proofHash) {
-        // Simplified leaf: just proof hash + timestamp
-        const leafValue = [
-            proofHash,                           // bytes32 - ZKP proof hash
-            Date.now().toString()                // uint256 - Timestamp for uniqueness
-        ];
-        return leafValue;
+    async addZKPProof(proof) {
+        const proofHash = ZKPProofHasher.hashFullProof(proof);
+        return this.addProofHash(proofHash, proof);
     }
 
     /**
-     * Add a proof hash directly to the tree
-     * @param {string} proofHash - Hash of the ZKP proof
-     * @param {Object} proof - Original proof object (for storage)
+     * Add a pre-computed proof hash as a leaf.
+     * @param {string} proofHash  - bytes32 hex string
+     * @param {Object|null} proof - original proof (optional; stored for retrieval)
      */
     async addProofHash(proofHash, proof = null) {
-        if (!this.isInitialized) {
-            await this.initialize();
+        await this._ensureInit();
+
+        // Prevent duplicates
+        const existing = await VerifiedProof.findOne({ proofHash });
+        if (existing) {
+            throw new Error(`Proof hash already exists in tree at leaf index ${existing.merkleLeafIndex}`);
         }
 
-        console.log('➕ Adding proof hash to Merkle tree...');
-        console.log(`   Proof Hash: ${proofHash.substring(0, 20)}...`);
+        // Build leaf  [proofHash, timestamp]
+        const timestamp = Date.now().toString();
+        const leafValue = [proofHash, timestamp];
 
-        // Create leaf from proof hash
-        const leafValue = this.createLeafFromProofHash(proofHash);
-
-        // Add to values array
         this.currentValues.push(leafValue);
+        this._rebuildTree();
 
-        // Build tree from all values
-        this.currentTree = StandardMerkleTree.of(
-            this.currentValues,
-            ['bytes32', 'uint256']  // Only 2 fields: proof hash + timestamp
-        );
 
-        // Update root and leaf count
-        this.currentRoot = this.currentTree.root;
-        this.currentLeafCount = this.currentValues.length;
-        this.currentVersion++;
-
-        // Get proof for the newly added leaf
         const leafIndex = this.currentValues.length - 1;
         const merkleProof = this.currentTree.getProof(leafIndex);
         const leafHash = this.currentTree.leafHash(leafValue);
 
-        // Save snapshot to database
-        const snapshot = new TreeSnapshot({
+        logger.info('---------------------------------------------------------------')
+        logger.info('leaf index : '.leafIndex)
+        logger.info('merkleProof : '.merkleProof)
+        logger.info('leafHash : '.leafHash)
+
+
+        logger.info('----------------------------------------------------------------')
+
+        this.currentVersion++;
+
+        // ── persist snapshot ──────────────────────────────────────────────
+        await new TreeSnapshot({
             version: this.currentVersion,
             root: this.currentRoot,
             leafCount: this.currentLeafCount,
             treeJson: this.currentTree.dump(),
             values: [...this.currentValues],
-            addedLeaf: {
-                proofHash: proofHash,
-                leafValue: leafValue,
-                leafHash: leafHash,
-                leafIndex: leafIndex,
-                proof: merkleProof
-            },
+            addedLeaf: { proofHash, leafValue, leafHash, leafIndex, proof: merkleProof },
             createdAt: new Date()
-        });
+        }).save();
 
-        await snapshot.save();
-
-        // Store proof mapping in database (if proof object provided)
-        if (proof) {
-            const proofRecord = new VerifiedProof({
-                proofHash: proofHash,
-                originalProof: proof,
-                merkleVersion: this.currentVersion,
-                merkleLeafIndex: leafIndex,
-                merkleProof: merkleProof,
-                root: this.currentRoot,
-                timestamp: new Date()
-            });
-            await proofRecord.save();
-        }
-
-        console.log(`✅ Proof hash added at index ${leafIndex}`);
-        console.log(`   Leaf Hash: ${leafHash}`);
-        console.log(`   New Root: ${this.currentRoot}`);
-        console.log(`   Version: ${this.currentVersion}`);
-
-        return {
-            proofHash: proofHash,
-            leafIndex: leafIndex,
-            leafHash: leafHash,
-            merkleProof: merkleProof,
-            root: this.currentRoot,
-            version: this.currentVersion,
-            leafCount: this.currentLeafCount
-        };
-    }
-
-    /**
-     * Add ZKP proof (simplified - only proof required)
-     * @param {Object} proof - Groth16 proof object
-     */
-    async addZKPProof(proof) {
-        // Hash the proof
-        const proofHash = ZKPProofHasher.hashFullProof(proof);
-
-        console.log('📝 Adding ZKP proof to Merkle tree...');
-        console.log(`   Proof Hash: ${proofHash.substring(0, 20)}...`);
-
-        // Add to tree
-        const result = await this.addProofHash(proofHash, proof);
-
-        return result;
-    }
-
-    /**
-     * Get proof by proof hash (commitment)
-     * @param {string} proofHash - Hash of the proof
-     */
-    async getProofByHash(proofHash) {
-        if (!this.isInitialized) {
-            await this.initialize();
-        }
-
-        const proofRecord = await VerifiedProof.findOne({ proofHash: proofHash });
-
-        if (!proofRecord) {
-            throw new Error(`Proof hash ${proofHash} not found`);
-        }
-
-        return {
-            proofHash: proofRecord.proofHash,
-            merkleVersion: proofRecord.merkleVersion,
-            merkleLeafIndex: proofRecord.merkleLeafIndex,
-            merkleProof: proofRecord.merkleProof,
-            root: proofRecord.root,
-            originalProof: proofRecord.originalProof,
-            timestamp: proofRecord.timestamp
-        };
-    }
-
-    /**
-     * Verify if a proof hash exists in tree
-     * @param {string} proofHash - Hash of the proof
-     */
-    async verifyProofHashExists(proofHash) {
-        if (!this.isInitialized) {
-            await this.initialize();
-        }
-
-        const proofRecord = await VerifiedProof.findOne({ proofHash: proofHash });
-
-        if (!proofRecord) {
-            return { exists: false };
-        }
-
-        return {
-            exists: true,
-            leafIndex: proofRecord.merkleLeafIndex,
-            version: proofRecord.merkleVersion,
-            root: proofRecord.root
-        };
-    }
-
-    /**
-     * Get current root
-     */
-    async getCurrentRoot() {
-        if (!this.isInitialized) {
-            await this.initialize();
-        }
-
-        return {
-            root: this.currentRoot,
-            version: this.currentVersion,
-            leafCount: this.currentLeafCount
-        };
-    }
-
-    /**
-     * Get tree statistics
-     */
-    async getTreeStats() {
-        if (!this.isInitialized) {
-            await this.initialize();
-        }
-
-        return {
-            version: this.currentVersion,
-            root: this.currentRoot,
-            leafCount: this.currentLeafCount,
-            zeroHash: this.ZERO_HASH,
-            lastUpdated: new Date().toISOString()
-        };
-    }
-
-    /**
-     * Get all verified proofs (paginated)
-     */
-    async getAllProofs(page = 1, limit = 10) {
-        if (!this.isInitialized) {
-            await this.initialize();
-        }
-
-        const skip = (page - 1) * limit;
-
-        const proofs = await VerifiedProof.find({})
-            .select('-originalProof')  // Exclude large proof object
-            .sort({ createdAt: -1 })
-            .skip(skip)
-            .limit(limit);
-
-        const total = await VerifiedProof.countDocuments();
-
-        return {
-            proofs: proofs,
-            pagination: {
-                page: page,
-                limit: limit,
-                total: total,
-                totalPages: Math.ceil(total / limit)
-            }
-        };
-    }
-
-    /**
-     * Get all leaves (paginated)
-     */
-    async getAllLeaves(page = 1, limit = 100) {
-        if (!this.isInitialized) {
-            await this.initialize();
-        }
-
-        const start = (page - 1) * limit;
-        const end = start + limit;
-        const leaves = this.currentValues.slice(start, end);
-
-        const leavesWithHashes = leaves.map((leaf, idx) => ({
-            index: start + idx,
-            value: leaf,
-            hash: this.currentTree ? this.currentTree.leafHash(leaf) : null
-        }));
-
-        return {
-            leaves: leavesWithHashes,
-            total: this.currentLeafCount,
-            page: page,
-            limit: limit,
-            totalPages: Math.ceil(this.currentLeafCount / limit)
-        };
-    }
-
-    /**
-     * Verify a Merkle proof
-     */
-    verifyProof(leafValue, proof, root = null) {
-        const rootToVerify = root || this.currentRoot;
-        return StandardMerkleTree.verify(
-            rootToVerify,
-            ['bytes32', 'uint256'],
+        // ── persist VerifiedProof record ──────────────────────────────────
+        await new VerifiedProof({
+            proofHash,
+            originalProof: proof,
+            merkleVersion: this.currentVersion,
+            merkleLeafIndex: leafIndex,
             leafValue,
-            proof
+            merkleProof,
+            root: this.currentRoot,
+            timestamp: new Date()
+        }).save();
+
+        console.log(`✅ Added leaf[${leafIndex}]  root=${this._short(this.currentRoot)}`);
+        return { proofHash, leafIndex, leafHash, merkleProof, root: this.currentRoot, version: this.currentVersion, leafCount: this.currentLeafCount };
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // VERIFY
+    // ─────────────────────────────────────────────────────────────────────────
+
+    /**
+     * Core verification: given a proofHash, reconstruct the Merkle root from
+     * the stored Merkle-path and compare with the current root.
+     *
+     * @param {string} proofHash  - bytes32 hex
+     * @param {string} [expectedRoot] - optional; defaults to currentRoot
+     * @returns {{ valid: boolean, computedRoot: string, storedRoot: string, leafIndex: number, leafHash: string }}
+     */
+    async verifyByProofHash(proofHash, expectedRoot = null) {
+        await this._ensureInit();
+
+        const record = await VerifiedProof.findOne({ proofHash });
+        if (!record) {
+            return { valid: false, reason: 'proof hash not found in database' };
+        }
+
+        const rootToCheck = expectedRoot || this.currentRoot;
+
+        // Use OpenZeppelin verify (recomputes root from leaf+path)
+        const isValid = StandardMerkleTree.verify(
+            rootToCheck,
+            this.LEAF_ENCODING,
+            record.leafValue,
+            record.merkleProof
         );
+
+        // Also manually compute root so caller can inspect it
+        const computedRoot = this._computeRootFromPath(
+            this.currentTree.leafHash(record.leafValue),
+            record.merkleProof
+        );
+
+        return {
+            valid: isValid,
+            computedRoot,
+            storedRoot: rootToCheck,
+            leafIndex: record.merkleLeafIndex,
+            leafHash: this.currentTree.leafHash(record.leafValue),
+            version: record.merkleVersion,
+            timestamp: record.timestamp
+        };
     }
 
     /**
-     * Rebuild tree from database
+     * Verify directly from a raw Groth16 proof object.
+     * Hashes the proof then delegates to verifyByProofHash.
      */
-    async rebuildFromDatabase() {
-        console.log('🔄 Rebuilding Merkle tree from database...');
+    async verifyByRawProof(proof, expectedRoot = null) {
+        const proofHash = ZKPProofHasher.hashFullProof(proof);
+        const result = await this.verifyByProofHash(proofHash, expectedRoot);
+        return { ...result, proofHash };
+    }
 
-        // Get all verified proofs
-        const proofs = await VerifiedProof.find({}).sort({ createdAt: 1 }).lean();
+    /**
+     * Verify a leaf using a caller-supplied Merkle path (trustless).
+     * Does NOT require a database lookup – pure cryptographic verification.
+     *
+     * @param {string} proofHash
+     * @param {string} timestamp       - same timestamp stored at insertion
+     * @param {string[]} merklePath    - array of sibling hashes
+     * @param {string} rootToVerify
+     */
+    verifyWithPath(proofHash, timestamp, merklePath, rootToVerify) {
+        const leafValue = [proofHash, timestamp];
+        const isValid = StandardMerkleTree.verify(
+            rootToVerify,
+            this.LEAF_ENCODING,
+            leafValue,
+            merklePath
+        );
+
+        const computedRoot = this._computeRootFromPath(
+            this._leafHash(leafValue),
+            merklePath
+        );
+
+        return { valid: isValid, computedRoot, rootToVerify };
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // QUERIES
+    // ─────────────────────────────────────────────────────────────────────────
+
+    async getProofByHash(proofHash) {
+        await this._ensureInit();
+        const record = await VerifiedProof.findOne({ proofHash });
+        if (!record) throw new Error(`Proof hash ${proofHash} not found`);
+        return {
+            proofHash: record.proofHash,
+            leafValue: record.leafValue,
+            merkleVersion: record.merkleVersion,
+            merkleLeafIndex: record.merkleLeafIndex,
+            merkleProof: record.merkleProof,
+            root: record.root,
+            originalProof: record.originalProof,
+            timestamp: record.timestamp
+        };
+    }
+
+    async getCurrentRoot() {
+        await this._ensureInit();
+        return this._statusSnapshot();
+    }
+
+    async getTreeStats() {
+        await this._ensureInit();
+        return { ...this._statusSnapshot(), zeroHash: this.ZERO_HASH, lastUpdated: new Date().toISOString() };
+    }
+
+    async getAllProofs(page = 1, limit = 10) {
+        await this._ensureInit();
+        const skip = (page - 1) * limit;
+        const proofs = await VerifiedProof.find({}).select('-originalProof').sort({ timestamp: -1 }).skip(skip).limit(limit);
+        const total = await VerifiedProof.countDocuments();
+        return { proofs, pagination: { page, limit, total, totalPages: Math.ceil(total / limit) } };
+    }
+
+    async getAllLeaves(page = 1, limit = 100) {
+        await this._ensureInit();
+        const start = (page - 1) * limit;
+        const leaves = this.currentValues.slice(start, start + limit).map((v, i) => ({
+            index: start + i,
+            proofHash: v[0],
+            timestamp: v[1],
+            leafHash: this.currentTree ? this.currentTree.leafHash(v) : null
+        }));
+        return { leaves, total: this.currentLeafCount, page, limit, totalPages: Math.ceil(this.currentLeafCount / limit) };
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // REBUILD
+    // ─────────────────────────────────────────────────────────────────────────
+
+    async rebuildFromDatabase() {
+        console.log('🔄 Rebuilding from DB…');
+        const proofs = await VerifiedProof.find({}).sort({ timestamp: 1 }).lean();
 
         if (proofs.length === 0) {
-            console.log('No proofs found, keeping empty tree');
-            return await this.initialize();
+            this.currentValues = [];
+            this.currentRoot = this.ZERO_HASH;
+            this.currentLeafCount = 0;
+            this.currentTree = null;
+            this.isInitialized = true;
+            return this._statusSnapshot();
         }
 
-        // Build values array from stored proofs
-        const values = proofs.map(proof => [
-            proof.proofHash,
-            proof.timestamp.getTime().toString()
-        ]);
-
-        // Build tree
-        this.currentValues = values;
-        this.currentTree = StandardMerkleTree.of(
-            this.currentValues,
-            ['bytes32', 'uint256']
-        );
-
-        this.currentRoot = this.currentTree.root;
+        this.currentValues = proofs.map(p => [p.proofHash, new Date(p.timestamp).getTime().toString()]);
+        this._rebuildTree();
         this.currentVersion++;
-        this.currentLeafCount = this.currentValues.length;
-        this.isInitialized = true;
 
-        // Update all proofs with new Merkle data
+        // Update all VerifiedProof Merkle paths
         for (let i = 0; i < proofs.length; i++) {
-            const merkleProof = this.currentTree.getProof(i);
             await VerifiedProof.findByIdAndUpdate(proofs[i]._id, {
                 merkleVersion: this.currentVersion,
                 merkleLeafIndex: i,
-                merkleProof: merkleProof,
+                merkleProof: this.currentTree.getProof(i),
                 root: this.currentRoot
             });
         }
 
-        // Save snapshot
-        const snapshot = new TreeSnapshot({
+        await new TreeSnapshot({
             version: this.currentVersion,
             root: this.currentRoot,
             leafCount: this.currentLeafCount,
@@ -371,18 +306,53 @@ class MerkleTreeService {
             values: [...this.currentValues],
             rebuiltFromDB: true,
             createdAt: new Date()
-        });
+        }).save();
 
-        await snapshot.save();
-
-        console.log(`✅ Tree rebuilt - Version: ${this.currentVersion}, Root: ${this.currentRoot}, Leaves: ${this.currentLeafCount}`);
-
-        return {
-            root: this.currentRoot,
-            version: this.currentVersion,
-            leafCount: this.currentLeafCount
-        };
+        console.log(`✅ Rebuilt  v${this.currentVersion}  leaves=${this.currentLeafCount}  root=${this._short(this.currentRoot)}`);
+        return this._statusSnapshot();
     }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // PRIVATE HELPERS
+    // ─────────────────────────────────────────────────────────────────────────
+
+    _rebuildTree() {
+        this.currentTree = StandardMerkleTree.of(this.currentValues, this.LEAF_ENCODING);
+        this.currentRoot = this.currentTree.root;
+        this.currentLeafCount = this.currentValues.length;
+    }
+
+    /**
+     * Manually walk the Merkle path to compute root.
+     * Mirrors OpenZeppelin's MerkleProof.sol processProof logic.
+     */
+    _computeRootFromPath(leafHash, path) {
+        let current = leafHash;
+        for (const sibling of path) {
+            // Sort pair before hashing (matches OZ sorted-pair hash)
+            const [a, b] = current.toLowerCase() < sibling.toLowerCase()
+                ? [current, sibling]
+                : [sibling, current];
+            current = ethers.keccak256(
+                ethers.concat([ethers.getBytes(a), ethers.getBytes(b)])
+            );
+        }
+        return current;
+    }
+
+    _leafHash(leafValue) {
+        return this.currentTree ? this.currentTree.leafHash(leafValue) : null;
+    }
+
+    async _ensureInit() {
+        if (!this.isInitialized) await this.initialize();
+    }
+
+    _statusSnapshot() {
+        return { root: this.currentRoot, version: this.currentVersion, leafCount: this.currentLeafCount };
+    }
+
+    _short(h) { return h ? `${h.slice(0, 10)}…` : 'none'; }
 }
 
 module.exports = new MerkleTreeService();

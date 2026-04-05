@@ -1,4 +1,3 @@
-// utils/constants.js
 
 // Operator enum (matches Circom circuit)
 const OPERATORS = {
